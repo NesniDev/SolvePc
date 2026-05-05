@@ -1,0 +1,134 @@
+---
+const links = [
+  { href: '/', text: 'Inicio' },
+  { href: '/diagnosticar-error', text: 'Diagnosticar Error' },
+  { href: '/reporte-error', text: 'Reportar Error' }
+]
+
+const path = Astro.url.pathname
+
+const repo = 'NesniDev/SolvePc'
+const res = await fetch(`https://api.github.com/repos/${repo}`)
+const data = await res.json()
+const stars = data.stargazers_count
+---
+
+<header>
+  <nav>
+    <img class="logo" src="/logo.svg" alt="Logo de Solve Pc" />
+    <ul>
+      {
+        links.map(({ href, text }) => (
+          <li>
+            <a href={href} class:list={['font', { active: path === href }]}>
+              {text}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a href={`https://github.com/${repo}`} class="github" target="_blank">
+      <img
+        src="src/assets/github.svg"
+        alt="Logo de Github Star"
+        class="icon-github"
+      />
+      <p>
+        {stars.toLocaleString()}
+        <span>⭐</span>
+      </p>
+    </a>
+  </nav>
+</header>
+
+<style>
+  .logo {
+    width: 60px;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.548));
+  }
+  .icon-github {
+    width: 25px;
+  }
+
+  .github {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: #000000b7;
+    padding: 0 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: #0000004b;
+    }
+  }
+  header {
+    background-color: #0d1b2a;
+    border-bottom: 1px solid #90a7b217;
+  }
+
+  nav {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    position: relative;
+    text-decoration: none;
+    color: #90a7b2;
+
+    padding-bottom: 8px;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .font {
+    font-size: 17px;
+  }
+
+  ea::aftr {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgb(5, 253, 232),
+      transparent
+    );
+    transition: width 0.3s ease;
+  }
+
+  a.active {
+    color: #eef7fb;
+  }
+
+  a.active::after {
+    width: 100%;
+    color: transparent;
+  }
+
+  a:hover {
+    color: #eef7fb;
+  }
+</style>
