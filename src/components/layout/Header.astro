@@ -1,16 +1,13 @@
 ---
 const links = [
   { href: '/', text: 'Inicio' },
-  { href: '/diagnosticar-error', text: 'Diagnosticar Error' },
-  { href: '/reporte-error', text: 'Reportar Error' }
+  { href: '/diagnosticar-error', text: 'Diagnosticar' },
+  { href: '/acerca-de', text: 'Nosotros' }
 ]
 
 const path = Astro.url.pathname
 
 const repo = 'NesniDev/SolvePc'
-const res = await fetch(`https://api.github.com/repos/${repo}`)
-const data = await res.json()
-const stars = data.stargazers_count
 ---
 
 <header>
@@ -23,55 +20,72 @@ const stars = data.stargazers_count
             <a href={href} class:list={['font', { active: path === href }]}>
               {text}
             </a>
+            <span />
           </li>
         ))
       }
     </ul>
-    <a href={`https://github.com/${repo}`} class="github" target="_blank">
-      <img
-        src="src/assets/github.svg"
-        alt="Logo de Github Star"
-        class="icon-github"
-      />
-      <p>
-        {stars.toLocaleString()}
-        <span>⭐</span>
-      </p>
-    </a>
+    <div class="right">
+      <a href="/reportar-error" class="button">Reportar Error</a>
+      <a href={`https://github.com/${repo}`} class="github" target="_blank">
+        <img
+          src={`https://img.shields.io/github/stars/${repo}?style=social`}
+          alt="GitHub Stars"
+        />
+      </a>
+    </div>
   </nav>
 </header>
 
 <style>
-  .logo {
-    width: 60px;
-    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.548));
-  }
-  .icon-github {
-    width: 25px;
-  }
-
-  .github {
+  .right {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
-    background-color: #000000b7;
-    padding: 0 10px;
-    border-radius: 10px;
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      background-color: #0000004b;
+    gap: 10px;
+  }
+  .logo {
+    width: 45px;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.548));
+  }
+
+  .right .github {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    img {
+      width: 80px;
+      filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.548));
     }
   }
+
+  .right .button {
+    background-color: #00e8ff;
+    padding: 7px 10px;
+    color: #0d1b2a;
+    font-weight: 500;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    transition: all 0.3s ease-in-out;
+    will-change: transform;
+    &:hover {
+      background-color: #ff0000;
+      color: #eef7fb;
+      transform: translateY(-3px);
+    }
+  }
+
   header {
     background-color: #0d1b2a;
     border-bottom: 1px solid #90a7b217;
+    font-family: 'Bangers', system-ui;
   }
 
   nav {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px 0;
+    padding: 15px 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -100,10 +114,10 @@ const stars = data.stargazers_count
   }
 
   .font {
-    font-size: 17px;
+    font-size: 15px;
   }
 
-  ea::aftr {
+  .active::after {
     content: '';
     position: absolute;
     left: 0;
