@@ -1,0 +1,226 @@
+---
+import ArrowRight from '@assets/buttons/Arrow-right.astro'
+import { transform } from 'astro:schema'
+---
+
+<main>
+  <div class="badge">
+    <h2><span>●</span> v1.0 — AI diagnostics</h2>
+  </div>
+
+  <section>
+    <h1 class="title">
+      <span>Soporte técnico,</span>
+      <span>resuelto con inteligencia.</span>
+    </h1>
+    <p>
+      SolvePc es una plataforma web que permite buscar problemas técnicos en
+      lenguaje sencillo y obtener soluciones claras paso a paso, funcionando
+      como una base de conocimiento para resolver incidencias sin necesidad de
+      conocimientos avanzados.
+    </p>
+  </section>
+  <div class="box-input">
+    <img src="/src/assets/inputs/Nube.svg" alt="" />
+    <input
+      type="text"
+      placeholder="Describa el problema de su computadora. Ej: no enciende..."
+    />
+    <button
+      >Buscar <ArrowRight
+        style={{ width: '20px', height: '20px', transform: 'rotate(10deg)' }}
+      />
+    </button>
+  </div>
+  <div class="links-try">
+    <div class="links">
+      <a href="/"
+        ><span>🔍</span> ¿Por qué hace tanto ruido el ventilador de mi portátil?</a
+      >
+      <a href="/"
+        ><span>🔍</span> Error de actualización de Windows 0x80070002</a
+      >
+      <a href="/"><span>🔍</span> ¿Cómo limpiar la caché DNS en Windows?</a>
+      <a href="/"
+        ><span>🔍</span> ¿Cómo recuperar archivos eliminados de un SSD externo?</a
+      >
+    </div>
+  </div>
+</main>
+
+<style>
+  main {
+    max-width: 1000px;
+    min-height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .badge {
+    display: inline;
+    text-align: center;
+    border-radius: 90px;
+    background-color: #0d1b2a85;
+    border: 1px solid #505050;
+    backdrop-filter: blur(1px);
+    margin-bottom: -20px;
+  }
+
+  .badge h2 {
+    padding: 0 15px;
+    color: #949494;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-family: 'JetBrains Mono Variable', monospace;
+    letter-spacing: 2px;
+  }
+
+  h2 span {
+    color: #15ff00;
+    filter: drop-shadow(0 0 2px rgb(19, 255, 11));
+  }
+
+  .title {
+    font-size: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Bangers', system-ui;
+    letter-spacing: 2px;
+
+    span {
+      line-height: 1;
+      &:nth-child(1) {
+        color: white;
+      }
+      &:nth-child(2) {
+        color: #00e9ff;
+        filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.548));
+      }
+    }
+  }
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+
+  p {
+    margin: 0;
+    margin-top: -30px;
+    text-align: center;
+    color: #949494;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    width: 65%;
+    font-family: 'Grandstander Variable', system-ui;
+  }
+
+  main p {
+    margin: 0;
+    text-align: center;
+    color: #949494;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    width: 65%;
+    font-family: 'Grandstander Variable', system-ui;
+
+    span {
+      color: #00e9ff;
+    }
+  }
+
+  input[type='text'] {
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    color: aliceblue;
+    font-size: 18px;
+    &:focus {
+      border: 0;
+      outline: transparent;
+    }
+  }
+  .box-input {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 70%;
+    background-color: #0f243b;
+    padding: 20px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    transition: border 0.3s ease-in-out;
+    & img {
+      width: 40px;
+    }
+
+    &:focus-within {
+      border: 1px solid #00e9ff;
+    }
+    & button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      font-weight: bold;
+      font-family: 'Grandstander Variable', system-ui;
+      background-color: #00e9ff;
+      padding: 10px 20px;
+      border: none;
+      font-size: 19px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      will-change: transform;
+      &:hover {
+        background-color: #00eaff98;
+        transform: scale(1.1);
+      }
+    }
+  }
+  /* links try */
+  .links-try {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    text-align: center;
+    color: #949494;
+    margin: 0 0 15px 0;
+    width: 80%;
+    & .links {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      & a {
+        text-decoration: none;
+        color: #949494;
+        background-color: transparent;
+        padding: 5px 10px;
+        border-radius: 15px;
+        border: 1px solid #505050;
+        transition: all 0.3s ease-in-out;
+        will-change: transform;
+        &:hover {
+          background-color: #091420;
+          border: 1px solid #00eaff41;
+          transform: scale(1.02);
+        }
+      }
+    }
+  }
+</style>
