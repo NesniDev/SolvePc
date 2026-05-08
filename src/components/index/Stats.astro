@@ -1,0 +1,61 @@
+<section class="background-card">
+  <div class="stats">
+    <article class="stat-card">
+      <span>12,847</span>
+      <span>Soluciones Verificadas </span>
+    </article>
+    <article class="stat-card">
+      <span>94.6%</span>
+      <span>Tasa de Resolución</span>
+    </article>
+    <article class="stat-card">
+      <span>&lt; 90</span>
+      <span>Tiempo Promedio de Reparación</span>
+    </article>
+    <article class="stat-card">
+      <span>184</span>
+      <span>Ingenieros Colaboradores</span>
+    </article>
+  </div>
+</section>
+
+<style>
+  .background-card {
+    background-color: #1c426641;
+    max-width: 1000px;
+    border: 1px solid #7577793f;
+    backdrop-filter: blur(3px);
+    margin: 0 auto;
+    padding: 7px;
+    border-radius: 15px;
+  }
+
+  .stats {
+    background-color: #0e1c2e;
+    border-radius: 15px;
+    color: #fff;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: 'Geist Sans', monospace;
+    font-size: 35px;
+    padding: 15px 0;
+  }
+
+  .stat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    & span:nth-child(1) {
+      font-weight: 900;
+    }
+    & span:last-child {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 400;
+      color: #939597;
+    }
+  }
+</style>
