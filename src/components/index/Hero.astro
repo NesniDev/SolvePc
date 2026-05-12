@@ -54,15 +54,15 @@ import { transform } from 'astro:schema'
     display: inline;
     text-align: center;
     border-radius: 90px;
-    background-color: #0d1b2a85;
-    border: 1px solid #505050;
+    background-color: var(--background);
+    border: 1px solid var(--gray-border);
     backdrop-filter: blur(1px);
     margin-bottom: -20px;
   }
 
   .badge h2 {
     padding: 0 15px;
-    color: #949494;
+    color: var(--gray-letter);
     font-size: 12px;
     text-transform: uppercase;
     font-weight: 400;
@@ -87,10 +87,10 @@ import { transform } from 'astro:schema'
     span {
       line-height: 1;
       &:nth-child(1) {
-        color: white;
+        color: var(--color-white);
       }
       &:nth-child(2) {
-        color: #00e9ff;
+        color: var(--color-hard);
         filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.548));
       }
     }
@@ -106,25 +106,11 @@ import { transform } from 'astro:schema'
     margin: 0;
     margin-top: -35px;
     text-align: center;
-    color: #949494;
+    color: var(--gray-letter);
     line-height: 1.5;
     letter-spacing: 1px;
     width: 65%;
     font-family: 'Grandstander Variable', system-ui;
-  }
-
-  main p {
-    margin: 0;
-    text-align: center;
-    color: #949494;
-    line-height: 1.5;
-    letter-spacing: 1px;
-    width: 65%;
-    font-family: 'Grandstander Variable', system-ui;
-
-    span {
-      color: #00e9ff;
-    }
   }
 
   /* links try */

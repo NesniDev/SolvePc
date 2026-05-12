@@ -61,7 +61,7 @@ const repo = 'NesniDev/SolvePc'
   }
 
   .right .button {
-    background-color: #00e8ff;
+    background-color: var(--color-hard);
     padding: 7px 10px;
     color: #0d1b2a;
     font-weight: 500;
@@ -73,13 +73,13 @@ const repo = 'NesniDev/SolvePc'
     will-change: transform;
     &:hover {
       background-color: #ff0000;
-      color: #eef7fb;
+      color: var(--color-white);
       transform: translateY(-3px);
     }
   }
 
   header {
-    background-color: #0d1b2a;
+    background-color: var(--background);
     border-bottom: 1px solid #90a7b217;
     font-family: 'Bangers', system-ui;
   }
@@ -107,7 +107,7 @@ const repo = 'NesniDev/SolvePc'
   a {
     position: relative;
     text-decoration: none;
-    color: #90a7b2;
+    color: var(--letter-link);
 
     padding-bottom: 8px;
     transition: color 0.2s ease-in-out;
@@ -134,7 +134,7 @@ const repo = 'NesniDev/SolvePc'
   }
 
   a.active {
-    color: #eef7fb;
+    color: var(--color-white);
   }
 
   a.active::after {
@@ -143,6 +143,6 @@ const repo = 'NesniDev/SolvePc'
   }
 
   a:hover {
-    color: #eef7fb;
+    color: var(--color-white);
   }
 </style>
