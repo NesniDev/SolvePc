@@ -1,0 +1,84 @@
+<footer class="footer">
+  <section class="information">
+    <div>
+      <h2>Solve Pc</h2>
+      <p>
+        <span>La plataforma de soporte técnico.</span>
+        <span>Diagnostica, aprende y resuelve en minutos.</span>
+      </p>
+    </div>
+    <div>
+      <ul>
+        <li><a href="/">Diagnósticos</a></li>
+        <li><a href="/">Privacidad</a></li>
+        <li><a href="/">Términos</a></li>
+      </ul>
+    </div>
+  </section>
+  <p class="date">© {new Date().getFullYear()} Resolvemos Problemas.</p>
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #505050;
+    font-family: 'bangers', monospace;
+    background-color: #0d1b2a;
+    margin-top: 40px;
+    padding: 20px;
+  }
+
+  .information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 0 10px;
+    width: 55%;
+    & div:nth-child(1) {
+      text-align: center;
+      h2 {
+        color: aliceblue;
+        font-size: 30px;
+        letter-spacing: 2px;
+        margin: 0;
+      }
+      p {
+        font-size: 12px;
+        font-family: 'geist-sans', monospace;
+        & span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #90a7b2;
+        }
+      }
+    }
+    & div:nth-child(2) ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+      & a {
+        text-decoration: none;
+        color: #90a7b2;
+        transition: color 0.3s ease-in-out;
+        &:hover {
+          color: #eef7fb;
+        }
+      }
+    }
+  }
+  .footer > p {
+    font-size: 20px;
+    letter-spacing: 3px;
+    margin: 0;
+    color: #eef7fb;
+  }
+</style>
+
+<script></script>
