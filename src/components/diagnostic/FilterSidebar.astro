@@ -1,0 +1,161 @@
+---
+import { filtros } from '@mockup/filters'
+---
+
+<aside class="filters">
+  {
+    filtros.map(({ titulo, opciones }) => (
+      <article>
+        <h3 class="filter-title">{titulo}</h3>
+        <ul class="filter-list">
+          {titulo === 'Categorías'
+            ? opciones.map(({ name, image }) => (
+                <li>
+                  <button class="category-btn item" type="button">
+                    {name !== 'Todos' && image && (
+                      <img src={image} alt="" aria-hidden="true" />
+                    )}
+                    <span>{name}</span>
+                  </button>
+                </li>
+              ))
+            : opciones.map(({ name }) => (
+                <li>
+                  <label class="checkbox-label item">
+                    <input type="checkbox" name={titulo} value={name} />
+                    <span class="box" />
+                    <span>{name}</span>
+                  </label>
+                </li>
+              ))}
+        </ul>
+      </article>
+    ))
+  }
+</aside>
+
+<style>
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 30px;
+    border: 1px solid var(--gray-border);
+    border-radius: 15px;
+    background-color: #0d1b2a80;
+    backdrop-filter: blur(5px);
+    color: var(--color-white);
+
+    /* Los elementos internos de 'filters' se agrupan dentro de su bloque padre */
+    & .filter-title {
+      font-size: 15px;
+      text-transform: uppercase;
+      font-family: 'Grandstander Variable', system-ui;
+      letter-spacing: 1.5px;
+      color: var(--gray-letter);
+      margin: 0 0 12px 0;
+    }
+
+    & .filter-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  /* Bloque base para los elementos interactivos */
+  .item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    font-size: 13px;
+    font-family: 'JetBrains Mono Variable', monospace;
+    text-transform: capitalize;
+    color: var(--gray-letter);
+    background-color: transparent;
+    padding: 6px 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    border: none;
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+
+    /* Anidamiento de elementos hijos */
+    & img {
+      width: 14px;
+      height: auto;
+      filter: brightness(0) saturate(100%) invert(83%) sepia(86%) saturate(0%)
+        hue-rotate(359deg);
+    }
+
+    /* Anidamiento de pseudo-clases usando '&' */
+    &:hover {
+      color: var(--color-white);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  /* Encapsulación del estado activo para las categorías */
+  .category-btn {
+    &.active {
+      color: var(--color-white);
+      transform: scale(0.96);
+      background-color: rgba(16, 39, 70, 0.719);
+    }
+  }
+
+  /* Encapsulación de toda la lógica visual de los checkboxes */
+  .checkbox-label {
+    & input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+
+      /* Estado checked que afecta al elemento hermano (.box) */
+      &:checked + .box {
+        background: #ffd700;
+        border-color: #ffd700;
+      }
+    }
+
+    & .box {
+      width: 12px;
+      height: 12px;
+      border: 2px solid #999;
+      border-radius: 3px;
+      display: inline-block;
+      transition: all 0.2s ease-in-out;
+      flex-shrink: 0;
+    }
+
+    /* Modificación del contenedor padre si el input está marcado */
+    &:has(input:checked) {
+      color: var(--color-white);
+      transform: scale(0.96);
+      background-color: rgba(16, 39, 70, 0.719);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const categoryButtons = document.querySelectorAll(
+      '.category-btn'
+    ) as NodeListOf<HTMLButtonElement>
+
+    categoryButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        categoryButtons.forEach((otherBtn) =>
+          otherBtn.classList.remove('active')
+        )
+        btn.classList.add('active')
+      })
+    })
+  })
+</script>

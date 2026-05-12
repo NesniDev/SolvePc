@@ -1,0 +1,36 @@
+---
+import Input from '@components/ui/Input.astro'
+---
+
+<section class="hero">
+  <h2>Explora todas las soluciones verificadas.</h2>
+  <p>Busca errores de hardware, software, red, virus, etc.</p>
+  <Input
+    placeholder="Describe tu problema o busca una solución..."
+    size="normal"
+  />
+</section>
+
+<style>
+  .hero {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    & h2 {
+      font-size: 30px;
+      letter-spacing: 2px;
+      color: var(--color-white);
+      font-family: 'Bangers', system-ui;
+    }
+    & p {
+      font-size: 12px;
+      text-transform: capitalize;
+      color: var(--gray-letter);
+      font-family: 'JetBrains Mono Variable', monospace;
+      margin: 0;
+    }
+  }
+</style>

@@ -1,0 +1,164 @@
+---
+import { problemasTecnicos } from '@mockup/solutions'
+---
+
+<section class="cards">
+  {
+    problemasTecnicos.map(
+      ({ title, description, category, difficulty, image }) => (
+        <article class="card">
+          <div class="card-info">
+            <div class="card-title">
+              <h2>
+                <img src={image} alt={category} transition:persist="" />{' '}
+                {category}
+              </h2>
+              <span
+                class={`${difficulty === 'Avanzado' ? 'red' : difficulty === 'Intermedio' ? 'orange' : 'green'}`}
+              >
+                {difficulty}
+              </span>
+            </div>
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </div>
+          <div class="button-see-more">
+            <button>Ver Información</button>
+          </div>
+        </article>
+      )
+    )
+  }
+</section>
+<style>
+  .red {
+    color: red;
+    font-weight: 700;
+    background-color: rgba(255, 0, 0, 0.336);
+    border: 1px solid red;
+  }
+  .orange {
+    color: orange;
+    font-weight: 700;
+    background-color: rgba(255, 165, 0, 0.336);
+    border: 1px solid orange;
+  }
+  .green {
+    color: rgb(30, 255, 0);
+    font-weight: 700;
+    background-color: rgba(43, 255, 0, 0.336);
+    border: 1px solid green;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin: 0 auto;
+    place-items: center;
+  }
+
+  .card {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 15px;
+    border: 1px solid var(--gray-border);
+    transition: all 0.3s ease-in-out;
+    will-change: transform;
+    width: 90%;
+    background-color: #0d1b2a80;
+    border-radius: 15px;
+    cursor: pointer;
+    & .button-see-more {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      flex: 1;
+      & button {
+        font-weight: bold;
+        font-family: 'Grandstander Variable', system-ui;
+        background-color: #00e9ff;
+        padding: 5px 10px;
+        border: none;
+        font-size: 12px;
+        border-radius: 7px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        will-change: transform;
+        &:hover {
+          background-color: #00eaff98;
+          color: var(--color-white);
+          transform: translateY(-1px);
+        }
+      }
+    }
+    &:hover {
+      transform: translateY(-3px);
+      border: 1px solid #00e9ff;
+      backdrop-filter: blur(5px);
+    }
+    & .card-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: start;
+      gap: 15px;
+      margin: 10px 0;
+    }
+    & .card-title {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+    & .card-title > h2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: var(--gray-letter);
+      font-family: 'Bangers', system-ui;
+      background-color: #93c2ff15;
+      backdrop-filter: blur(1px);
+      padding: 5px 10px;
+      border-radius: 25px;
+      transition: all 0.3s ease-in-out;
+      will-change: transform;
+      & img {
+        width: 18px;
+        height: 18px;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
+    }
+    & .card-title > h2 ~ span {
+      font-size: 13px;
+      font-family: 'Grandstander Variable', monospace;
+      margin: 0;
+      backdrop-filter: blur(1px);
+      padding: 5px 10px;
+      border-radius: 25px;
+    }
+
+    & h3 {
+      font-size: 18px;
+      letter-spacing: 1.5px;
+      color: var(--color-white);
+      font-family: 'Grandstander Variable', system-ui;
+      margin: 0;
+    }
+    & p {
+      font-size: 14px;
+      text-transform: capitalize;
+      color: var(--gray-letter);
+      font-family: 'JetBrains Mono Variable', monospace;
+      margin: 0;
+    }
+  }
+</style>
