@@ -3,6 +3,7 @@ import Header from '../components/layout/Header.astro'
 import SEO from '../components/SEO.astro'
 import ClientRouter from 'astro/components/ClientRouter.astro'
 import '../styles/global.css'
+import Footer from '@components/layout/Footer.astro'
 ---
 
 <!doctype html>
@@ -18,6 +19,7 @@ import '../styles/global.css'
     <div class="orb2"></div>
     <Header />
     <slot />
+    <Footer />
   </body>
 </html>
 
@@ -31,7 +33,6 @@ import '../styles/global.css'
       linear-gradient(rgba(100, 180, 255, 0.07) 1px, transparent 1px),
       linear-gradient(90deg, rgba(100, 180, 255, 0.07) 1px, transparent 1px);
     background-size: 35px 35px;
-    min-height: 100vh;
     margin: 0;
     position: relative;
   }
@@ -56,7 +57,7 @@ import '../styles/global.css'
     background: rgba(80, 60, 255, 0.15);
     border-radius: 50%;
     filter: blur(80px);
-    bottom: -60px;
+    bottom: 0;
     right: 60px;
   }
 </style>

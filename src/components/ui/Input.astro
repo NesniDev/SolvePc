@@ -1,0 +1,71 @@
+---
+import ArrowRight from '@assets/buttons/Arrow-right.astro'
+---
+
+<div class="box-input">
+  <img src="/src/assets/inputs/Nube.svg" alt="" />
+  <input
+    type="text"
+    placeholder="Describa el problema de su computadora. Ej: no enciende..."
+  />
+  <button
+    >Buscar <ArrowRight
+      style={{ width: '20px', height: '20px', transform: 'rotate(10deg)' }}
+    />
+  </button>
+</div>
+
+<style>
+  input[type='text'] {
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    color: aliceblue;
+    font-size: 18px;
+    &:focus {
+      border: 0;
+      outline: transparent;
+    }
+  }
+  .box-input {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 70%;
+    background-color: #0f243b;
+    padding: 20px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    transition: border 0.3s ease-in-out;
+    & img {
+      width: 40px;
+    }
+
+    &:focus-within {
+      border: 1px solid #00e9ff;
+    }
+    & button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      font-weight: bold;
+      font-family: 'Grandstander Variable', system-ui;
+      background-color: #00e9ff;
+      padding: 10px 20px;
+      border: none;
+      font-size: 19px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      will-change: transform;
+      &:hover {
+        background-color: #00eaff98;
+        transform: scale(1.1);
+      }
+    }
+  }
+</style>
