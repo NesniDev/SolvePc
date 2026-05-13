@@ -1,23 +1,45 @@
-<aside class="see-more">
-  <article class="links">
-    <span>En esta sección encontrarás</span>
-    <ul>
-      <li><a href="#informacion-general">Información general</a></li>
-      <li><a href="#ruta-solucion">Ruta de Solución</a></li>
-      <li><a href="#terminal">Terminal</a></li>
-    </ul>
-  </article>
-  <article class="info-owner">
-    <span>Revisado por</span>
-    <div class="user">
-      <span>NN</span>
-      <div><span>NeiderUnix</span> <span>Principal SRE · Helix Labs</span></div>
-    </div>
-    <p>Last reviewed 2 days ago against Windows 11 24H2 builds 26100.x.</p>
-  </article>
+<aside>
+  <div class="see-more">
+    <article class="links">
+      <span>En esta sección encontrarás</span>
+      <ul>
+        <li><a href="#informacion-general">Información general</a></li>
+        <li><a href="#ruta-solucion">Ruta de Solución</a></li>
+        <li><a href="#terminal">Terminal</a></li>
+      </ul>
+    </article>
+    <article class="info-owner">
+      <span>Revisado por</span>
+      <div class="user">
+        <span>NN</span>
+        <div>
+          <span>NeiderUnix</span>
+          <span>Principal SRE · Helix Labs</span>
+        </div>
+      </div>
+      <p>Last reviewed 2 days ago against Windows 11 24H2 builds 26100.x.</p>
+    </article>
+  </div>
+  <div class="wrapper-completed">
+    <span>Proceso completado</span>
+    <span class="completed">
+      <span></span>
+    </span>
+  </div>
 </aside>
 
 <style>
+  aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    font-family: 'JetBrains Mono Variable', monospace;
+    font-size: 0.8rem;
+  }
   .see-more {
     display: flex;
     flex-direction: column;
@@ -26,10 +48,7 @@
     gap: 1rem;
     padding: 1rem;
     border-radius: 15px;
-    font-family: 'JetBrains Mono Variable', monospace;
-    font-size: 0.8rem;
-    margin: 30px 0;
-    width: 100%;
+    margin: 30px 0 10px 0;
 
     & > .links {
       display: flex;
@@ -41,7 +60,6 @@
       border: 1px solid var(--gray-border);
       padding: 1rem;
       border-radius: 15px;
-      width: 100%;
       & > span {
         font-weight: bold;
         font-size: 0.8rem;
@@ -77,7 +95,6 @@
       border: 1px solid var(--gray-border);
       padding: 1rem;
       border-radius: 15px;
-      width: 100%;
       & > span {
         font-size: 0.8rem;
         color: var(--color-hard);
@@ -116,6 +133,34 @@
         color: var(--gray-letter);
         margin: 0;
       }
+    }
+  }
+
+  .wrapper-completed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-hard);
+    font-weight: 700;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--gray-border);
+    padding: 1rem;
+    border-radius: 15px;
+    & .completed {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 0.3rem solid transparent;
+      padding: 20px 13px;
+      border-radius: 50%;
+      color: var(--color-white);
+      letter-spacing: 2px;
+      font-family: 'Bangers', Courier, monospace;
+      font-size: 19px;
+      width: 4ch;
     }
   }
 </style>

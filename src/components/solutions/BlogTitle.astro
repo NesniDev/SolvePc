@@ -62,7 +62,10 @@ const { title, description, category, difficulty, image } = Astro.props
         />Verificado
       </li>
     </ul>
-    <h1 transition:name={`text-${title.split(' ').join('-').toLowerCase()}`}>
+    <h1
+      transition:name={`text-${title.split(' ').join('-').toLowerCase()}`}
+      class="title-problem"
+    >
       {title}
     </h1>
     <p
