@@ -5,32 +5,45 @@ import { problemasTecnicos } from '@mockup/solutions'
 <section class="cards">
   {
     problemasTecnicos.map(
-      ({ title, description, category, difficulty, image }) => (
+      ({ slug, title, description, category, difficulty, image }) => (
         <article class="card">
-          <div class="card-info">
-            <div class="card-title">
-              <h2>
-                <img src={image} alt={category} transition:persist="" />{' '}
-                {category}
-              </h2>
-              <span
-                class={`${difficulty === 'Avanzado' ? 'red' : difficulty === 'Intermedio' ? 'orange' : 'green'}`}
+          <a href={`/solutions/${slug}`}>
+            <div class="card-info">
+              <div class="card-title">
+                <h2>
+                  <img src={image} alt={category} transition:persist="" />{' '}
+                  {category}
+                </h2>
+                <span
+                  class={`${difficulty === 'Avanzado' ? 'red' : difficulty === 'Intermedio' ? 'orange' : 'green'}`}
+                >
+                  {difficulty}
+                </span>
+              </div>
+              <h3
+                transition:name={`text-${title.split(' ').join('-').toLowerCase()}`}
               >
-                {difficulty}
-              </span>
+                {title}
+              </h3>
+              <p
+                transition:name={`description-${title.split(' ').join('-').toLowerCase()}`}
+              >
+                {description}
+              </p>
             </div>
-            <h3>{title}</h3>
-            <p>{description}</p>
-          </div>
-          <div class="button-see-more">
-            <button>Ver Información</button>
-          </div>
+            <div class="button-see-more">
+              <button>Ver Información</button>
+            </div>
+          </a>
         </article>
       )
     )
   }
 </section>
 <style>
+  a {
+    text-decoration: none;
+  }
   .red {
     color: red;
     font-weight: 700;
