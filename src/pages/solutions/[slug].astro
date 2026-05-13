@@ -1,0 +1,62 @@
+---
+import BlogTitle from '@components/solutions/BlogTitle.astro'
+import BlogInformation from '@components/solutions/BlogInformation.astro'
+import Layout from '@layouts/Layout.astro'
+import { problemasTecnicos as solutions } from '@mockup/solutions'
+import Terminal from '@components/solutions/Terminal.astro'
+import Steps from '@components/solutions/Steps.astro'
+import Help from '@components/solutions/Help.astro'
+import SeeMore from '@components/solutions/SeeMore.astro'
+
+export function getStaticPaths() {
+  return solutions.map(
+    ({ slug, title, description, category, difficulty, image, explain }) => ({
+      params: { slug },
+      props: { title, description, category, difficulty, image, explain }
+    })
+  )
+}
+const { title, description, category, difficulty, image, explain } = Astro.props
+
+// export const prerender = false
+
+// const { slug } = Astro.params
+
+// const information = solutions.find((info) => info.slug === slug)
+
+// if (!information) {
+//   return Astro.redirect('/404')
+// }
+
+// const { title, description, category, difficulty, image } = information
+---
+
+<Layout>
+  <main>
+    <div>
+      <BlogTitle
+        title={title}
+        description={description}
+        category={category}
+        difficulty={difficulty}
+        image={image}
+      />
+      <BlogInformation explain={explain} />
+      <Steps explain={explain} />
+      <Terminal explain={explain} />
+      <Help />
+    </div>
+    <SeeMore />
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: 1000px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 2rem;
+    margin: 0 auto;
+  }
+</style>

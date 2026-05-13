@@ -1,0 +1,121 @@
+---
+import type { Explain } from 'src/interfaces/Solutions'
+
+interface Props {
+  explain: Explain
+}
+
+const { explain } = Astro.props
+const { terminal } = explain
+---
+
+<section class="terminal">
+  <div class="bar" id="terminal">
+    <h2>Terminal</h2>
+    <span>cmd.exe — admin</span>
+  </div>
+  <div class="terminal-text">
+    <p>
+      Ejecute el comando que aparece en la pantalla para solucionar el problema.
+    </p>
+
+    <div class="terminal-code">
+      <code class="terminal-line">
+        <span class="prompt">&gt;</span>
+        <span class="command">{terminal}</span>
+        <span class="cursor"></span>
+      </code>
+    </div>
+  </div>
+</section>
+
+<style>
+  .terminal {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--gray-border);
+    border-radius: 5px;
+    padding: 0;
+    margin: 40px 0;
+    font-family: 'JetBrains Mono Variable', monospace;
+    font-size: 0.8rem;
+    color: var(--gray-letter);
+    & .terminal-text {
+      padding: 0 1rem;
+      margin: 0;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono Variable', monospace;
+      color: var(--gray-letter);
+      & .terminal-code {
+        margin-bottom: 15px;
+      }
+    }
+
+    .bar {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      padding: 1rem;
+      border-bottom: 1px solid var(--gray-border);
+      background-color: rgba(0, 0, 0, 0.2);
+
+      & h2 {
+        font-size: 1rem;
+        margin: 0;
+        padding: 0;
+        color: var(--color-hard);
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.1rem;
+      }
+      & span {
+        font-size: 0.8rem;
+        color: var(--gray-letter);
+      }
+    }
+  }
+  /* .terminal-text */
+
+  .terminal-text {
+    font-family: 'Courier New', monospace;
+  }
+
+  .terminal-code {
+    background: #0d0d0d;
+    color: #00ff88;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+    display: inline-block;
+  }
+
+  .terminal-line {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .prompt {
+    color: #4fc3f7;
+  }
+
+  .command {
+    color: #00ff88;
+  }
+
+  /* Cursor animado */
+  .cursor {
+    width: 10px;
+    height: 18px;
+    background: #00ff88;
+    display: inline-block;
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+</style>

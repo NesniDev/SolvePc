@@ -1,0 +1,28 @@
+---
+import Hero from '@components/diagnostic/Hero.astro'
+import Layout from '../layouts/Layout.astro'
+import Solutions from '@components/diagnostic/Solutions.astro'
+import FilterSideBar from '@components/diagnostic/FilterSidebar.astro'
+---
+
+<Layout>
+  <Hero />
+  <section>
+    <FilterSideBar />
+    <Solutions />
+  </section>
+</Layout>
+
+<style>
+  section {
+    max-width: 1200px;
+    display: grid;
+    grid-template-areas: 'solutions filter';
+    gap: 10px;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+  }
+</style>

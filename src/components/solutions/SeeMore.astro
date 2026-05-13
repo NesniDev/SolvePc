@@ -1,0 +1,121 @@
+<aside class="see-more">
+  <article class="links">
+    <span>En esta sección encontrarás</span>
+    <ul>
+      <li><a href="#informacion-general">Información general</a></li>
+      <li><a href="#ruta-solucion">Ruta de Solución</a></li>
+      <li><a href="#terminal">Terminal</a></li>
+    </ul>
+  </article>
+  <article class="info-owner">
+    <span>Revisado por</span>
+    <div class="user">
+      <span>NN</span>
+      <div><span>NeiderUnix</span> <span>Principal SRE · Helix Labs</span></div>
+    </div>
+    <p>Last reviewed 2 days ago against Windows 11 24H2 builds 26100.x.</p>
+  </article>
+</aside>
+
+<style>
+  .see-more {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 15px;
+    font-family: 'JetBrains Mono Variable', monospace;
+    font-size: 0.8rem;
+    margin: 30px 0;
+    width: 100%;
+
+    & > .links {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--gray-border);
+      padding: 1rem;
+      border-radius: 15px;
+      width: 100%;
+      & > span {
+        font-weight: bold;
+        font-size: 0.8rem;
+        color: var(--color-hard);
+      }
+      & > ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 0.8rem;
+        font-family: 'Grandstander Variable', system-ui;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        margin: 10px 0;
+        & a {
+          color: var(--gray-letter);
+          text-decoration: none;
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            color: var(--color-white);
+          }
+        }
+      }
+    }
+    & > .info-owner {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--gray-border);
+      padding: 1rem;
+      border-radius: 15px;
+      width: 100%;
+      & > span {
+        font-size: 0.8rem;
+        color: var(--color-hard);
+        font-weight: bold;
+      }
+      & .user {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        & > span {
+          background-color: #063449;
+          padding: 0.5rem;
+          border-radius: 50%;
+          font-size: 0.8rem;
+          color: #06f7ff;
+          margin: 10px 0;
+        }
+        & > div {
+          display: flex;
+          flex-direction: column;
+          gap: 0.1rem;
+          margin: 0;
+          & span:nth-child(1) {
+            color: var(--color-white);
+          }
+          & span:nth-child(2) {
+            color: var(--gray-letter);
+            font-size: 0.5rem;
+          }
+        }
+      }
+      & p {
+        font-size: 0.6rem;
+        color: var(--gray-letter);
+        margin: 0;
+      }
+    }
+  }
+</style>

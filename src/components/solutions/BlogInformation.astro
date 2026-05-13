@@ -1,0 +1,207 @@
+---
+import type { Explain } from 'src/interfaces/Solutions'
+import Steps from '@components/solutions/Steps.astro'
+
+interface Props {
+  explain: Explain
+}
+
+const { explain } = Astro.props
+
+const { title, description, photo, prerequisites, steps, terminal } = explain
+---
+
+<section class="problem-information">
+  <h2 id="informacion-general">Descripción general</h2>
+  <h3>{title}</h3>
+  <p>{description}</p>
+
+  <div class="articles">
+    <!-- Artículo 1: Mapa de síntomas -->
+    <article class="article">
+      <div class="image-wrapper">
+        <img
+          src={photo}
+          alt={`icono de ${title}`}
+          transition:persist=""
+          width="20"
+        />
+      </div>
+
+      <div class="content-wrapper">
+        <h3>Mapa de síntomas</h3>
+        <h4>Código de error más común</h4>
+        <p>
+          <span>Symptom map</span>
+          <span>Most common stop codes</span>
+          <span>IRQL_NOT_LESS_OR_EQUAL 38%</span>
+        </p>
+      </div>
+    </article>
+
+    <!-- Artículo 2: Prerrequisitos -->
+    <article class="article">
+      <div class="content-wrapper">
+        <h3>Prerequisitos</h3>
+        <h4>Before you begin</h4>
+        <ul>
+          {
+            prerequisites.map((item) => (
+              <li>
+                <img
+                  src="/info-more/level.svg"
+                  alt={`icono de ${item}`}
+                  transition:persist=""
+                />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    .problem-information {
+      font-family: 'Bangers', monospace;
+
+      h2 {
+        font-size: 0.8rem;
+        margin: 0;
+        padding: 0;
+        color: var(--color-hard);
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        margin: 20px 0;
+        color: var(--color-white);
+        letter-spacing: 0.2rem;
+      }
+
+      p {
+        font-family: 'Grandstander Variable', system-ui;
+        line-height: 1.5;
+        font-size: 1rem;
+        margin: 0;
+        padding: 0;
+        color: var(--gray-letter);
+      }
+
+      & .articles {
+        /* BENTO GRID*/
+        display: grid;
+        grid-template-areas:
+          'mapa-sintomas prerrequisitos'
+          '. asociaciones';
+
+        grid-template-columns: 3fr 4fr;
+        align-items: stretch;
+        gap: 1rem;
+        margin: 40px 0;
+
+        & .article {
+          display: flex;
+          flex-direction: column;
+          border: 1px solid var(--gray-border);
+          border-radius: 15px;
+          background-color: rgba(0, 0, 0, 0.2);
+          flex: 1; /* Distribuye el espacio horizontal equitativamente entre los artículos */
+          overflow: hidden; /* Mantiene los bordes redondeados limpios */
+          & > div:nth-child(1) {
+            grid-area: mapa-sintomas;
+          }
+          & > div:nth-child(2) {
+            grid-area: prerrequisitos;
+          }
+
+          & > div:last-child {
+            grid-area: asociaciones;
+          }
+
+          & .image-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            & img {
+              width: 100%;
+              object-fit: cover; /* Cambiado a cover para mejor adaptación, ajustable a contain si es necesario */
+              flex-shrink: 0;
+            }
+          }
+
+          & .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: start;
+            gap: 1rem;
+            padding: 1.5rem;
+            flex: 1; /* Permite que el contenedor de texto ocupe todo el espacio vertical restante */
+
+            & h3 {
+              font-size: 0.8rem;
+              margin: 0;
+              padding: 0;
+              color: var(--color-hard);
+              text-transform: uppercase;
+              letter-spacing: 0.1rem;
+            }
+
+            & h4 {
+              font-size: 1rem;
+              margin: 0;
+              padding: 0;
+              color: var(--color-white);
+              text-transform: uppercase;
+              letter-spacing: 0.1rem;
+            }
+
+            & p {
+              display: flex;
+              flex-direction: column;
+              gap: 0.5rem;
+
+              & span {
+                font-size: 0.8rem;
+                color: var(--gray-letter);
+              }
+            }
+
+            & ul {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+              font-size: 0.8rem;
+              font-family: 'Grandstander Variable', system-ui;
+              display: flex;
+              flex-direction: column;
+              gap: 0.8rem;
+              width: 100%;
+
+              & li {
+                color: var(--gray-letter);
+                margin: 0;
+                padding: 0;
+                display: flex;
+                align-items: center; /* Alinea ícono y texto verticalmente */
+                gap: 0.6rem;
+
+                & img {
+                  width: 15px;
+                  height: 15px;
+                  object-fit: contain;
+                  flex-shrink: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  </style>
+</section>

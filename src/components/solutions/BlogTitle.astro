@@ -1,0 +1,211 @@
+---
+interface Props {
+  title: string
+  description: string
+  category: string
+  difficulty: string
+  image: string
+}
+
+const { title, description, category, difficulty, image } = Astro.props
+---
+
+<section class="blog">
+  <div class="blog-title">
+    <ul class="blog-items">
+      <li>
+        <img src={image} alt={`icono de ${category}`} transition:persist="" />{
+          category
+        }
+      </li>
+      {
+        difficulty === 'Avanzado' ? (
+          <li class="red">
+            <span>
+              <img
+                src="/info-more/level.svg"
+                alt={`icono de ${category}`}
+                transition:persist=""
+              />
+              Avanzado
+            </span>
+          </li>
+        ) : difficulty === 'Intermedio' ? (
+          <li class="orange">
+            <span>
+              <img
+                src="/info-more/level.svg"
+                alt={`icono de ${category}`}
+                transition:persist=""
+              />
+              Intermedio
+            </span>
+          </li>
+        ) : (
+          <li class="green">
+            <span>
+              <img
+                src="/info-more/level.svg"
+                alt={`icono de ${category}`}
+                transition:persist=""
+              />
+              Fácil
+            </span>
+          </li>
+        )
+      }
+      <li>
+        <img
+          src="/verified.svg"
+          alt={`icono de ${category}`}
+          transition:persist=""
+        />Verificado
+      </li>
+    </ul>
+    <h1 transition:name={`text-${title.split(' ').join('-').toLowerCase()}`}>
+      {title}
+    </h1>
+    <p
+      transition:name={`description-${title.split(' ').join('-').toLowerCase()}`}
+    >
+      {description}
+    </p>
+    <div>
+      <span
+        ><img
+          src="/info-more/eye.svg"
+          alt="icono de vistas"
+          transition:persist=""
+        /> 48.2k Lecturas</span
+      >
+      <span
+        ><img
+          src="/info-more/time.svg"
+          alt="icono de tiempo"
+          transition:persist=""
+        />Actualizado hace 2 días</span
+      >
+      <span
+        ><img
+          src="/info-more/help.svg"
+          alt="icono de corazones"
+          transition:persist=""
+        />El 96% encontró esto útil.
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .red {
+    color: red;
+    background-color: rgba(255, 0, 0, 0.336);
+    border: 1px solid red;
+  }
+  .orange {
+    color: orange;
+    background-color: rgba(255, 165, 0, 0.336);
+    border: 1px solid orange;
+  }
+  .green {
+    color: rgb(30, 255, 0);
+    background-color: rgba(43, 255, 0, 0.336);
+    border: 1px solid green;
+  }
+  .blog {
+  }
+
+  .blog-title {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 2rem 0;
+    gap: 1rem;
+    color: var(--gray-letter);
+
+    font-family: 'JetBrains Mono Variable', monospace;
+    & h1 {
+      color: var(--color-white);
+      font-size: 2.5rem;
+      text-align: left;
+      font-family: 'Bangers', monospace;
+      letter-spacing: 2px;
+      margin: 0;
+      margin-top: 1rem;
+    }
+
+    & p {
+      text-align: left;
+      font-size: 0.8rem;
+      margin: 0;
+    }
+    & > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Grandstander Variable', system-ui;
+      padding: 0.5rem 0;
+      gap: 2rem;
+      & span img {
+        width: 15px;
+        height: 15px;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
+
+      & span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        color: var(--gray-letter);
+        font-size: 10px;
+      }
+    }
+    & .blog-items {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 10px;
+      font-family: 'Grandstander Variable', system-ui;
+
+      & li img {
+        width: 15px;
+      }
+
+      & li span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+      }
+
+      & li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 15px;
+        font-weight: 700;
+      }
+
+      & li:nth-child(1) {
+        background-color: #0d1b2a80;
+        border: 1px solid var(--gray-border);
+        color: var(--color-white);
+      }
+
+      & li:last-child {
+        background-color: rgba(0, 255, 0, 0.205);
+        border: 1px solid green;
+        color: greenyellow;
+      }
+    }
+  }
+</style>
