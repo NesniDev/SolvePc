@@ -1,6 +1,7 @@
 ---
 import ArrowRight from '@assets/buttons/Arrow-right.astro'
 import Input from '@components/ui/Input.astro'
+import { SearchProblem } from '@components/ui/SearchProblem'
 import { transform } from 'astro:schema'
 ---
 
@@ -21,8 +22,11 @@ import { transform } from 'astro:schema'
       conocimientos avanzados.
     </p>
   </section>
-  <Input
+  <SearchProblem
     placeholder="Describa el problema de su computadora. Ej: no enciende..."
+    size="big"
+    redirectTo="/problemas"
+    client:load
   />
   <div class="links-try">
     <div class="links">

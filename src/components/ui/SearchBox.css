@@ -1,0 +1,109 @@
+input[type='search'] {
+  background-color: transparent;
+  width: 100%;
+  border: none;
+  padding: 10px;
+  color: aliceblue;
+  font-size: 18px;
+}
+
+input[type='search']:focus {
+  border: 0;
+  outline: transparent;
+}
+
+/* ========================= */
+/* BOX INPUT (GRANDE)        */
+/* ========================= */
+
+.box-input {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 70%;
+  background-color: #0f243b;
+  padding: 20px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  transition: border 0.3s ease-in-out;
+}
+
+.box-input img {
+  width: 35px;
+}
+
+.box-input:focus-within {
+  border: 1px solid #00e9ff;
+}
+
+.box-input button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  font-weight: bold;
+  font-family: 'Grandstander Variable', system-ui;
+  background-color: #00e9ff;
+  padding: 10px 20px;
+  border: none;
+  font-size: 19px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  will-change: transform;
+}
+
+.box-input button:hover {
+  background-color: #00eaff98;
+  transform: scale(1.1);
+}
+
+/* ========================= */
+/* BOX INPUT NORMAL          */
+/* ========================= */
+
+.box-input-normal {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 45%;
+  background-color: #0f243b;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  transition: border 0.3s ease-in-out;
+}
+
+.box-input-normal img {
+  width: 25px;
+}
+
+.box-input-normal:focus-within {
+  border: 1px solid #00e9ff;
+}
+
+.box-input-normal button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  font-weight: bold;
+  font-family: 'Grandstander Variable', system-ui;
+  background-color: #00e9ff;
+  padding: 5px 10px;
+  border: none;
+  font-size: 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  will-change: transform;
+}
+
+.box-input-normal button:hover {
+  background-color: #00eaff98;
+  transform: scale(1.1);
+}

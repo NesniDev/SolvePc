@@ -1,11 +1,11 @@
 ---
+import { CatalogoSoluciones } from '@components/ui/CatalogoSoluciones'
 import { problemasTecnicos } from '@mockup/solutions'
 ---
 
-<section class="cards">
-  {
+<!-- <section class="cards"> --><!-- {
     problemasTecnicos.map(
-      ({ slug, title, description, category, difficulty, image }) => (
+      ({ slug, title, description, category, difficulty, image, explain }) => (
         <article class="card">
           <a href={`/solutions/${slug}`}>
             <div class="card-info">
@@ -31,6 +31,33 @@ import { problemasTecnicos } from '@mockup/solutions'
                 {description}
               </p>
             </div>
+            <div class="wrapper-items-card">
+              <span>
+                <img
+                  src="/info-more/steps.svg"
+                  alt="icono de vistas"
+                  transition:persist=""
+                />
+                {explain.steps.length}
+                Pasos
+              </span>
+              <span>
+                <img
+                  src="/info-more/eye.svg"
+                  alt="icono de vistas"
+                  transition:persist=""
+                />
+                14.7k
+              </span>
+              <span>
+                <img
+                  src="/info-more/time.svg"
+                  alt="icono de tiempo"
+                  transition:persist=""
+                />
+                6 Días
+              </span>
+            </div>
             <div class="button-see-more">
               <button>Ver Información</button>
             </div>
@@ -38,9 +65,10 @@ import { problemasTecnicos } from '@mockup/solutions'
         </article>
       )
     )
-  }
-</section>
-<style>
+  } -->
+<CatalogoSoluciones problemasIniciales={problemasTecnicos} client:load />
+<!-- </section> -->
+<!-- <style>
   a {
     text-decoration: none;
   }
@@ -114,6 +142,30 @@ import { problemasTecnicos } from '@mockup/solutions'
       border: 1px solid #00e9ff;
       backdrop-filter: blur(5px);
     }
+    .wrapper-items-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      gap: 1rem;
+      font-family: 'Grandstander Variable', system-ui;
+      margin: 20px 0;
+      color: var(--color-white);
+      font-size: 0.8rem;
+      & span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.3rem;
+      }
+      & img {
+        width: 15px;
+        height: 15px;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
+    }
     & .card-info {
       display: flex;
       flex-direction: column;
@@ -174,4 +226,4 @@ import { problemasTecnicos } from '@mockup/solutions'
       margin: 0;
     }
   }
-</style>
+</style> -->

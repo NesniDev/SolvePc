@@ -1,25 +1,9 @@
 ---
-import ArrowRight from '@assets/buttons/Arrow-right.astro'
-
-interface Props {
-  placeholder: string
-  size?: string
-}
-
-const { placeholder, size = 'big' } = Astro.props as Props
+import { SearchProblem } from './SearchProblem'
 ---
 
-<div class={`${size === 'normal' ? 'box-input-normal' : 'box-input'}`}>
-  <img src="/inputs/Nube.svg" alt="" />
-  <input type="search" placeholder={placeholder} />
-  <button
-    >Buscar <ArrowRight
-      style={{ width: '20px', height: '20px', transform: 'rotate(10deg)' }}
-    />
-  </button>
-</div>
-
-<style>
+<SearchProblem client:load placeholder="Busca el problema..." size="normal" />
+<!-- <style>
   input[type='search'] {
     background-color: transparent;
     width: 100%;
@@ -112,4 +96,4 @@ const { placeholder, size = 'big' } = Astro.props as Props
       }
     }
   }
-</style>
+</style> -->
