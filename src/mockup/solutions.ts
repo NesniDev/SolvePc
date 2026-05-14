@@ -1,6 +1,5 @@
 import type { Solutions } from "src/interfaces/Solutions";
 
-
 export const problemasTecnicos: Solutions[] = [
   {
     title: "Resolver pantalla azul de Windows (BSOD)",
@@ -10,6 +9,33 @@ export const problemasTecnicos: Solutions[] = [
         title: "¿Qué está sucediendo?",
         description: "Una «Pantalla azul de la muerte» (BSOD) es la respuesta de protección de Windows ante un fallo irrecuperable del núcleo. El sistema se detiene para evitar la corrupción de datos y escribe un volcado de memoria en el disco. El código de detención que se muestra es la vía más rápida para identificar la causa raíz; esta guía le orientará para capturarlo, interpretarlo y aplicar la acción correctiva adecuada.",
         photo: "/categories/img/so.webp",
+        commonErrors: [
+          {
+            code: "IRQL_NOT_LESS_OR_EQUAL",
+            label: "Conflicto de controladores o direcciones de memoria incompatibles.",
+            percentage: 38
+          },
+          {
+            code: "MEMORY_MANAGEMENT",
+            label: "Fallo de integridad en módulos RAM o paginado del disco.",
+            percentage: 25
+          },
+          {
+            code: "PAGE_FAULT_IN_NONPAGED_AREA",
+            label: "Solicitud de datos a una dirección de memoria inexistente.",
+            percentage: 18
+          },
+          {
+            code: "SYSTEM_THREAD_EXCEPTION_NOT_HANDLED",
+            label: "Fallo crítico generado por un controlador (frecuentemente de video).",
+            percentage: 12
+          },
+          {
+            code: "CRITICAL_PROCESS_DIED",
+            label: "Cierre inesperado de un proceso vital del núcleo del sistema.",
+            percentage: 7
+          }
+        ],
         prerequisites: [
           "Derechos de administrador local en el dispositivo afectado.",
           "Unidad USB de recuperación de Windows 10/11 (opcional, pero altamente recomendada).",
@@ -38,6 +64,23 @@ export const problemasTecnicos: Solutions[] = [
         title: "Diagnóstico y estabilización de la conexión",
         description: "Las interrupciones frecuentes de la red inalámbrica suelen estar vinculadas a tres factores principales: una política agresiva de ahorro de energía del sistema operativo que apaga el adaptador, interferencia de radiofrecuencia con redes vecinas, o una caché de DNS corrupta que impide la resolución continua de nombres de dominio.",
         photo: "/categories/img/network.webp",
+        commonErrors: [
+          {
+            code: "DNS_PROBE_FINISHED_NXDOMAIN",
+            label: "Fallo en la resolución de nombres de dominio en el navegador.",
+            percentage: 45
+          },
+          {
+            code: "ERR_NETWORK_CHANGED",
+            label: "Interrupción por salto entre redes o pérdida de IP.",
+            percentage: 35
+          },
+          {
+            code: "WIFI_AUTH_FAILURE",
+            label: "Credenciales de red inválidas o protocolos no soportados.",
+            percentage: 20
+          }
+        ],
         prerequisites: [
           "Derechos de administrador local en el equipo.",
           "Credenciales de acceso al panel de administración del enrutador (router).",
@@ -51,8 +94,7 @@ export const problemasTecnicos: Solutions[] = [
           "Actualice los controladores de la tarjeta de red desde la página oficial del fabricante del equipo."
         ],
         terminal: "ipconfig /flushdns && ipconfig /renew"
-      }
-    ,
+      },
     category: "Red",
     difficulty: "Fácil",
     image: "/categories/network.svg",
@@ -66,6 +108,23 @@ export const problemasTecnicos: Solutions[] = [
         title: "Mitigación de cuellos de botella de rendimiento",
         description: "La ralentización súbita de un equipo generalmente indica que un recurso de hardware crítico (CPU, RAM o Disco) ha alcanzado el 100% de su capacidad. Esto puede deberse a procesos en segundo plano no optimizados, acumulación de aplicaciones en el arranque o la indexación exhaustiva del sistema.",
         photo: "/categories/img/performance.webp",
+        commonErrors: [
+          {
+            code: "100%_DISK_USAGE",
+            label: "Saturación del ancho de banda del bus de almacenamiento.",
+            percentage: 50
+          },
+          {
+            code: "HIGH_CPU_USAGE",
+            label: "Procesos acaparando los ciclos del procesador.",
+            percentage: 30
+          },
+          {
+            code: "MEMORY_LEAK",
+            label: "Fuga de RAM por aplicaciones mal optimizadas.",
+            percentage: 20
+          }
+        ],
         prerequisites: [
           "Derechos de administrador local en el sistema.",
           "Acceso sin restricciones al Administrador de Tareas (Windows) o Monitor de Actividad (macOS).",
@@ -78,8 +137,7 @@ export const problemasTecnicos: Solutions[] = [
           "Verifique el espacio libre en el disco principal; los sistemas operativos requieren al menos un 15% de espacio libre para gestionar la memoria virtual de manera eficiente."
         ],
         terminal: "Get-Process | Sort-Object CPU -Descending | Select-Object -First 10"
-      }
-    ,
+      },
     category: "Rendimiento",
     difficulty: "Fácil",
     image: "/categories/performance.svg",
@@ -93,6 +151,23 @@ export const problemasTecnicos: Solutions[] = [
         title: "Protocolo de Respuesta a Incidentes",
         description: "Un ataque de ransomware cifra los archivos del usuario exigiendo un rescate. La máxima prioridad pedagógica y operativa en este escenario es la contención: evitar el 'movimiento lateral', es decir, que el malware se propague a través de la red local hacia servidores u otros equipos conectados.",
         photo: "/categories/img/virus.webp",
+        commonErrors: [
+          {
+            code: "FILE_EXTENSION_MODIFIED",
+            label: "Archivos bloqueados con extensiones inusuales (ej. .locked, .crypt).",
+            percentage: 55
+          },
+          {
+            code: "RANSOM_NOTE_CREATED",
+            label: "Aparición de archivos de texto exigiendo pagos en criptomonedas.",
+            percentage: 30
+          },
+          {
+            code: "SHADOW_COPIES_DELETED",
+            label: "Eliminación forzada de instantáneas de volumen por el malware.",
+            percentage: 15
+          }
+        ],
         prerequisites: [
           "Derechos de administrador de red o Dominio (si aplica).",
           "Acceso físico inmediato al equipo comprometido.",
@@ -107,8 +182,7 @@ export const problemasTecnicos: Solutions[] = [
           "Restaure los datos exclusivamente a partir de una copia de seguridad aislada (offline) verificada previamente."
         ],
         terminal: "vssadmin list shadows"
-      }
-    ,
+      },
     category: "Virus",
     difficulty: "Avanzado",
     image: "/categories/virus.svg",
@@ -122,6 +196,23 @@ export const problemasTecnicos: Solutions[] = [
         title: "Diagnóstico a nivel de Hardware y Volúmenes lógicos",
         description: "Cuando un disco de estado sólido (SSD) desaparece del sistema, la falla debe aislarse en dos niveles: físico (cables de datos/energía o ranuras M.2 dañadas) y lógico (tabla de particiones corrupta o unidad no inicializada).",
         photo: "/categories/img/hardware.webp",
+        commonErrors: [
+          {
+            code: "INACCESSIBLE_BOOT_DEVICE",
+            label: "BSOD al no encontrar el volumen de arranque principal.",
+            percentage: 45
+          },
+          {
+            code: "UNALLOCATED_SPACE",
+            label: "Corrupción de la tabla de particiones (MBR/GPT).",
+            percentage: 35
+          },
+          {
+            code: "SMART_STATUS_BAD",
+            label: "Alerta de hardware inminente o sectores dañados.",
+            percentage: 20
+          }
+        ],
         prerequisites: [
           "Derechos de administrador local.",
           "Herramientas de hardware (destornillador adecuado para chasis de PC o portátil).",
@@ -136,8 +227,7 @@ export const problemasTecnicos: Solutions[] = [
           "Asigne una nueva letra de unidad y formatéelo en NTFS o exFAT si aparece como espacio 'No asignado'."
         ],
         terminal: "diskpart"
-      }
-    ,
+      },
     category: "Hardware",
     difficulty: "Intermedio",
     image: "/categories/hardware.svg",
@@ -151,6 +241,23 @@ export const problemasTecnicos: Solutions[] = [
         title: "Análisis de dependencias y registros de eventos",
         description: "Un cierre inesperado (crash) instantáneo al iniciar una aplicación suele ser el síntoma de una dependencia ausente o corrupta (como bibliotecas .DLL, frameworks .NET o Visual C++ Redistributables), o un conflicto de permisos a nivel de sistema de archivos.",
         photo: "/categories/img/software.webp",
+        commonErrors: [
+          {
+            code: "0xc000007b",
+            label: "Formato de imagen no válido (conflicto entre arquitecturas 32/64 bits).",
+            percentage: 40
+          },
+          {
+            code: "MISSING_DLL",
+            label: "Ausencia de librerías dinámicas como MSVCP140.dll.",
+            percentage: 35
+          },
+          {
+            code: "EXCEPTION_ACCESS_VIOLATION",
+            label: "Intento del software de acceder a memoria restringida.",
+            percentage: 25
+          }
+        ],
         prerequisites: [
           "Derechos de administrador local.",
           "Conexión a internet estable para descargar dependencias ausentes.",
@@ -164,8 +271,7 @@ export const problemasTecnicos: Solutions[] = [
           "Desinstale la aplicación, elimine manualmente las carpetas residuales en 'AppData' y vuelva a instalarla de forma limpia."
         ],
         terminal: "Get-EventLog -LogName Application -EntryType Error -Newest 10"
-      }
-    ,
+      },
     category: "Software",
     difficulty: "Intermedio",
     image: "/categories/software.svg",
@@ -179,6 +285,23 @@ export const problemasTecnicos: Solutions[] = [
         title: "Resolución de túneles VPN y adaptadores virtuales",
         description: "Las actualizaciones del sistema operativo frecuentemente restablecen las configuraciones de red, lo que puede corromper el adaptador de red virtual (TAP/TUN) que utiliza la VPN, o desincronizar los certificados de seguridad necesarios para establecer el túnel TLS/IPsec.",
         photo: "/categories/img/network.webp",
+        commonErrors: [
+          {
+            code: "TLS_HANDSHAKE_FAILED",
+            label: "Fallo en la negociación de certificados o cifrado.",
+            percentage: 45
+          },
+          {
+            code: "TAP_ADAPTER_ERROR",
+            label: "Corrupción en el controlador del adaptador virtual local.",
+            percentage: 35
+          },
+          {
+            code: "CONNECTION_TIMEOUT",
+            label: "Tiempo de espera agotado hacia el Gateway corporativo.",
+            percentage: 20
+          }
+        ],
         prerequisites: [
           "Derechos de administrador local.",
           "Credenciales del cliente VPN y dispositivo de Autenticación Multifactor (MFA) a mano.",
@@ -192,8 +315,7 @@ export const problemasTecnicos: Solutions[] = [
           "Reinstale el cliente VPN corporativo para que reconfigure automáticamente las rutas y los adaptadores virtuales."
         ],
         terminal: "route print"
-      }
-    ,
+      },
     category: "Red",
     difficulty: "Intermedio",
     image: "/categories/network.svg",
@@ -207,6 +329,23 @@ export const problemasTecnicos: Solutions[] = [
         title: "Análisis de consumo energético y degradación",
         description: "El agotamiento prematuro de la batería se divide en dos factores: degradación química de las celdas de litio (hardware) y consumo desmedido por procesos que impiden que el procesador entre en estados de suspensión profunda, conocidos como 'wakelocks' (software).",
         photo: "/categories/img/performance.webp",
+        commonErrors: [
+          {
+            code: "HIGH_BATTERY_WEAR",
+            label: "Disminución significativa de la capacidad total de diseño (Hardware).",
+            percentage: 50
+          },
+          {
+            code: "SYSTEM_WAKELOCKS",
+            label: "Procesos impidiendo los estados de suspensión C-States (Software).",
+            percentage: 35
+          },
+          {
+            code: "THERMAL_THROTTLING",
+            label: "Gasto extra de energía para disipar calor excesivo.",
+            percentage: 15
+          }
+        ],
         prerequisites: [
           "Derechos de administrador local.",
           "Cargador original (o certificado) del equipo portátil disponible.",
@@ -219,8 +358,7 @@ export const problemasTecnicos: Solutions[] = [
           "Realice una calibración: cargue el equipo al 100%, déjelo descargar hasta que se apague solo y vuelva a cargarlo ininterrumpidamente."
         ],
         terminal: "powercfg /batteryreport /output \"C:\\battery_report.html\""
-      }
-    ,
+      },
     category: "Rendimiento",
     difficulty: "Fácil",
     image: "/categories/performance.svg",
@@ -234,6 +372,23 @@ export const problemasTecnicos: Solutions[] = [
         title: "Recuperación de macOS y gestión de memoria no volátil",
         description: "Cuando la barra de progreso de una actualización de macOS se congela de forma permanente, indica un fallo al escribir en la partición del sistema, una incompatibilidad de kernel (kexts) de terceros, o datos corruptos en la NVRAM, la memoria que guarda ajustes de arranque críticos.",
         photo: "/categories/img/so.webpg",
+        commonErrors: [
+          {
+            code: "STUCK_APPLE_LOGO",
+            label: "Bucle infinito en el proceso de inicialización (bootloop).",
+            percentage: 50
+          },
+          {
+            code: "UNTRUSTED_KEXTS",
+            label: "Incompatibilidad de extensiones de kernel de terceros.",
+            percentage: 30
+          },
+          {
+            code: "APFS_CONVERSION_FAIL",
+            label: "Fallo estructural en el sistema de archivos de Apple.",
+            percentage: 20
+          }
+        ],
         prerequisites: [
           "Conexión a internet estable (preferiblemente conexión física Ethernet) para procesos de Recuperación por Internet.",
           "Cable de alimentación de CA conectado ininterrumpidamente al Mac.",
@@ -247,8 +402,7 @@ export const problemasTecnicos: Solutions[] = [
           "Si el problema persiste, inicie en 'Modo Seguro' (manteniendo Shift) o arranque en 'Modo Recuperación' (Command + R) para reinstalar macOS sin perder datos de usuario."
         ],
         terminal: "diskutil verifyVolume /"
-      }
-    ,
+      },
     category: "OS",
     difficulty: "Intermedio",
     image: "/categories/os.svg",

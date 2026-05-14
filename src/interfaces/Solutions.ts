@@ -12,8 +12,14 @@ export interface Explain {
   title: string;
   description: string;
   photo: string;
+  commonErrors: CommonErrors[]
   prerequisites: string[];
   steps: string[];
   terminal: string;
 }
 
+export interface CommonErrors {
+  code: string
+  label: string
+  percentage: number
+}
