@@ -8,7 +8,15 @@ interface Props {
 
 const { explain } = Astro.props
 
-const { title, description, photo, prerequisites, steps, terminal } = explain
+const {
+  title,
+  description,
+  photo,
+  prerequisites,
+  steps,
+  terminal,
+  commonErrors
+} = explain
 ---
 
 <section class="problem-information">
@@ -29,13 +37,21 @@ const { title, description, photo, prerequisites, steps, terminal } = explain
       </div>
 
       <div class="content-wrapper">
-        <h3>Mapa de síntomas</h3>
+        <h3>Síntomas Comunes</h3>
         <h4>Código de error más común</h4>
-        <p>
-          <span>Symptom map</span>
-          <span>Most common stop codes</span>
-          <span>IRQL_NOT_LESS_OR_EQUAL 38%</span>
-        </p>
+        <ul class="list-errors">
+          {
+            commonErrors.map((error) => (
+              <li class="item-error">
+                <h6>{error.code}</h6>
+                <span>
+                  <progress value={error.percentage} max="100" />
+                  <span>{error.percentage}%</span>
+                </span>
+              </li>
+            ))
+          }
+        </ul>
       </div>
     </article>
 
@@ -102,7 +118,6 @@ const { title, description, photo, prerequisites, steps, terminal } = explain
         align-items: stretch;
         gap: 1rem;
         margin: 40px 0;
-        width: 100%;
 
         & .article {
           width: 100%;
@@ -111,7 +126,6 @@ const { title, description, photo, prerequisites, steps, terminal } = explain
           border: 1px solid var(--gray-border);
           border-radius: 15px;
           background-color: rgba(0, 0, 0, 0.2);
-          flex: 1; /* Distribuye el espacio horizontal equitativamente entre los artículos */
           overflow: hidden; /* Mantiene los bordes redondeados limpios */
           & > div:nth-child(1) {
             grid-area: mapa-sintomas;
@@ -144,8 +158,9 @@ const { title, description, photo, prerequisites, steps, terminal } = explain
             align-items: start;
             justify-content: start;
             gap: 1rem;
-            padding: 1.5rem;
+            padding: 1rem;
             flex: 1; /* Permite que el contenedor de texto ocupe todo el espacio vertical restante */
+            text-wrap: wrap;
 
             & h3 {
               font-size: 0.8rem;
@@ -165,14 +180,58 @@ const { title, description, photo, prerequisites, steps, terminal } = explain
               letter-spacing: 0.1rem;
             }
 
-            & p {
+            & .list-errors {
+              word-break: break-word;
               display: flex;
               flex-direction: column;
               gap: 0.5rem;
+              overflow: hidden;
 
-              & span {
-                font-size: 0.8rem;
-                color: var(--gray-letter);
+              & .item-error {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+
+                & h6 {
+                  margin: 0;
+                  padding: 0;
+                  font-size: 10px;
+                }
+                & span {
+                  display: flex;
+                  justify-content: end;
+                  align-items: center;
+                  gap: 0.3rem;
+
+                  & span {
+                    width: 4ch;
+                  }
+
+                  & > progress {
+                    width: 60px;
+                    height: 5px;
+                    border-radius: 999px;
+                    overflow: hidden;
+                    appearance: none;
+                    background-color: #e5e7eb;
+                  }
+
+                  progress::-webkit-progress-bar {
+                    background-color: #e5e7eb;
+                  }
+
+                  progress::-webkit-progress-value {
+                    background: linear-gradient(
+                      90deg,
+                      #3b82f6,
+                      #6366f1,
+                      #8b5cf6
+                    );
+                    border-radius: 999px;
+                    transition: width 0.3s ease;
+                  }
+                }
               }
             }
 
