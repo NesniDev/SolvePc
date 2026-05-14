@@ -10,8 +10,12 @@
       "@layouts/*": ["./src/layouts/*"],
       "@pages/*": ["./src/pages/*"],
       "@styles/*": ["./src/styles/*"],
-      "@mockup/*": ["./src/mockup/*"]
+      "@mockup/*": ["./src/mockup/*"],
+      "@store/*": ["./src/store/*"],
 
-    }
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  
   }
 }
