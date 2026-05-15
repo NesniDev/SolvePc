@@ -1,0 +1,160 @@
+---
+const characteristic = [
+  {
+    title: 'Búsqueda por código de error',
+    image: '/categories/network.svg',
+    description:
+      'Ingresa el código exacto del error (ej. 0x0000007E, KERNEL_DATA_INPAGE_ERROR) o describe los síntomas para encontrar artículos relacionados en la base de conocimiento.'
+  },
+  {
+    title: 'Documentación Verificada',
+    image: '/categories/network.svg',
+    description:
+      'Cada artículo incluye posibles causas, soluciones recomendadas paso a paso, y ha sido revisado por técnicos especializados con experiencia comprobada.'
+  },
+  {
+    title: 'Filtrado por plataforma',
+    image: '/categories/network.svg',
+    description:
+      ' Consulta soluciones específicas para tu sistema operativo — Windows, macOS o Linux. Cada guía indica la versión compatible y los requisitos previos.'
+  },
+  {
+    title: 'Categorías organizadas',
+    image: '/categories/network.svg',
+    description:
+      'Navega por categorías: Hardware, Software, Sistema operativo, Red, Rendimiento y Virus. Cada sección agrupa errores similares para facilitar la consulta.'
+  }
+]
+---
+
+<section class="characteristics">
+  <h2>03 / Características</h2>
+  <div class="wrapper-characteristic">
+    <div class="wrapper-title">
+      <h3>Información técnica organizada y accesible.</h3>
+      <p>
+        SolvePc estructura errores documentados en un formato claro, con
+        posibles causas identificadas y soluciones recomendadas, ordenadas por
+        efectividad.
+      </p>
+    </div>
+    <div class="characteristics-list">
+      {
+        characteristic.map(({ title, description, image }) => (
+          <article>
+            <div>
+              <img src={image} alt={title} />
+            </div>
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .characteristics {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin: 10px auto;
+    h2 {
+      font-size: 15px;
+      letter-spacing: 2px;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      color: var(--color-hard);
+      font-family: 'Bangers', system-ui;
+    }
+    .wrapper-characteristic {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: start;
+      gap: 10px;
+      width: 100%;
+      & .wrapper-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        gap: 10px;
+        width: 100%;
+        & h3 {
+          font-size: 30px;
+          text-transform: uppercase;
+          margin: 20px 0 7px 0;
+          color: #eef7fb;
+          font-family: 'Grandstander Variable', system-ui;
+          font-weight: 700;
+        }
+        & p {
+          font-size: 12px;
+          margin: 0;
+          color: #949494;
+          font-family: 'JetBrains Mono Variable', monospace;
+        }
+      }
+
+      & .characteristics-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border-radius: 10px;
+        /* background: red; */
+        overflow: hidden;
+        border: 1px solid #9494943a;
+        & article {
+          padding: 20px;
+          background-color: #22426b4d;
+          backdrop-filter: blur(10px);
+          border: 1px solid #9494940a;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: start;
+          gap: 10px;
+          transition: all 0.3s ease-in-out;
+          will-change: transform;
+          &:hover {
+            border: 1px solid #9494943a;
+          }
+          & h3 {
+            font-family: 'Grandstander Variable', system-ui;
+            font-size: 17px;
+            margin: 0;
+            color: var(--color-white);
+          }
+          & p {
+            font-family: 'JetBrains Mono Variable', system-ui;
+            font-size: 10px;
+            margin: 0;
+            color: #949494;
+          }
+          & div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 10px;
+            border: 1px solid var(--color-hard);
+            background-color: #00f7ff0e;
+            padding: 10px;
+            transition: all 0.3s ease-in-out;
+
+            & img {
+              width: 15px;
+              height: 15px;
+              object-fit: cover;
+              filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.548));
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
