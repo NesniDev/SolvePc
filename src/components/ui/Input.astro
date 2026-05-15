@@ -1,8 +1,14 @@
 ---
 import { SearchProblem } from './SearchProblem'
+import { problemasTecnicos } from '@mockup/solutions'
 ---
 
-<SearchProblem client:load placeholder="Busca el problema..." size="normal" />
+<SearchProblem
+  client:load
+  placeholder="Busca el problema..."
+  size="normal"
+  datosSugerencias={problemasTecnicos}
+/>
 <!-- <style>
   input[type='search'] {
     background-color: transparent;

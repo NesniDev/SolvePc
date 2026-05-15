@@ -1,3 +1,16 @@
+:root {
+  --color-primary: #0f243b;
+  --color-accent: #00e9ff;
+  --color-accent-hover: rgba(0, 233, 255, 0.6);
+  --color-bg-dark: #2a2a2a;
+  --color-bg-hover: #3b3b3b;
+  --color-text-main: #e0e0e0;
+  --color-text-muted: #888;
+  --color-border: #444;
+  --font-main: 'Grandstander Variable', system-ui, sans-serif;
+  --transition-base: 0.3s ease-in-out;
+}
+
 input[type='search'] {
   background-color: transparent;
   width: 100%;
@@ -107,3 +120,135 @@ input[type='search']:focus {
   background-color: #00eaff98;
   transform: scale(1.1);
 }
+
+
+/* ========================= */
+/* SUGERENCIAS               */
+/* ========================= */
+.sugerencias-lista {
+  font-family: 'Grandstander Variable', system-ui;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: var(--color-primary);
+  /* #0f243b heredado */
+  border: 1px solid var(--color-accent);
+  /* #00e9ff heredado */
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  text-align: left;
+  max-height: 250px;
+  overflow-y: auto;
+
+  /* --- APLICACIÓN DE LA ANIMACIÓN --- */
+
+  /* 1. Nombre de la animación definida en el Paso 1 */
+  animation-name: entradaSuaveDropdown;
+  /* <--- NUEVO */
+
+  /* 2. Duración (0.3 segundos es un estándar para UI rápida pero suave) */
+  animation-duration: 0.5s;
+  /* <--- NUEVO */
+
+  /* 3. Curva de velocidad (ease-out: empieza rápido, desacelera al final) */
+  animation-timing-function: ease-in-out;
+  /* <--- NUEVO */
+
+  /* 4. Mantiene el estado final de la animación */
+  animation-fill-mode: forwards;
+  /* <--- NUEVO */
+}
+
+.sugerencia-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  /* Cambio: Línea separadora usando el cian con 15% de opacidad para no saturar */
+  border-bottom: 1px solid rgba(0, 233, 255, 0.15);
+  transition: background-color 0.2s ease, padding-left 0.2s ease;
+}
+
+.sugerencia-item:last-child {
+  border-bottom: none;
+}
+
+.sugerencia-item:hover {
+  /* Cambio: Efecto hover con un ligero tinte cian (10% de opacidad) */
+  background-color: rgba(0, 233, 255, 0.1);
+  padding-left: 20px;
+}
+
+.sugerencia-categoria {
+  font-size: 0.75rem;
+  /* Cambio: Blanco translúcido para mantener lectura sobre fondo azul */
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sugerencia-titulo {
+  /* Cambio: Texto en blanco puro para asegurar el máximo contraste */
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+@keyframes entradaSuaveDropdown {
+  from {
+    /* Estado inicial: invisible y 10px más arriba */
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    /* Estado final: visible y en su posición original */
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* links try
+.links-try {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  text-align: center;
+  color: #949494;
+  width: 80%;
+  font-family: 'Grandstander Variable', system-ui;
+}
+
+.links-try .links {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.links-try .links a {
+  text-decoration: none;
+  color: #949494;
+  background-color: transparent;
+  padding: 5px 10px;
+  border-radius: 15px;
+  border: 1px solid #505050;
+  transition: all 0.3s ease-in-out;
+  will-change: transform;
+}
+
+.links-try .links a:hover {
+  background-color: #091420;
+  border: 1px solid #00eaff41;
+  transform: scale(1.02);
+} */
