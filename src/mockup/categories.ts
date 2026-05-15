@@ -13,19 +13,19 @@ export const categories = [
   },
   {
     id: 3,
-    name: 'Network',
+    name: 'Redes',
     icon: '/categories/network.svg',
     articles: 20
   },
   {
     id: 4,
-    name: 'Performance',
+    name: 'Rendimiento',
     icon: '/categories/performance.svg',
     articles: 20
   },
   {
     id: 5,
-    name: 'OS',
+    name: 'SO',
     icon: '/categories/os.svg',
     articles: 20
   },
