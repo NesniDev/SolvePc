@@ -1,0 +1,703 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout>
+  <div class="technical-support-layout">
+    <main class="form-container">
+      <form id="error-report-form">
+        <fieldset class="form-section">
+          <legend>Categoría del error</legend>
+          <p class="section-description">
+            Selecciona la categoría que mejor describa el tipo de falla.
+          </p>
+          <div class="grid-options cols-3">
+            <label class="radio-card">
+              <input type="radio" name="category" value="hardware" />
+              <span class="icon">💻</span> Hardware
+            </label>
+            <label class="radio-card active">
+              <input type="radio" name="category" value="software" checked />
+              <span class="icon">⚙️</span> Software
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="category" value="os" />
+              <span class="icon">🖥️</span> Sistema operativo
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="category" value="network" />
+              <span class="icon">🌐</span> Red
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="category" value="performance" />
+              <span class="icon">⚡</span> Rendimiento
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="category" value="other" />
+              <span class="icon">⚠️</span> Otro
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="form-row cols-2">
+          <div class="input-group">
+            <label for="fullName"
+              >Nombre completo <span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              placeholder="Juan Pérez"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="email"
+              >Correo electrónico <span class="required">*</span></label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="juan@empresa.com"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-row cols-2">
+          <div class="input-group">
+            <label for="os">Sistema operativo afectado</label>
+            <select id="os" name="os">
+              <option value="" disabled selected>Selecciona un SO...</option>
+              <option value="windows">Windows</option>
+              <option value="linux">Linux</option>
+              <option value="macos">macOS</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="deviceModel">Modelo del dispositivo</label>
+            <input
+              type="text"
+              id="deviceModel"
+              name="deviceModel"
+              placeholder="ThinkPad X1 Carbon Gen 11"
+            />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="errorCode"
+            >Código o nombre del error <span class="required">*</span></label
+          >
+          <input
+            type="text"
+            id="errorCode"
+            name="errorCode"
+            placeholder="Ej: KERNEL_DATA_INPAGE_ERROR o Error 0x80070005"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="description"
+            >Descripción detallada <span class="required">*</span></label
+          >
+          <p class="section-description">
+            Incluye los pasos para reproducir el error, mensajes mostrados y
+            comportamiento observado.
+          </p>
+          <textarea
+            id="description"
+            name="description"
+            rows="5"
+            placeholder="Describe cuándo aparece el error, qué estabas haciendo cuando ocurrió, si es reproducible, y cualquier código de error o mensaje que aparezca en pantalla..."
+            required></textarea>
+        </div>
+
+        <fieldset class="form-section">
+          <legend>Nivel de gravedad</legend>
+          <div class="grid-options cols-4">
+            <label class="radio-card severity">
+              <input type="radio" name="severity" value="low" />
+              <span class="title">Bajo</span>
+              <span class="desc">Error menor o cosmético</span>
+            </label>
+            <label class="radio-card severity active">
+              <input type="radio" name="severity" value="medium" />
+              <span class="title">Medio</span>
+              <span class="desc">Afecta funcionalidad</span>
+            </label>
+            <label class="radio-card severity">
+              <input type="radio" name="severity" value="high" />
+              <span class="title">Alto</span>
+              <span class="desc">Impide el uso normal</span>
+            </label>
+            <label class="radio-card severity">
+              <input type="radio" name="severity" value="critical" />
+              <span class="title">Crítico</span>
+              <span class="desc">Pérdida de datos posible</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="form-section">
+          <label>Archivos adjuntos</label>
+          <p class="section-description">
+            Capturas de pantalla, logs o archivos de volcado (.dmp). Máx. 25MB
+            cada uno.
+          </p>
+          <div class="file-drop-zone">
+            <p>
+              <span>📤</span> Arrastra archivos aquí o <button
+                type="button"
+                class="text-link">explora</button
+              >
+            </p>
+            <input type="file" multiple class="hidden-file-input" />
+          </div>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="consent" name="consent" required />
+          <label for="consent"
+            >Confirmo que la información proporcionada es precisa y autorizo su
+            publicación en la base de conocimiento. Los datos personales no
+            serán publicados. <a href="#" class="text-link"
+              >Política de privacidad</a
+            >.</label
+          >
+        </div>
+
+        <footer class="form-actions">
+          <span class="eta"
+            >Tiempo estimado de revisión: <strong>24-48 horas</strong></span
+          >
+          <div class="buttons">
+            <button type="reset" class="btn-secondary">Limpiar</button>
+            <button type="submit" class="btn-primary"
+              ><span>🚀</span> Enviar reporte</button
+            >
+          </div>
+        </footer>
+      </form>
+    </main>
+
+    <aside class="sidebar-container">
+      <div class="info-card highlight-card">
+        <h4>INFORMACIÓN REQUERIDA</h4>
+        <h5>Datos técnicos necesarios</h5>
+        <p>
+          Para documentar correctamente un error, incluye el código exacto, los
+          pasos para reproducirlo, el sistema operativo afectado y cualquier
+          mensaje de error visible en pantalla.
+        </p>
+      </div>
+
+      <div class="info-card process-card">
+        <h4>PROCESO DE REVISIÓN</h4>
+        <ol class="process-steps">
+          <li>
+            <span class="step-num">1</span>
+            <div>
+              <strong>Recepción del reporte</strong>
+              <p>Tu reporte queda registrado y entra en cola de revisión.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <div>
+              <strong>Verificación técnica</strong>
+              <p>
+                Un técnico valida la información y busca documentación
+                existente.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <div>
+              <strong>Investigación de soluciones</strong>
+              <p>
+                Se identifican las posibles causas y soluciones recomendadas.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">4</span>
+            <div>
+              <strong>Publicación en la base</strong>
+              <p>El artículo se publica con toda la información documentada.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="info-card stats-card">
+        <h4>ESTADÍSTICAS DE LA BASE</h4>
+        <ul class="stats-list">
+          <li><span>Errores documentados</span> <strong>12,847</strong></li>
+          <li><span>Categorías activas</span> <strong>8</strong></li>
+          <li><span>Última actualización</span> <strong>Hoy</strong></li>
+          <li><span>Colaboradores técnicos</span> <strong>48</strong></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <style>
+    /* Variables de diseño coherentes con la paleta oscura */
+    :root {
+      --bg-base: #060d14;
+      --bg-surface: #0a131e;
+      --bg-surface-hover: #101c2b;
+      --border-color: #1a2a3e;
+      --border-highlight: #00d2ff;
+      --text-primary: #f0f6fc;
+      --text-secondary: #8b9eb3;
+      --accent-color: #00d2ff;
+      --accent-hover: #00b4db;
+      --accent-transparent: rgba(0, 210, 255, 0.1);
+    }
+
+    /* Reset básico para el componente */
+    .technical-support-layout {
+      font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
+      color: var(--text-primary);
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 1.5rem;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+
+      /* Anidamiento CSS nativo para diseño responsivo */
+      @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    /* --- ESTILOS DEL FORMULARIO PRINCIPAL --- */
+    .form-container {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+
+      & form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+    }
+
+    fieldset {
+      border: none;
+    }
+
+    legend,
+    label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      display: block;
+      font-family: 'Bangers', sans-serif;
+      letter-spacing: 2px;
+    }
+
+    .section-description {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      margin: 0.5rem 0;
+      font-family: 'Grandstander Variable', sans-serif;
+    }
+
+    .required {
+      color: var(--accent-color);
+    }
+
+    /* Grids internos del formulario */
+    .grid-options {
+      display: grid;
+      gap: 0.75rem;
+
+      &.cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      &.cols-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      @media (max-width: 768px) {
+        &.cols-3,
+        &.cols-4 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    }
+
+    .form-row {
+      display: grid;
+      gap: 1rem;
+
+      &.cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: 768px) {
+        &.cols-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+
+    /* Tarjetas de Selección (Radio Buttons ocultos) */
+    .radio-card {
+      background-color: var(--bg-base);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      font-size: 0.85rem;
+      margin: 0.6rem 0;
+
+      & span:last-child {
+        font-family: 'JetBrains Mono Variable', monospace;
+        letter-spacing: 0;
+      }
+      /* Ocultar el input real */
+      & input[type='radio'] {
+        display: none;
+      }
+
+      &:hover {
+        background-color: var(--bg-surface-hover);
+      }
+
+      /* Estilo activo simulado */
+      &:has(input:checked) {
+        background-color: var(--accent-transparent);
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+      }
+
+      &.severity {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+
+        & .title {
+          font-weight: bold;
+        }
+        & .desc {
+          font-size: 0.7rem;
+          color: var(--text-secondary);
+        }
+      }
+    }
+
+    /* Inputs estándar */
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+
+      & input[type='text'],
+      & input[type='email'],
+      & select,
+      & textarea {
+        width: 100%;
+        background-color: var(--bg-base);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 0.75rem 1rem;
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: 0.9rem;
+        transition: border-color 0.2s ease;
+
+        &:focus {
+          outline: none;
+          border-color: var(--accent-color);
+        }
+      }
+
+      & textarea {
+        resize: vertical;
+      }
+    }
+
+    /* Zona de arrastrar y soltar (Upload) */
+    .file-drop-zone {
+      border: 1px dashed var(--border-color);
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      background-color: var(--bg-base);
+      position: relative;
+      cursor: pointer;
+      transition: border-color 0.2s;
+
+      &:hover {
+        border-color: var(--text-secondary);
+      }
+
+      & .hidden-file-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+      }
+    }
+
+    /* Footer del Formulario */
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+
+      & .eta {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        & strong {
+          color: var(--text-primary);
+        }
+      }
+
+      & .buttons {
+        display: flex;
+        gap: 1rem;
+      }
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-color);
+      color: var(--bg-base);
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      &:hover {
+        background-color: var(--accent-hover);
+      }
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+
+      &:hover {
+        color: var(--text-primary);
+        border-color: var(--text-primary);
+      }
+    }
+
+    .text-link {
+      color: var(--accent-color);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .checkbox-group {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      & label {
+        font-family: 'JetBrains Mono Variable', monospace;
+        letter-spacing: 0;
+      }
+      & input[type='checkbox'] {
+        margin-top: 0.2rem;
+        accent-color: var(--accent-color);
+      }
+    }
+
+    /* --- ESTILOS DE LA BARRA LATERAL --- */
+    .sidebar-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .info-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+
+      & h4 {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-secondary);
+        margin-bottom: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        letter-spacing: 2px;
+        font-family: 'Bangers', system-ui;
+      }
+
+      &.highlight-card {
+        border-color: var(--accent-color);
+        background: linear-gradient(
+          180deg,
+          rgba(0, 210, 255, 0.05) 0%,
+          transparent 100%
+        );
+
+        & h4 {
+          color: var(--accent-color);
+          font-weight: bold;
+        }
+        & h5 {
+          font-family: 'Grandstander Variable', system-ui;
+          font-size: 0.9rem;
+          margin-bottom: 0.5rem;
+        }
+        & p {
+          font-size: 0.8rem;
+          line-height: 1.5;
+          color: var(--text-secondary);
+          font-family: 'JetBrains Mono Variable', system-ui;
+        }
+      }
+    }
+
+    .process-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      & li {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      & .step-num {
+        background-color: var(--bg-base);
+        border: 1px solid var(--accent-color);
+        color: var(--accent-color);
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      & strong {
+        font-size: 0.85rem;
+        color: var(--text-primary);
+        display: block;
+        margin-bottom: 0.2rem;
+        font-family: 'Grandstander Variable', system-ui;
+      }
+      & p {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        line-height: 1.4;
+        font-family: 'JetBrains Mono Variable', system-ui;
+      }
+    }
+
+    .stats-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+
+      & li {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid var(--border-color);
+
+        font-family: 'JetBrains Mono Variable', system-ui;
+        &:last-child {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
+
+        & span {
+          color: var(--text-secondary);
+          font-family: 'Grandstander Variable', system-ui;
+        }
+      }
+    }
+  </style>
+
+  <!-- <script>
+    // Script pedagógico para ilustrar la interactividad de UI
+    // Manejo del cambio visual en las tarjetas de radio
+    const forms = document.querySelectorAll('form')
+
+    forms.forEach((form) => {
+      form.addEventListener('change', (e) => {
+        const target = e.target as HTMLInputElement
+        if (target.type === 'radio') {
+          // Remover clase 'active' de todos los labels hermanos
+          const name = target.name
+          const radios = form.querySelectorAll(`input[name="${name}"]`)
+          radios.forEach((radio) => {
+            const label = radio.closest('.radio-card')
+            if (label) label.classList.remove('active')
+          })
+
+          // Añadir clase 'active' al label seleccionado
+          const selectedLabel = target.closest('.radio-card')
+          if (selectedLabel) selectedLabel.classList.add('active')
+        }
+      })
+    })
+  </script> -->
+</Layout>
