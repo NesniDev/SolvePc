@@ -1,0 +1,368 @@
+---
+const consejos = {
+  categorias: {
+    seguridad: {
+      titulo: 'Seguridad',
+      totalConsejos: 3,
+      items: [
+        {
+          titulo: 'Habilitar autenticación de dos factores',
+          nivel: 'esencial',
+          descripcion:
+            'Añade una capa extra de seguridad a todas tus cuentas. Usa aplicaciones de autenticación en lugar de SMS cuando sea posible.'
+        },
+        {
+          titulo: 'Mantener el software actualizado',
+          nivel: 'esencial',
+          descripcion:
+            'Los parches de seguridad corrigen vulnerabilidades. Habilita las actualizaciones automáticas para el sistema operativo y aplicaciones críticas.'
+        },
+        {
+          titulo: 'Usar un gestor de contraseñas',
+          nivel: 'recomendado',
+          descripcion:
+            'Genera y almacena contraseñas únicas y complejas para cada cuenta. Nunca reutilices contraseñas entre sitios.'
+        }
+      ]
+    },
+
+    rendimiento: {
+      titulo: 'Rendimiento',
+      totalConsejos: 3,
+      items: [
+        {
+          titulo: 'Gestionar programas de inicio',
+          nivel: 'recomendado',
+          descripcion:
+            'Deshabilita aplicaciones de inicio innecesarias para reducir el tiempo de arranque y liberar recursos del sistema.'
+        },
+        {
+          titulo: 'Limpieza de disco regular',
+          nivel: 'recomendado',
+          descripcion:
+            'Elimina archivos temporales, limpia la caché del navegador y desinstala programas no utilizados mensualmente.'
+        },
+        {
+          titulo: 'Monitorear uso de recursos',
+          nivel: 'opcional',
+          descripcion:
+            'Usa el Administrador de tareas en Windows o el Monitor de actividad en Mac para identificar procesos que consumen muchos recursos.'
+        }
+      ]
+    },
+
+    hardware: {
+      titulo: 'Hardware',
+      totalConsejos: 3,
+      items: [
+        {
+          titulo: 'Limpiar tu hardware',
+          nivel: 'recomendado',
+          descripcion:
+            'La acumulación de polvo puede causar sobrecalentamiento. Limpia rejillas y ventiladores cada 3 a 6 meses con aire comprimido.'
+        },
+        {
+          titulo: 'Verificar salud del disco',
+          nivel: 'recomendado',
+          descripcion:
+            'Utiliza herramientas como CrystalDiskInfo o la Utilidad de Discos para monitorear la salud del SSD/HDD y prevenir fallas.'
+        },
+        {
+          titulo: 'Ventilación adecuada',
+          nivel: 'esencial',
+          descripcion:
+            'Asegura un flujo de aire adecuado en la computadora. Evita bloquear rejillas o usar portátiles sobre superficies blandas.'
+        }
+      ]
+    },
+
+    red: {
+      titulo: 'Red',
+      totalConsejos: 3,
+      items: [
+        {
+          titulo: 'Optimizar ubicación del router',
+          nivel: 'recomendado',
+          descripcion:
+            'Coloca el router en un lugar central y elevado. Evita paredes gruesas, objetos metálicos e interferencias electrónicas.'
+        },
+        {
+          titulo: 'Usar Ethernet cuando sea posible',
+          nivel: 'opcional',
+          descripcion:
+            'Las conexiones por cable ofrecen menor latencia y mayor estabilidad para juegos y videollamadas.'
+        },
+        {
+          titulo: 'Actualizar firmware del router',
+          nivel: 'recomendado',
+          descripcion:
+            'Las actualizaciones del router incluyen mejoras de seguridad y rendimiento. Verifica su disponibilidad cada trimestre.'
+        }
+      ]
+    },
+    software: {
+      titulo: 'Software',
+      totalConsejos: 3,
+      items: [
+        {
+          titulo: 'Optimizar ubicación del router',
+          nivel: 'recomendado',
+          descripcion:
+            'Coloca el router en un lugar central y elevado. Evita paredes gruesas, objetos metálicos e interferencias electrónicas.'
+        },
+        {
+          titulo: 'Usar Ethernet cuando sea posible',
+          nivel: 'opcional',
+          descripcion:
+            'Las conexiones por cable ofrecen menor latencia y mayor estabilidad para juegos y videollamadas.'
+        },
+        {
+          titulo: 'Actualizar firmware del router',
+          nivel: 'esencial',
+          descripcion:
+            'Las actualizaciones del router incluyen mejoras de seguridad y rendimiento. Verifica su disponibilidad cada trimestre.'
+        }
+      ]
+    }
+  }
+}
+
+const categorias = Object.values(consejos.categorias)
+---
+
+<section class="container-tips">
+  <div class="wrapper-title">
+    <img src="/tips/idea.svg" alt="Icono de idea" />
+    <h3>Consejos técnicos y buenas prácticas</h3>
+    <p>
+      Recomendaciones de expertos para mantener tus sistemas seguros, rápidos y
+      confiables. Desde fundamentos de seguridad hasta optimización de
+      rendimiento.
+    </p>
+  </div>
+  <div class="consejos">
+    {
+      categorias.map((categoria, index) => (
+        <div class="categoria">
+          <div
+            class={`${categoria.titulo.toLowerCase() === 'seguridad' ? 'seguridad' : categoria.titulo.toLowerCase() === 'rendimiento' ? 'rendimiento' : categoria.titulo.toLowerCase() === 'hardware' ? 'hardware' : categoria.titulo.toLowerCase() === 'software' ? 'software' : 'redes'} categoria-title`}
+          >
+            <h3>{categoria.titulo}</h3>
+          </div>
+          {categoria.items.map((item, i) => (
+            <div class="item">
+              <div class="item-text">
+                <h4>{item.titulo}</h4>
+                <p
+                  class={`${item.nivel === 'recomendado' ? 'green' : item.nivel === 'opcional' ? 'yellow' : 'red'}`}
+                >
+                  {item.nivel}
+                </p>
+              </div>
+              <p>{item.descripcion}</p>
+            </div>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .container-tips {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    & .wrapper-title {
+      margin: 70px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      & > h3 {
+        margin: 0;
+        font-size: 4rem;
+        font-family: 'Bangers', sans-serif;
+        font-weight: bold;
+        text-align: center;
+        color: var(--color-white);
+      }
+      & > p {
+        margin: 0;
+        width: 90%;
+        text-align: center;
+        font-size: 1.2rem;
+        color: var(--gray-letter);
+        font-family: 'JetBrains Mono Variable', monospace;
+      }
+      & img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.548));
+        transition: all 0.3s ease-in-out;
+        animation: top_down 4s linear infinite;
+      }
+    }
+
+    & .consejos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      width: 100%;
+
+      & h3 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+        font-family: 'Bangers', sans-serif;
+        color: var(--color-white);
+        letter-spacing: 2px;
+      }
+
+      & .categoria {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        border: 1px solid var(--gray-border);
+        border-radius: 20px;
+        overflow: hidden;
+        & .categoria-title {
+          display: flex;
+          width: 100%;
+          backdrop-filter: blur(1px);
+          & h3 {
+            margin: 0;
+            padding: 1rem;
+          }
+        }
+        .seguridad {
+          background: linear-gradient(
+            to right,
+            rgba(255, 0, 0, 0.1),
+            rgba(255, 0, 0, 0.3)
+          );
+        }
+        .rendimiento {
+          background: linear-gradient(
+            to right,
+            rgba(60, 255, 0, 0.1),
+            rgba(60, 255, 0, 0.3)
+          );
+        }
+        .hardware {
+          background: linear-gradient(
+            to right,
+            rgba(38, 0, 255, 0.1),
+            rgba(38, 0, 0, 0.3)
+          );
+        }
+        .software {
+          background: linear-gradient(
+            to right,
+            rgba(255, 0, 234, 0.1),
+            rgba(255, 0, 234, 0.3)
+          );
+        }
+        .redes {
+          background: linear-gradient(
+            to right,
+            rgba(0, 255, 242, 0.1),
+            rgba(0, 225, 255, 0.3)
+          );
+        }
+
+        & .item {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: start;
+          gap: 0.5rem;
+          padding: 1rem;
+          border-top: 1px solid var(--gray-border);
+          flex: 1;
+          backdrop-filter: blur(10px);
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+          }
+
+          & .item-text {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            text-align: left;
+            width: 100%;
+
+            & h4 {
+              font-size: 0.8rem;
+              margin: 0;
+              font-weight: bold;
+              font-family: 'JetBrains Mono Variable', sans-serif;
+              text-transform: uppercase;
+              color: var(--color-white);
+            }
+            .red {
+              color: red;
+              background-color: rgba(255, 0, 0, 0.1);
+              border: 1px solid rgba(255, 0, 0, 0.273);
+            }
+            .green {
+              color: greenyellow;
+              background-color: rgba(60, 255, 0, 0.1);
+              border: 1px solid rgba(60, 255, 0, 0.273);
+            }
+            .yellow {
+              color: yellow;
+              background-color: rgba(255, 238, 0, 0.1);
+              border: 1px solid rgba(255, 238, 0, 0.273);
+            }
+            & > p {
+              padding: 0.3rem 0.5rem;
+              border-radius: 30px;
+              margin: 0;
+              font-size: 0.6rem;
+              font-family: 'Grandstander Variable', system-ui;
+              backdrop-filter: blur(1px);
+            }
+          }
+          & > p {
+            margin: 0;
+            margin: 8px 0;
+            font-size: 0.8rem;
+            color: var(--gray-letter);
+            font-family: 'Grandstander Variable', system-ui;
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes top_down {
+    0% {
+      transform: translateY(0);
+    }
+
+    25% {
+      transform: translateY(-20px);
+    }
+
+    50% {
+      transform: translateY(0);
+    }
+
+    75% {
+      transform: translateY(-20px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+</style>
