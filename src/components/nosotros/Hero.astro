@@ -1,0 +1,345 @@
+---
+const principles = [
+  {
+    title: 'Claridad técnica',
+    image: '/logo.svg',
+    description:
+      'Documentamos problemas técnicos complejos en pasos claros y estructurados que cualquier usuario puede seguir.'
+  },
+  {
+    title: 'Información verificada',
+    image: '/logo.svg',
+    description:
+      'Cada artículo es revisado por técnicos especializados antes de publicarse en la base de conocimiento.'
+  },
+  {
+    title: 'Soluciones seguras',
+    image: '/logo.svg',
+    description:
+      'Solo documentamos procedimientos seguros y probados. Cada solución indica el nivel de riesgo y los requisitos previos.'
+  },
+  {
+    title: 'Accesibilidad',
+    image: '/logo.svg',
+    description:
+      'La documentación técnica debe ser comprensible. Redactamos pensando en usuarios de todos los niveles.'
+  }
+]
+---
+
+<section>
+  <div class="container-hero hero">
+    <div class="wrapper-title">
+      <span>Acerca de Helix Soporte Técnico</span>
+      <h2>Documentación técnica clara y accesible</h2>
+      <p>
+        SolvePc es una base de conocimiento técnico dedicada a documentar
+        errores de computadoras, pantallazos azules, fallas de hardware y
+        software. Nuestra misión es hacer la información técnica accesible para
+        usuarios de todos los niveles.
+      </p>
+    </div>
+    <div class="wrapper-img">
+      <img src="/categories/img/hardware.webp" alt="Sobre nosotros" />
+    </div>
+  </div>
+  <div class="wrapper-info-numbers">
+    <article class="articles">
+      <article class="article">
+        <span>12,847</span>
+        <span>Artículos documentados</span>
+      </article>
+      <article class="article">
+        <span>94.2%</span>
+        <span>Tasa de resolución</span>
+      </article>
+      <article class="article">
+        <span>6</span>
+        <span>Categorías técnicas</span>
+      </article>
+      <article class="article">
+        <span>150+</span>
+        <span>Países consultando</span>
+      </article>
+    </article>
+  </div>
+  <div class="wrapper-principles">
+    <h2>Nuestros principios</h2>
+    <p>Los criterios que guían la documentación en Helix Soporte.</p>
+    <div class="principles-list">
+      {
+        principles.map(({ image, title, description }) => (
+          <article class="principle">
+            <img src={image} alt={title} />
+            <span>{title}</span>
+            <p>{description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+  <div class="wrapper-documentation">
+    <h2>Contribuye a la documentación</h2>
+    <p>
+      Si encuentras un error no documentado o tienes información que pueda
+      ayudar a otros usuarios, puedes enviarnos un reporte para incluirlo en la
+      base de conocimiento.
+    </p>
+    <div>
+      <a href="/problemas">Consultar documentación</a>
+      <a href="/reporte-error">Reportar Error</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .container-hero {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &.hero {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      & .wrapper-title {
+        margin: 70px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 1.7rem;
+        width: 100%;
+        & > span {
+          background-color: #00eaff57;
+          border: 1px solid #00eaff;
+          padding: 0.5rem;
+          border-radius: 30px;
+          font-size: 0.8rem;
+          font-family: 'Bangers', sans-serif;
+          color: var(--color-white);
+        }
+        & > h2 {
+          font-size: 3rem;
+          margin: 0;
+          color: var(--color-white);
+          text-transform: uppercase;
+          font-family: 'Grandstander Variable', system-ui;
+          text-align: start;
+          line-height: 1;
+        }
+        & > p {
+          font-size: 0.9rem;
+          margin: 0;
+          color: var(--gray-letter);
+          font-family: 'JetBrains Mono Variable', monospace;
+          text-align: start;
+          width: 90%;
+        }
+      }
+      & .wrapper-img {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        & img {
+          width: 100%;
+          object-fit: cover; /* Cambiado a cover para mejor adaptación, ajustable a contain si es necesario */
+          flex-shrink: 0; /* Evita que el contenido se expanda en la imagen */
+          mask-image: linear-gradient(black 90%, transparent);
+        }
+      }
+      & h2 {
+        margin: 0;
+        text-align: center;
+        color: var(--color-white);
+        line-height: 1.5;
+        letter-spacing: 1px;
+        font-family: 'Grandstander Variable', system-ui;
+      }
+
+      & p {
+        margin: 0;
+        text-align: center;
+        color: var(--gray-letter);
+        line-height: 1.5;
+        letter-spacing: 1px;
+        width: 65%;
+        font-family: 'Grandstander Variable', system-ui;
+      }
+    }
+  }
+  .wrapper-info-numbers {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: #00eaff0f;
+    & .articles {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 2rem 0;
+      width: 1000px;
+      & article {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        width: 1000px;
+        & span {
+          font-size: 2rem;
+          font-weight: bold;
+          font-family: 'JetBrains Mono Variable', monospace;
+          color: var(--color-hard);
+        }
+        & span:nth-child(2) {
+          font-size: 0.8rem;
+          color: var(--gray-letter);
+          font-family: 'Grandstander Variable', system-ui;
+        }
+      }
+    }
+  }
+
+  .wrapper-principles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    margin: 20px 0;
+    width: 1000px;
+    margin: 0 auto;
+    & h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      font-family: 'JetBrains Mono Variable', monospace;
+      color: var(--color-white);
+    }
+    & p {
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--gray-letter);
+      font-family: 'Grandstander Variable', system-ui;
+    }
+    & .principles-list {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: stretch;
+      gap: 1rem;
+      margin: 2rem 0;
+      & .principle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        background-color: #00eaff0f;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 15px;
+        & img {
+          width: 40px;
+          height: 40px;
+          object-fit: cover;
+          filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.548));
+        }
+        & span {
+          font-size: 1rem;
+          font-weight: bold;
+          font-family: 'JetBrains Mono Variable', monospace;
+          color: var(--color-hard);
+          white-space: nowrap;
+        }
+        & p {
+          font-size: 0.8rem;
+          color: var(--gray-letter);
+          font-family: 'Grandstander Variable', system-ui;
+        }
+      }
+    }
+  }
+
+  .wrapper-documentation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: 1000px;
+    margin: 50px auto;
+    & h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      font-family: 'JetBrains Mono Variable', monospace;
+      color: var(--color-white);
+      margin: 0;
+    }
+    & p {
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--gray-letter);
+      font-family: 'Grandstander Variable', system-ui;
+      width: 60%;
+      text-align: center;
+    }
+    & div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      width: 1000px;
+    }
+
+    & a {
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: bold;
+      font-family: 'JetBrains Mono Variable', monospace;
+      padding: 0.5rem 1rem;
+      border-radius: 15px;
+      transition: all 0.3s ease-in-out;
+      will-change: transform;
+      &:first-child {
+        background-color: var(--color-hard);
+        color: #000;
+        &:hover {
+          background-color: #00eaffcf;
+          transform: scale(1.02);
+        }
+      }
+      &:last-child {
+        background-color: #4b4747a9;
+        color: var(--color-white);
+        &:hover {
+          background-color: #4b4747d5;
+          transform: scale(1.02);
+        }
+      }
+    }
+    & .button {
+      background-color: var(--color-hard);
+      padding: 0.5rem 1rem;
+      border-radius: 15px;
+      font-size: 1rem;
+      font-weight: bold;
+      font-family: 'JetBrains Mono Variable', monospace;
+      color: var(--color-white);
+      transition: all 0.3s ease-in-out;
+      will-change: transform;
+      &:hover {
+        background-color: #ff0000;
+        color: var(--color-white);
+        transform: translateY(-3px);
+      }
+    }
+  }
+</style>
