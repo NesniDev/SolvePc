@@ -2,48 +2,48 @@
 import ArrowRight from '@assets/buttons/Arrow-right.astro'
 import Input from '@components/ui/Input.astro'
 import { SearchProblem } from '@components/ui/SearchProblem'
+import { problemasTecnicos } from '@mockup/solutions'
 import { transform } from 'astro:schema'
 ---
 
 <main>
   <div class="badge">
-    <h2><span>●</span> v1.0 — AI diagnostics</h2>
+    <h2><span>●</span> v1.0 — Base de diagnósticos</h2>
   </div>
 
   <section class="hero">
     <h1 class="title">
-      <span>Soporte técnico,</span>
-      <span>resuelto con inteligencia.</span>
+      <span>Errores técnicos,</span>
+      <span>documentados y resueltos.</span>
     </h1>
     <p>
-      SolvePc es una plataforma web que permite buscar problemas técnicos en
-      lenguaje sencillo y obtener soluciones claras paso a paso, funcionando
-      como una base de conocimiento para resolver incidencias sin necesidad de
-      conocimientos avanzados.
+      SolvePc es una plataforma web que permite buscar problemas técnicos de tu
+      computadora en lenguaje sencillo y obtener soluciones claras paso a paso.
+      Busca el código de error o describe los síntomas para consultar las
+      posibles causas y soluciones recomendadas.
     </p>
   </section>
   <SearchProblem
     placeholder="Describa el problema de su computadora. Ej: no enciende..."
     size="big"
     redirectTo="/problemas"
+    datosSugerencias={problemasTecnicos}
     client:load
   />
   <div class="links-try">
     <div class="links">
-      <a href="/"
-        ><span>🔍</span> ¿Por qué hace tanto ruido el ventilador de mi portátil?</a
-      >
-      <a href="/"
-        ><span>🔍</span> Error de actualización de Windows 0x80070002</a
-      >
-      <a href="/"><span>🔍</span> ¿Cómo limpiar la caché DNS en Windows?</a>
-      <a href="/"
-        ><span>🔍</span> ¿Cómo recuperar archivos eliminados de un SSD externo?</a
-      >
+      {
+        problemasTecnicos.slice(0, 4).map((sug) => {
+          return (
+            <span>
+              <span>🔍</span> {sug.title}
+            </span>
+          )
+        })
+      }
     </div>
   </div>
 </main>
-
 <style>
   main {
     max-width: 1000px;
@@ -137,7 +137,7 @@ import { transform } from 'astro:schema'
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
-      & a {
+      & > span {
         text-decoration: none;
         color: #949494;
         background-color: transparent;
