@@ -23,7 +23,7 @@ import { transform } from 'astro:schema'
       posibles causas y soluciones recomendadas.
     </p>
   </section>
-  <SearchProblem
+  <!-- <SearchProblem
     placeholder="Describa el problema de su computadora. Ej: no enciende..."
     size="big"
     redirectTo="/problemas"
@@ -42,7 +42,15 @@ import { transform } from 'astro:schema'
         })
       }
     </div>
-  </div>
+  </div> -->
+  <a href="/problemas" class="wrapper-btn">
+    <span class="button" data-text="Awesome">
+      <span class="actual-text">&nbsp;ver&nbsp;los&nbsp;problemas&nbsp;</span>
+      <span aria-hidden="true" class="hover-text"
+        >&nbsp;ver&nbsp;los&nbsp;problemas&nbsp;</span
+      >
+    </span>
+  </a>
 </main>
 <style>
   main {
@@ -52,8 +60,8 @@ import { transform } from 'astro:schema'
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
-    margin-bottom: 50px;
+    margin-top: 130px;
+    margin-bottom: 100px;
   }
 
   .badge {
@@ -153,5 +161,70 @@ import { transform } from 'astro:schema'
         }
       }
     }
+  }
+  /* From Uiverse.io by satyamchaudharydev */
+  /* === removing default button style ===*/
+  .wrapper-btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00ffff0c;
+    padding: 20px 30px;
+    border-radius: 10px;
+    margin-top: 1rem;
+    border: 1px solid #00eaff1f;
+    text-decoration: none;
+    transition: all 0.8s ease-in-out;
+  }
+
+  .wrapper-btn:hover {
+    backdrop-filter: blur(11px);
+    border: 1px solid var(--color-hard);
+  }
+
+  /* =========================
+   BOTÓN BASE 
+   ========================= */
+  .button {
+    margin: 0;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    border: none;
+  }
+
+  /* button styling */
+  .button {
+    --border-right: 6px;
+    --text-stroke-color: rgb(255, 255, 255);
+    --animation-color: var(--color-hard);
+    --fs-size: 1.5em;
+    letter-spacing: 2px;
+    text-decoration: none;
+    font-size: var(--fs-size);
+    font-family: 'Grandstander Variable', system-ui;
+    position: relative;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-stroke-color);
+  }
+  /* this is the text, when you hover on button */
+  .hover-text {
+    position: absolute;
+    box-sizing: border-box;
+    content: attr(data-text);
+    color: var(--animation-color);
+    width: 0%;
+    inset: 0;
+    border-right: var(--border-right) solid var(--animation-color);
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-text-stroke: 1px var(--animation-color);
+  }
+  /* hover */
+  .wrapper-btn:hover .hover-text {
+    width: 100%;
+    filter: drop-shadow(0 0 23px var(--animation-color));
   }
 </style>
