@@ -42,25 +42,12 @@ export const filtros: Filtros[] = [
         name: "Fácil", 
       },
       {
-        name: "Difícil", 
-      },
-      {
         name: "Intermedio", 
       },
+      {
+        name: "Avanzado", 
+      },
     ]
-  },
-  {
-    titulo: "Buscar por",
-    opciones: [{
-      name: "Error",
-    },
-    {
-      name: "Descripción",
-    },
-    {
-      name: "Solución",
-    },
-  ]
   },
   {
     titulo: "Sistema operativo",
