@@ -1,21 +1,39 @@
+---
+const totalSolutions = 15
+const verifiedSolutions = 9
+
+const percentage = (9 / totalSolutions) * 100
+
+const stats = [
+  {
+    title: 'Soluciones Verificadas',
+    value: verifiedSolutions
+  },
+  {
+    title: 'Tasa de Resolución',
+    value: percentage.toFixed(0) + '%'
+  },
+  {
+    title: 'Tiempo Promedio de Reparación (Min)',
+    value: '< 90'
+  },
+  {
+    title: 'Ingenieros Colaboradores',
+    value: 2
+  }
+]
+---
+
 <section class="background-card">
   <div class="stats">
-    <article class="stat-card">
-      <span>12,847</span>
-      <span>Soluciones Verificadas </span>
-    </article>
-    <article class="stat-card">
-      <span>94.6%</span>
-      <span>Tasa de Resolución</span>
-    </article>
-    <article class="stat-card">
-      <span>&lt; 90</span>
-      <span>Tiempo Promedio de Reparación</span>
-    </article>
-    <article class="stat-card">
-      <span>184</span>
-      <span>Ingenieros Colaboradores</span>
-    </article>
+    {
+      stats.map(({ title, value }) => (
+        <article class="stat-card">
+          <span>{value}</span>
+          <span>{title}</span>
+        </article>
+      ))
+    }
   </div>
 </section>
 
