@@ -69,7 +69,7 @@ const { title, description, category, difficulty, image } = Astro.props
       {title}
     </h1>
     <p
-      transition:name={`description-${title.split(' ').join('-').toLowerCase()}`}
+      transition:name={`description-${description.split(' ').join('-').toLowerCase()}`}
     >
       {description}
     </p>
