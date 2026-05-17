@@ -1,7 +1,10 @@
 ---
 import { CatalogoSoluciones } from '@components/ui/CatalogoSoluciones'
 import { problemasTecnicos } from '@mockup/solutions'
+import App from 'src/App'
 ---
+
+<App client:only="react" />
 
 <!-- <section class="cards"> --><!-- {
     problemasTecnicos.map(
@@ -65,10 +68,7 @@ import { problemasTecnicos } from '@mockup/solutions'
         </article>
       )
     )
-  } -->
-<CatalogoSoluciones problemasIniciales={problemasTecnicos} client:load />
-<!-- </section> -->
-<!-- <style>
+  } --><!-- <CatalogoSoluciones client:load /> --><!-- problemasIniciales={problemasTecnicos}  --><!-- </section> --><!-- <style>
   a {
     text-decoration: none;
   }
