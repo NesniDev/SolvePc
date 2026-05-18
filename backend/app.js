@@ -12,8 +12,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(corsMiddleware());
 
-app.use('/api/', router_solutions)
+app.use('/api', router_solutions)
 
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+  });
+}
+
+export default app;

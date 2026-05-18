@@ -1,17 +1,16 @@
 
 import cors from 'cors';
 
-const ACEPPTED_ORIGINS = ['http://localhost:4321']
+const ACEPPTED_ORIGINS = ['http://localhost:4321', "https://solvepc-api.vercel.app"]
 
 export const corsMiddleware = () => {
   return cors({
     origin: (origin, callback) => {
-      if (!origin || ACEPPTED_ORIGINS.includes(origin)) {
-        return callback(null, true);
+      if (ACEPPTED_ORIGINS.includes(origin) || !origin) {
+        return callback(null, true)
       }
 
-      return callback(new Error('Not allowed by CORS'));
+      return callback(new Error('Origen no permitido'))
     }
   })
-
 }

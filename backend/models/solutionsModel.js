@@ -1,4 +1,4 @@
-import solutions from '../solutions.json' with { type: 'json' };
+import data from '../solutions.json' with { type: 'json' }
 
 export class SolutionsModel {
 
@@ -6,7 +6,7 @@ export class SolutionsModel {
 
     const { query, category, difficulty, so, limit = 10, offset = 0 } = req.query;
 
-    let filteredSolutions = solutions;
+    let filteredSolutions = data;
 
     if (query) {
       filteredSolutions = filteredSolutions.filter((solution) => solution.title.toLowerCase().includes(query.toLowerCase()));
@@ -35,7 +35,7 @@ export class SolutionsModel {
 
   static getSolutionById(slug) {
 
-    const filteredSolutionsById = solutions.filter((solution) => {
+    const filteredSolutionsById = data.filter((solution) => {
       return solution.slug === slug
     }
     );
