@@ -30,6 +30,7 @@
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.100.10"
   },
+  "packageManager": "pnpm@11.1.1",
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
