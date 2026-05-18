@@ -29,5 +29,11 @@
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.100.10"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }
