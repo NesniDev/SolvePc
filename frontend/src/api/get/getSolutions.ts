@@ -6,7 +6,7 @@ import { getSolutions } from "../solutions";
 
 
 export const getAllSolutions = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 2000)) // simulación
+  // await new Promise((resolve) => setTimeout(resolve, 2000)) // simulación
 
   const response = await getSolutions.get< Solutions[]>("/solutions");
   
