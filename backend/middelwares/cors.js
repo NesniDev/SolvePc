@@ -1,16 +1,18 @@
-
 import cors from 'cors';
 
-const ACEPPTED_ORIGINS = ['http://localhost:4321', "https://solvepc-api.vercel.app"]
+const ACCEPTED_ORIGINS = [
+  'http://localhost:4321',
+  'https://solve-pc.vercel.app'
+];
 
-export const corsMiddleware = () => {
+export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) => {
   return cors({
     origin: (origin, callback) => {
-      if (ACEPPTED_ORIGINS.includes(origin) || !origin) {
-        return callback(null, true)
+      if (acceptedOrigins.includes(origin) || !origin) {
+        return callback(null, true);
       }
 
-      return callback(new Error('Origen no permitido'))
+      return callback(new Error('Origen no permitido'));
     }
-  })
-}
+  });
+};
