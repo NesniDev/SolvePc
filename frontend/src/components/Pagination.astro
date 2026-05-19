@@ -1,0 +1,91 @@
+<!-- ---
+const page = Number(Astro.url.searchParams.get('page')) || 1
+const limit = Number(Astro.url.searchParams.get('limit')) || 3
+
+const response = await fetch(
+  `${import.meta.env.PUBLIC_API_URL}/api/solutions?page=${page}&limit=${limit}`
+)
+
+const { totalPages } = await response.json()
+---
+
+<nav class="pagination" aria-label="Paginación de soluciones">
+  {
+    page > 1 && (
+      <a
+        data-astro-reload
+        href={`?page=${page - 1}&limit=${limit}`}
+        class="button"
+        aria-label="Ir a la página anterior"
+      >
+        Anterior
+      </a>
+    )
+  }
+
+  <p class="status" aria-live="polite">
+    <span>{page}</span> de <span>{totalPages}</span>
+  </p>
+
+  {
+    page < totalPages && (
+      <a
+        data-astro-reload
+        href={`?page=${page + 1}&limit=${limit}`}
+        class="button"
+        aria-label="Ir a la página siguiente"
+      >
+        Siguiente
+      </a>
+    )
+  }
+</nav>
+
+<style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 30px auto;
+    font-family: 'Grandstander Variable', system-ui, sans-serif;
+  }
+
+  .status {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-white);
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border: 1px solid var(--color-white);
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease-in-out,
+      color 0.2s ease-in-out,
+      transform 0.2s ease-in-out;
+    will-change: transform;
+  }
+
+  .button:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    transform: translateY(-1px);
+  }
+
+  .button:active {
+    transform: translateY(0);
+  }
+</style> -->

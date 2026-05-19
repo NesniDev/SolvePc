@@ -161,13 +161,12 @@ import { filtros } from '@mockup/filters'
     // CATEGORY BUTTONS
     // -------------------------
     const categoryButtons = document.querySelectorAll('.category-btn')
-
     const currentCategory = url.searchParams.get('category')
 
     categoryButtons.forEach((btn) => {
       const category = btn.querySelector('span')?.textContent?.toLowerCase()
 
-      // activar botón actual
+      // Activar botón actual
       if (
         category === currentCategory ||
         (!currentCategory && category === 'todos')
@@ -176,6 +175,13 @@ import { filtros } from '@mockup/filters'
       }
 
       btn.addEventListener('click', () => {
+        // REINICIO TOTAL: Si hace clic en "Todos", limpiamos la URL por completo
+        if (category === 'todos') {
+          // window.location.pathname contiene la ruta sin el "?" ni los parámetros
+          window.location.href = window.location.pathname
+          return // Detenemos la ejecución aquí
+        }
+
         const newUrl = new URL(window.location.href)
 
         categoryButtons.forEach((otherBtn) =>
@@ -184,13 +190,12 @@ import { filtros } from '@mockup/filters'
 
         btn.classList.add('active')
 
-        if (category === 'todos') {
-          newUrl.searchParams.delete('category')
-        } else {
-          newUrl.searchParams.set('category', category)
-        }
+        // Asignar nueva categoría
+        newUrl.searchParams.set('category', category)
 
+        // Reinicio de paginación al cambiar de categoría
         newUrl.searchParams.delete('offset')
+        newUrl.searchParams.delete('page')
 
         window.location.href = newUrl.toString()
       })
@@ -202,44 +207,41 @@ import { filtros } from '@mockup/filters'
     const checkboxes = document.querySelectorAll('.checkbox-label input')
 
     checkboxes.forEach((checkbox) => {
-      const input = checkbox
+      const input = checkbox as HTMLInputElement
 
       const name = input.name.toLowerCase()
       const value = input.value.toLowerCase()
 
-      // -------------------------
-      // marcar checked automáticamente
-      // -------------------------
+      // Marcar checked automáticamente
       const currentValues = url.searchParams.getAll(name)
 
       if (currentValues.includes(value)) {
         input.checked = true
       }
 
-      // -------------------------
-      // escuchar cambios
-      // -------------------------
+      // Escuchar cambios
       input.addEventListener('change', () => {
         const newUrl = new URL(window.location.href)
-
         const values = newUrl.searchParams.getAll(name)
 
-        // limpiar params actuales
+        // Limpiar params actuales
         newUrl.searchParams.delete(name)
 
-        // reconstruir params
+        // Reconstruir params
         const updatedValues = input.checked
           ? [...values, value]
           : values.filter((v) => v !== value)
 
-        // evitar duplicados
+        // Evitar duplicados
         const uniqueValues = [...new Set(updatedValues)]
 
         uniqueValues.forEach((v) => {
           newUrl.searchParams.append(name, v)
         })
 
+        // Reinicio de paginación al usar checkboxes
         newUrl.searchParams.delete('offset')
+        newUrl.searchParams.delete('page')
 
         window.location.href = newUrl.toString()
       })

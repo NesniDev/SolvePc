@@ -4,7 +4,7 @@ export class SolutionsModel {
 
   static async getAllSolutions(req) {
 
-    const { query, category, so, limit = 10, offset = 0 } = req.query;
+    const { query, category, so, page, limit, offset } = req.query;
 
     const difficulty =
       req.query.difficulty || req.query["difficulty[]"];
@@ -37,14 +37,19 @@ export class SolutionsModel {
       filteredSolutions = filteredSolutions.filter((solution) => systemOperating.includes(String(solution.so).trim().toLowerCase()));
     }
 
-    const limitNumber = Number(limit);
-    const offsetNumber = Number(offset);
+    const limitNumber = Number(limit) || 8;
+    const pageNumber = Number(page) || 1;
 
-    const paginateTournaments = filteredSolutions.slice(offsetNumber, offsetNumber + limitNumber);
-    console.log("RESULTADO FINAL:", filteredSolutions.length);
+    const offsetNumber = (pageNumber - 1) * limitNumber;
+
+    const paginateSolutions = filteredSolutions.slice(offsetNumber, offsetNumber + limitNumber);
     return {
+      page: pageNumber,
+      limit: limitNumber,
+      offset: offsetNumber,
       count: filteredSolutions.length,
-      data: paginateTournaments,
+      totalPages: Math.ceil(filteredSolutions.length / limitNumber),
+      data: paginateSolutions,
     };
 
   }

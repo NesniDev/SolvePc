@@ -60,6 +60,9 @@ export const filtros: Filtros[] = [
     {
       name: "MacOS",
     },
+    {
+      name: "multi",
+    }
   ]
   }
 ];

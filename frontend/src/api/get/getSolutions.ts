@@ -8,6 +8,10 @@ export const getAllSolutions = async (
   category: string = '',
   difficulty: string[] = [],
   so: string[] = [],
+  page: number = 1,
+  limit: number = 8,
+  offset: number = 0,
+  totalPages: number = 0
 ) => {
   const response = await getSolutions.get<Solutions[]>("/solutions", {
     params: {
@@ -15,6 +19,10 @@ export const getAllSolutions = async (
       category: category.toLowerCase(),
       difficulty: difficulty.join(','),
       so: so.join(','),
+      page,
+      limit,
+      offset,
+      totalPages,
     }
   });
   console.log("difficulty enviado:", difficulty);

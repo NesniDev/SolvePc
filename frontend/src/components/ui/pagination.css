@@ -1,0 +1,45 @@
+/* =========================================
+   PAGINACIÓN
+   ========================================= */
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+  grid-column: 1 / -1;
+  /* Asegura que ocupe todo el ancho si está dentro de un CSS Grid */
+}
+
+.btn-pagination {
+  font-family: 'Grandstander Variable', system-ui;
+  font-size: 14px;
+  padding: 8px 16px;
+  background-color: rgba(16, 39, 70, 0.719);
+  color: var(--color-white, #ffffff);
+  border: 1px solid var(--gray-border, #444444);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Efecto hover solo cuando el botón NO está deshabilitado */
+.btn-pagination:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(0.98);
+}
+
+.btn-pagination:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--gray-border);
+}
+
+.pagination-info {
+  color: var(--color-white);
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'JetBrains Mono Variable', monospace;
+}
