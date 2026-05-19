@@ -7,7 +7,13 @@ interface Props {
   image: string
 }
 
-const { title, description, category, difficulty, image } = Astro.props
+const {
+  title = '',
+  description = '',
+  category = '',
+  difficulty = '',
+  image = ''
+} = Astro.props
 ---
 
 <section class="blog">
@@ -63,13 +69,13 @@ const { title, description, category, difficulty, image } = Astro.props
       </li>
     </ul>
     <h1
-      transition:name={`text-${title.split(' ').join('-').toLowerCase()}`}
+      transition:name={`text-${title?.split(' ').join('-').toLowerCase()}`}
       class="title-problem"
     >
       {title}
     </h1>
     <p
-      transition:name={`description-${description.split(' ').join('-').toLowerCase()}`}
+      transition:name={`description-${description?.split(' ').join('-').toLowerCase()}`}
     >
       {description}
     </p>

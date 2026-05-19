@@ -6,7 +6,7 @@ interface Props {
 }
 
 const { explain } = Astro.props
-const { steps } = explain
+const { steps = [] } = explain
 ---
 
 <section class="steps-solutions">
@@ -175,6 +175,8 @@ const { steps } = explain
 </style>
 
 <script>
+  import JSConfetti from 'js-confetti'
+
   interface Items {
     id: string
     steps: string[]
@@ -211,7 +213,7 @@ const { steps } = explain
       stepsState.push(currentItem)
     }
 
-    const updatePercentage = () => {
+    const updatePercentage = async () => {
       const completed = currentItem.steps.length
 
       const total = listLength.length
@@ -229,6 +231,12 @@ const { steps } = explain
           borde.style.borderColor = 'orange'
         }
         textCompleted.textContent = `${percentage}%`
+      }
+
+      if (percentage >= 100) {
+        const jsConfetti = new JSConfetti()
+
+        jsConfetti.addConfetti()
       }
 
       localStorage.setItem('info', JSON.stringify(stepsState))

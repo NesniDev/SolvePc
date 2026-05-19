@@ -8,27 +8,44 @@ import Steps from '@components/solutions/Steps.astro'
 import Help from '@components/solutions/Help.astro'
 import SeeMore from '@components/solutions/SeeMore.astro'
 
-export function getStaticPaths() {
-  return solutions.map(
-    ({ slug, title, description, category, difficulty, image, explain }) => ({
-      params: { slug },
-      props: { title, description, category, difficulty, image, explain }
-    })
-  )
+export const prerender = false
+
+const { slug } = Astro.params
+
+const API_URL = import.meta.env.PUBLIC_API_URL
+
+const res = await fetch(`${API_URL}/api/solutions/${slug}`, {
+  cache: 'force-cache',
+  headers: {
+    Accept: 'application/json'
+  }
+})
+
+if (!res.ok) {
+  return new Response('Not Found', { status: 404 })
 }
-const { title, description, category, difficulty, image, explain } = Astro.props
 
-// export const prerender = false
+const data = await res.json()
 
-// const { slug } = Astro.params
+const explain = data.explain ?? {}
 
-// const information = solutions.find((info) => info.slug === slug)
+const safeExplain = {
+  title: explain.title ?? '',
+  description: explain.description ?? '',
+  photo: explain.photo ?? '',
+  commonErrors: explain.commonErrors ?? [],
+  prerequisites: explain.prerequisites ?? [],
+  steps: explain.steps ?? [],
+  terminal: explain.terminal ?? ''
+}
 
-// if (!information) {
-//   return Astro.redirect('/404')
-// }
-
-// const { title, description, category, difficulty, image } = information
+const {
+  title = '',
+  description = '',
+  category = '',
+  difficulty = '',
+  image = ''
+} = data
 ---
 
 <Layout>
@@ -41,9 +58,9 @@ const { title, description, category, difficulty, image, explain } = Astro.props
         difficulty={difficulty}
         image={image}
       />
-      <BlogInformation explain={explain} />
-      <Steps explain={explain} />
-      <Terminal explain={explain} />
+      <BlogInformation explain={safeExplain} />
+      <Steps explain={safeExplain} />
+      <Terminal explain={safeExplain} />
       <Help />
     </div>
     <SeeMore />

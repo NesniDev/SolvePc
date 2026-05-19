@@ -51,13 +51,11 @@ export class SolutionsModel {
 
   static getSolutionById(slug) {
 
-    const filteredSolutionsById = data.filter((solution) => {
-      return solution.slug === slug
-    }
-    );
-    console.log(filteredSolutionsById)
+    const solution = data.find((solution) => solution.slug === slug)
 
-    return filteredSolutionsById;
+    if (!solution) return null
+
+    return solution
 
 
   }
