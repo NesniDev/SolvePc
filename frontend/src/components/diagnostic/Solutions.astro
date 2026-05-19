@@ -1,7 +1,14 @@
 ---
 import { CatalogoSoluciones } from '@components/ui/CatalogoSoluciones'
 import { problemasTecnicos } from '@mockup/solutions'
-import App from 'src/App'
+import App from '../../App'
+
+export const prerender = false
+
+// Captura de parámetros de la URL en el servidor
+const url = new URL(Astro.request.url)
+const categoriaUrl = url.searchParams.get('category') || ''
+const busquedaUrl = url.searchParams.get('query') || ''
 ---
 
 <App client:only="react" />

@@ -11,11 +11,8 @@
       "@pages/*": ["./src/pages/*"],
       "@styles/*": ["./src/styles/*"],
       "@mockup/*": ["./src/mockup/*"],
-      "@store/*": ["./src/store/*"],
-
+      "@store/*": ["./src/store/*"]
     },
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
-  
+    "jsx": "preserve"
   }
 }

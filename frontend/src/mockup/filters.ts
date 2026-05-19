@@ -22,10 +22,10 @@ export const filtros: Filtros[] = [
       name: "Software",
       image: "/categories/software.svg"
     }, {
-      name: "Network",
+      name: "Red",
       image: "/categories/network.svg"
     }, {
-      name: "Performance",
+      name: "Rendimiento",
       image: "/categories/performance.svg"
     },{
       name: "OS",

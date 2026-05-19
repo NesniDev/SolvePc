@@ -2,9 +2,12 @@ import data from '../solutions.json' with { type: 'json' }
 
 export class SolutionsModel {
 
-  static async getAllSolutions(req, res) {
+  static async getAllSolutions(req) {
 
-    const { query, category, difficulty, so, limit = 10, offset = 0 } = req.query;
+    const { query, category, so, limit = 10, offset = 0 } = req.query;
+
+    const difficulty =
+      req.query.difficulty || req.query["difficulty[]"];
 
     let filteredSolutions = data;
 
@@ -14,18 +17,31 @@ export class SolutionsModel {
     if (category) {
       filteredSolutions = filteredSolutions.filter((solution) => solution.category.toLocaleLowerCase() === category.toLocaleLowerCase());
     }
+
     if (difficulty) {
-      filteredSolutions = filteredSolutions.filter((solution) => solution.difficulty.toLocaleLowerCase() === difficulty.toLocaleLowerCase());
+
+      const difficulties = Array.isArray(difficulty)
+        ? difficulty
+        : typeof difficulty === "string" && difficulty.includes(",")
+          ? difficulty.split(",")
+          : difficulty
+            ? [difficulty]
+            : [];
+
+      filteredSolutions = filteredSolutions.filter((s) =>
+        difficulty.includes(String(s.difficulty).trim().toLowerCase())
+      );
     }
     if (so) {
-      filteredSolutions = filteredSolutions.filter((solution) => solution.so.toLocaleLowerCase() === so.toLocaleLowerCase());
+      const systemOperating = Array.isArray(so) ? so : typeof so === "string" && so.includes(",") ? so.split(",") : so ? [so] : [];
+      filteredSolutions = filteredSolutions.filter((solution) => systemOperating.includes(String(solution.so).trim().toLowerCase()));
     }
 
     const limitNumber = Number(limit);
     const offsetNumber = Number(offset);
 
     const paginateTournaments = filteredSolutions.slice(offsetNumber, offsetNumber + limitNumber);
-
+    console.log("RESULTADO FINAL:", filteredSolutions.length);
     return {
       count: filteredSolutions.length,
       data: paginateTournaments,

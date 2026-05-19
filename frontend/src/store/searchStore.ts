@@ -1,4 +1,6 @@
-import { atom } from 'nanostores';
+// src/store/searchStore.ts
+import { atom } from 'nanostores'
 
-// Creamos un "átomo" de estado global inicializado como un string vacío
-export const terminoBusquedaStore = atom<string>("");
+export const terminoBusquedaStore = atom('')
+export const categoriaActivaStore = atom('')        // ← nuevo
+export const filtrosActivosStore  = atom<Record<string, string[]>>({}) // ← nuevo (checkboxes)

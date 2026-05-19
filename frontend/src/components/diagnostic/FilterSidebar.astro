@@ -22,7 +22,17 @@ import { filtros } from '@mockup/filters'
             : opciones.map(({ name }) => (
                 <li>
                   <label class="checkbox-label item">
-                    <input type="checkbox" name={titulo} value={name} />
+                    <input
+                      type="checkbox"
+                      name={
+                        titulo === 'Ordenar por'
+                          ? 'difficulty'
+                          : titulo === 'Sistema operativo'
+                            ? 'so'
+                            : ''
+                      }
+                      value={name.toLowerCase()}
+                    />
                     <span class="box" />
                     <span>{name}</span>
                   </label>
@@ -145,16 +155,93 @@ import { filtros } from '@mockup/filters'
 
 <script>
   document.addEventListener('astro:page-load', () => {
-    const categoryButtons = document.querySelectorAll(
-      '.category-btn'
-    ) as NodeListOf<HTMLButtonElement>
+    const url = new URL(window.location.href)
+
+    // -------------------------
+    // CATEGORY BUTTONS
+    // -------------------------
+    const categoryButtons = document.querySelectorAll('.category-btn')
+
+    const currentCategory = url.searchParams.get('category')
 
     categoryButtons.forEach((btn) => {
+      const category = btn.querySelector('span')?.textContent?.toLowerCase()
+
+      // activar botón actual
+      if (
+        category === currentCategory ||
+        (!currentCategory && category === 'todos')
+      ) {
+        btn.classList.add('active')
+      }
+
       btn.addEventListener('click', () => {
+        const newUrl = new URL(window.location.href)
+
         categoryButtons.forEach((otherBtn) =>
           otherBtn.classList.remove('active')
         )
+
         btn.classList.add('active')
+
+        if (category === 'todos') {
+          newUrl.searchParams.delete('category')
+        } else {
+          newUrl.searchParams.set('category', category)
+        }
+
+        newUrl.searchParams.delete('offset')
+
+        window.location.href = newUrl.toString()
+      })
+    })
+
+    // -------------------------
+    // CHECKBOXES
+    // -------------------------
+    const checkboxes = document.querySelectorAll('.checkbox-label input')
+
+    checkboxes.forEach((checkbox) => {
+      const input = checkbox
+
+      const name = input.name.toLowerCase()
+      const value = input.value.toLowerCase()
+
+      // -------------------------
+      // marcar checked automáticamente
+      // -------------------------
+      const currentValues = url.searchParams.getAll(name)
+
+      if (currentValues.includes(value)) {
+        input.checked = true
+      }
+
+      // -------------------------
+      // escuchar cambios
+      // -------------------------
+      input.addEventListener('change', () => {
+        const newUrl = new URL(window.location.href)
+
+        const values = newUrl.searchParams.getAll(name)
+
+        // limpiar params actuales
+        newUrl.searchParams.delete(name)
+
+        // reconstruir params
+        const updatedValues = input.checked
+          ? [...values, value]
+          : values.filter((v) => v !== value)
+
+        // evitar duplicados
+        const uniqueValues = [...new Set(updatedValues)]
+
+        uniqueValues.forEach((v) => {
+          newUrl.searchParams.append(name, v)
+        })
+
+        newUrl.searchParams.delete('offset')
+
+        window.location.href = newUrl.toString()
       })
     })
   })
