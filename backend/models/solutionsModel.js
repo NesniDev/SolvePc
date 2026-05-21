@@ -1,8 +1,12 @@
-import data from '../solutions.json' with { type: 'json' }
+import data from '../data-mockup/solutions.json' with { type: 'json' }
 
 export class SolutionsModel {
 
-  static async getAllSolutions(req) {
+  static async getAllSolutions() {
+    return data
+  }
+
+  static async getAllSolutionsWithFilters(req) {
 
     const { query, category, so, page, limit, offset } = req.query;
 
@@ -62,6 +66,13 @@ export class SolutionsModel {
 
     return solution
 
+
+  }
+
+  static getSolutionsByCategory(category) {
+
+    const solutions = data.filter((solution) => solution.category === category)
+    return solutions
 
   }
 }
