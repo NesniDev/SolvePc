@@ -1,0 +1,2189 @@
+[
+  {
+    "title": "Desconexión frecuente del adaptador WiFi",
+    "slug": "desconexion-frecuente-adaptador-wifi",
+    "description": "El sistema pierde la conexión WiFi de forma aleatoria debido a la gestión de energía del adaptador.",
+    "explain": {
+      "title": "Gestión de energía agresiva del hardware",
+      "description": "Windows 11 tiende a suspender adaptadores inalámbricos para ahorrar energía, lo que causa desconexiones. También puede ser provocado por controladores obsoletos o corrupción del stack TCP/IP.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "NET_ADAPTER_POWER_OFF",
+          "label": "Suspensión selectiva de energía",
+          "percentage": "60%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a Administrador",
+        "Controladores actualizados"
+      ],
+      "steps": [
+        "Abrir Administrador de dispositivos",
+        "Desmarcar 'Permitir que el equipo apague este dispositivo' en Propiedades del adaptador",
+        "Reiniciar el stack de red con comandos netsh"
+      ],
+      "terminal": "netsh int ip reset && netsh winsock reset"
+    },
+    "category": "redes",
+    "difficulty": "Fácil",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "BSOD Memory Management",
+    "slug": "bsod-memory-management",
+    "description": "Pantalla azul causada por errores en la gestión de memoria física o controladores incompatibles.",
+    "explain": {
+      "title": "Corrupción en memoria RAM o drivers de dispositivo",
+      "description": "El error ocurre cuando el subsistema de memoria reporta datos erróneos, a menudo debido a fallos físicos en módulos RAM o controladores que acceden a direcciones de memoria protegidas.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "MEMORY_MANAGEMENT",
+          "label": "Fallo crítico de acceso a memoria",
+          "percentage": "40%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a modo seguro"
+      ],
+      "steps": [
+        "Ejecutar Diagnóstico de Memoria de Windows",
+        "Verificar volcados en Visor de Eventos",
+        "Actualizar controladores críticos desde modo seguro"
+      ],
+      "terminal": "mdsched.exe"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Avanzado",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Pantalla negra tras inicio de sesión",
+    "slug": "pantalla-negra-inicio-sesion",
+    "description": "El sistema carga, pero el shell de Windows (explorer.exe) no se inicializa, mostrando pantalla negra.",
+    "explain": {
+      "title": "Fallo en el proceso explorer.exe",
+      "description": "Generalmente causado por un controlador de video conflictivo o una actualización de Windows que interrumpió la carga del escritorio.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "EXPLORER_CRASH",
+          "label": "El shell de Windows no responde",
+          "percentage": "70%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a Administrador de tareas"
+      ],
+      "steps": [
+        "Presionar Ctrl+Shift+Esc",
+        "Ejecutar nueva tarea 'explorer.exe'",
+        "Reinstalar drivers de video en Modo Seguro"
+      ],
+      "terminal": "explorer.exe"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Intermedio",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Servicio de Audio detenido",
+    "slug": "servicio-audio-detenido",
+    "description": "El sistema no detecta dispositivos de audio y el servicio 'Windows Audio' no inicia.",
+    "explain": {
+      "title": "Permisos insuficientes o dependencias rotas",
+      "description": "Los permisos del servicio de audio en el registro o el fallo de los servicios dependientes impiden la salida de sonido.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "AUDIO_SERVICE_ERR",
+          "label": "Fallo de inicio de servicio",
+          "percentage": "50%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a servicios"
+      ],
+      "steps": [
+        "Verificar servicios dependientes (RPC, Endpoint Builder)",
+        "Reparar archivos de sistema con SFC",
+        "Reasignar permisos de servicio"
+      ],
+      "terminal": "sfc /scannow"
+    },
+    "category": "software",
+    "difficulty": "Intermedio",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Bluetooth no disponible o no detecta dispositivos",
+    "slug": "bluetooth-no-disponible",
+    "description": "El adaptador Bluetooth desaparece o falla al vincular periféricos.",
+    "explain": {
+      "title": "Estado energético del hardware o conflictos de driver",
+      "description": "Frecuentemente causado por una descarga residual de energía en el controlador o una versión de driver no compatible con el stack de Windows 11.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "BT_ADAPTER_MISSING",
+          "label": "Hardware no detectado",
+          "percentage": "30%"
+        }
+      ],
+      "prerequisites": [
+        "Administrador de dispositivos"
+      ],
+      "steps": [
+        "Apagar equipo y desconectar fuente (Drenado)",
+        "Desinstalar driver de BT desde Administrador",
+        "Reiniciar para re-detección automática"
+      ],
+      "terminal": "devmgmt.msc"
+    },
+    "category": "hardware",
+    "difficulty": "Fácil",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Windows Defender bloqueado por GPO",
+    "slug": "windows-defender-bloqueado-gpo",
+    "description": "El usuario recibe mensajes de que el antivirus es gestionado o bloqueado por el administrador.",
+    "explain": {
+      "title": "Configuración de directivas de grupo o malware",
+      "description": "Causado por software de terceros que deshabilita Defender, o malware que modifica el registro para evadir la seguridad.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "GPO_POLICY_RESTRICTION",
+          "label": "Política de grupo aplicada",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Editor de registro o GPO"
+      ],
+      "steps": [
+        "Verificar claves DisableAntiSpyware en registro",
+        "Ejecutar escaneo completo",
+        "Restablecer configuraciones de directivas"
+      ],
+      "terminal": "gpupdate /force"
+    },
+    "category": "seguridad",
+    "difficulty": "Avanzado",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Bucle de Reparación Automática",
+    "slug": "bucle-reparacion-automatica",
+    "description": "El PC entra repetidamente en modo de reparación de inicio tras fallos de carga.",
+    "explain": {
+      "title": "Corrupción del BCD o sectores de arranque",
+      "description": "El sistema no logra encontrar el gestor de arranque correcto o los archivos de sistema esenciales están dañados.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "BOOT_RECURSION",
+          "label": "Fallo en BCD",
+          "percentage": "80%"
+        }
+      ],
+      "prerequisites": [
+        "Medio de instalación de Windows"
+      ],
+      "steps": [
+        "Acceder a consola de recuperación",
+        "Reconstruir archivos BCD",
+        "Ejecutar reparación de inicio"
+      ],
+      "terminal": "bootrec /rebuildbcd"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Avanzado",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Historial del portapapeles inactivo (Win+V)",
+    "slug": "historial-portapapeles-inactivo",
+    "description": "La combinación de teclas no despliega el historial o este no registra cambios.",
+    "explain": {
+      "title": "Servicio de sincronización desactivado",
+      "description": "Generalmente ocurre por configuraciones de privacidad o una falla en el servicio de shell que gestiona el historial.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "CBD_SERVICE_DISABLED",
+          "label": "Servicio de portapapeles detenido",
+          "percentage": "15%"
+        }
+      ],
+      "prerequisites": [
+        "Cuenta Microsoft"
+      ],
+      "steps": [
+        "Habilitar historial en Configuración",
+        "Limpiar datos del historial",
+        "Reiniciar proceso explorer.exe"
+      ],
+      "terminal": "taskkill /f /im explorer.exe && start explorer.exe"
+    },
+    "category": "software",
+    "difficulty": "Fácil",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "WSL 2 error de conectividad",
+    "slug": "wsl-2-conectividad",
+    "description": "La distribución de Linux bajo WSL no tiene acceso a internet o falla al resolver DNS.",
+    "explain": {
+      "title": "Conflictos en el stack de red virtual",
+      "description": "La configuración de red virtual (HNS) entre Windows y la sub-máquina virtual presenta conflictos, especialmente con VPNs activas.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "WSL_DNS_FAILURE",
+          "label": "Error de resolución de nombres",
+          "percentage": "45%"
+        }
+      ],
+      "prerequisites": [
+        "PowerShell como Administrador"
+      ],
+      "steps": [
+        "Apagar WSL",
+        "Eliminar reglas de firewall HNS corruptas",
+        "Reiniciar servicio HNS"
+      ],
+      "terminal": "wsl --shutdown && Restart-Service hns"
+    },
+    "category": "redes",
+    "difficulty": "Avanzado",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "TPM 2.0 no configurado",
+    "slug": "tpm-2-0-configuracion",
+    "description": "Windows 11 no permite la actualización o reporta error de compatibilidad por falta de TPM 2.0.",
+    "explain": {
+      "title": "Módulo de plataforma segura deshabilitado en BIOS",
+      "description": "Aunque el hardware soporte TPM 2.0, suele venir desactivado de fábrica en la placa base (fTPM para AMD o PTT para Intel).",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "TPM_NOT_READY",
+          "label": "TPM no detectado",
+          "percentage": "35%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso al BIOS/UEFI"
+      ],
+      "steps": [
+        "Reiniciar y entrar a BIOS",
+        "Activar Security Device / fTPM / PTT",
+        "Guardar cambios y verificar en tpm.msc"
+      ],
+      "terminal": "tpm.msc"
+    },
+    "category": "hardware",
+    "difficulty": "Intermedio",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Uso de disco al 100%",
+    "slug": "uso-disco-100",
+    "description": "El sistema experimenta lentitud extrema debido a procesos que mantienen el disco ocupado.",
+    "explain": {
+      "title": "Servicios de indexación o telemetría",
+      "description": "Procesos como SysMain o Windows Search consumen ciclos de lectura/escritura constantes.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "DISK_IO_OVERLOAD",
+          "label": "Sobrecarga de E/S",
+          "percentage": "55%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a servicios"
+      ],
+      "steps": [
+        "Deshabilitar servicio SysMain",
+        "Ejecutar comprobación de disco",
+        "Deshabilitar telemetría"
+      ],
+      "terminal": "chkdsk /f /r"
+    },
+    "category": "rendimiento",
+    "difficulty": "Intermedio",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Error de impresión en cola (Print Spooler)",
+    "slug": "error-impresion-cola",
+    "description": "Los documentos no se imprimen y el servicio se detiene constantemente.",
+    "explain": {
+      "title": "Corrupción en la carpeta de spool",
+      "description": "Archivos temporales de impresión corruptos impiden que el servicio gestione nuevas tareas.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "SPOOLER_STOPPED",
+          "label": "Servicio de impresión fallido",
+          "percentage": "25%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a servicios"
+      ],
+      "steps": [
+        "Detener servicio Spooler",
+        "Eliminar archivos en Spool/PRINTERS",
+        "Reiniciar servicio"
+      ],
+      "terminal": "del /q /f /s %systemroot%\\System32\\Spool\\Printers\\*"
+    },
+    "category": "software",
+    "difficulty": "Fácil",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Archivo Explorer se cierra inesperadamente",
+    "slug": "explorer-cierra-inesperadamente",
+    "description": "Las carpetas se cierran solas al intentar acceder a ciertos archivos o directorios.",
+    "explain": {
+      "title": "Extensión de shell corrupta",
+      "description": "Programas de terceros (nube, compresión) añaden menús contextuales que entran en conflicto.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "SHELL_EXT_CONFLICT",
+          "label": "Conflicto de extensión de shell",
+          "percentage": "40%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a opciones de carpeta"
+      ],
+      "steps": [
+        "Limpiar historial de archivos",
+        "Deshabilitar extensiones de shell sospechosas",
+        "Ejecutar escaneo de sistema"
+      ],
+      "terminal": "sfc /scannow"
+    },
+    "category": "software",
+    "difficulty": "Intermedio",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Barra de tareas no responde",
+    "slug": "barra-tareas-no-responde",
+    "description": "Los iconos de la barra de tareas no reaccionan al clic.",
+    "explain": {
+      "title": "Fallo en el proceso del escritorio",
+      "description": "Frecuente tras actualizaciones, el proceso shell de Windows se queda colgado.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "TASKBAR_UI_FREEZE",
+          "label": "Bloqueo de interfaz",
+          "percentage": "30%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a Administrador de tareas"
+      ],
+      "steps": [
+        "Finalizar tarea de Windows Explorer",
+        "Reiniciar explorer.exe",
+        "Verificar archivos corruptos"
+      ],
+      "terminal": "taskkill /f /im explorer.exe"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Fácil",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Error de actualización 0x800f081f",
+    "slug": "error-actualizacion-0x800f081f",
+    "description": "Windows Update falla al descargar o instalar paquetes.",
+    "explain": {
+      "title": "Faltan fuentes de archivos de sistema",
+      "description": "El componente de Windows no encuentra los archivos necesarios en el almacén local.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "0x800f081f",
+          "label": "Fallo de origen de archivos",
+          "percentage": "45%"
+        }
+      ],
+      "prerequisites": [
+        "Conexión a internet"
+      ],
+      "steps": [
+        "Ejecutar DISM para restaurar imagen",
+        "Limpiar caché de Windows Update",
+        "Reintentar actualización"
+      ],
+      "terminal": "dism /online /cleanup-image /restorehealth"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Intermedio",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "La búsqueda de archivos no arroja resultados",
+    "slug": "busqueda-archivos-falla",
+    "description": "La barra de búsqueda no indexa archivos nuevos o está vacía.",
+    "explain": {
+      "title": "Índice de búsqueda corrupto",
+      "description": "La base de datos de indexación de Windows ha excedido su integridad.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "SEARCH_INDEX_ERR",
+          "label": "Base de datos corrupta",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a servicios"
+      ],
+      "steps": [
+        "Abrir opciones de indización",
+        "Reconstruir base de datos",
+        "Reiniciar servicio Windows Search"
+      ],
+      "terminal": "net stop wsearch"
+    },
+    "category": "software",
+    "difficulty": "Fácil",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Fallo de Escritorio Remoto (Autenticación)",
+    "slug": "fallo-escritorio-remoto",
+    "description": "Error al conectar por RDP debido a problemas de seguridad NLA.",
+    "explain": {
+      "title": "Incompatibilidad de seguridad de credenciales",
+      "description": "Los requerimientos de autenticación a nivel de red (NLA) no coinciden entre cliente y servidor.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "RDP_AUTH_ERROR",
+          "label": "Error de autenticación",
+          "percentage": "35%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a Administrador"
+      ],
+      "steps": [
+        "Deshabilitar NLA en propiedades del sistema",
+        "Actualizar credenciales guardadas",
+        "Verificar firewall"
+      ],
+      "terminal": "sysdm.cpl"
+    },
+    "category": "redes",
+    "difficulty": "Intermedio",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Lentitud al iniciar (Startup apps)",
+    "slug": "lentitud-inicio-sistema",
+    "description": "El sistema tarda demasiado tiempo en estar disponible tras el login.",
+    "explain": {
+      "title": "Sobrecarga de programas en inicio",
+      "description": "Demasiadas aplicaciones intentan ejecutarse al mismo tiempo tras la autenticación.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "STARTUP_BLOAT",
+          "label": "Demasiados servicios",
+          "percentage": "60%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a Administrador de tareas"
+      ],
+      "steps": [
+        "Deshabilitar apps en pestaña Inicio",
+        "Optimizar servicios no esenciales",
+        "Verificar estado del SSD"
+      ],
+      "terminal": "taskmgr"
+    },
+    "category": "rendimiento",
+    "difficulty": "Fácil",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Error de archivo 0x80070005 (Acceso denegado)",
+    "slug": "error-0x80070005",
+    "description": "No se pueden mover o copiar archivos debido a falta de permisos.",
+    "explain": {
+      "title": "Permisos de sistema NTFS bloqueados",
+      "description": "El usuario no posee permisos de escritura sobre la carpeta o el archivo está bloqueado por un proceso.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "ACCESS_DENIED",
+          "label": "Permisos denegados",
+          "percentage": "30%"
+        }
+      ],
+      "prerequisites": [
+        "Permisos de propietario"
+      ],
+      "steps": [
+        "Tomar posesión del archivo",
+        "Verificar lista de control de acceso (ACL)",
+        "Deshabilitar solo lectura"
+      ],
+      "terminal": "takeown /f C:\\ruta\\archivo"
+    },
+    "category": "software",
+    "difficulty": "Intermedio",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Audio de dispositivo no detectado",
+    "slug": "dispositivo-audio-no-detectado",
+    "description": "El PC no reconoce el altavoz o auriculares conectados.",
+    "explain": {
+      "title": "Driver de audio deshabilitado o incorrecto",
+      "description": "El sistema ha cargado un driver genérico en lugar del específico del fabricante.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "AUDIO_DEV_MISSING",
+          "label": "Dispositivo no reconocido",
+          "percentage": "40%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a Administrador de dispositivos"
+      ],
+      "steps": [
+        "Buscar cambios de hardware",
+        "Reinstalar driver desde web del fabricante",
+        "Verificar cableado"
+      ],
+      "terminal": "devmgmt.msc"
+    },
+    "category": "hardware",
+    "difficulty": "Fácil",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Error de sistema 2147219196 (App Store)",
+    "slug": "error-app-store-2147219196",
+    "description": "Las aplicaciones instaladas desde la Microsoft Store no abren.",
+    "explain": {
+      "title": "Corrupción en librerías de runtime",
+      "description": "Las dependencias de C++ redistribuibles o la caché de la tienda están dañadas.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "ERR_RUNTIME_APP",
+          "label": "Fallo en ejecución de app",
+          "percentage": "50%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a comandos"
+      ],
+      "steps": [
+        "Restablecer la tienda",
+        "Reinstalar paquetes de C++",
+        "Reparar app desde configuración"
+      ],
+      "terminal": "wsreset.exe"
+    },
+    "category": "software",
+    "difficulty": "Intermedio",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Notificaciones no aparecen",
+    "slug": "notificaciones-no-aparecen",
+    "description": "Las alertas de Windows no se muestran en el centro de actividades.",
+    "explain": {
+      "title": "Asistente de concentración activo",
+      "description": "El modo 'No molestar' o la configuración de enfoque está silenciando todas las alertas.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "FOCUS_ASSIST_ON",
+          "label": "Modo silencio activado",
+          "percentage": "70%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a configuración"
+      ],
+      "steps": [
+        "Desactivar Asistente de concentración",
+        "Verificar permisos de apps",
+        "Reiniciar shell"
+      ],
+      "terminal": "taskkill /f /im explorer.exe"
+    },
+    "category": "software",
+    "difficulty": "Fácil",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Uso excesivo de CPU por proceso inactivo",
+    "slug": "uso-excesivo-cpu",
+    "description": "La CPU trabaja constantemente sin aplicaciones abiertas.",
+    "explain": {
+      "title": "Procesos de mantenimiento en segundo plano",
+      "description": "Tareas programadas, desfragmentación o telemetría ocupan recursos.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "CPU_HIGH_USAGE",
+          "label": "Carga de procesador",
+          "percentage": "40%"
+        }
+      ],
+      "prerequisites": [
+        "Administrador de tareas"
+      ],
+      "steps": [
+        "Identificar proceso en Administrador",
+        "Deshabilitar tareas programadas",
+        "Verificar infecciones"
+      ],
+      "terminal": "taskmgr"
+    },
+    "category": "rendimiento",
+    "difficulty": "Intermedio",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Compartir archivos SMB falla",
+    "slug": "compartir-archivos-smb-falla",
+    "description": "Otros equipos en la red local no pueden acceder a carpetas compartidas.",
+    "explain": {
+      "title": "Protocolo SMB deshabilitado o Firewall",
+      "description": "Por motivos de seguridad, Windows 11 puede bloquear SMB v1.0 o el Firewall bloquea el puerto 445.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "SMB_CONNECTION_ERR",
+          "label": "Conexión rechazada",
+          "percentage": "30%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a Firewall"
+      ],
+      "steps": [
+        "Habilitar funciones SMB en Windows",
+        "Abrir puerto en Firewall",
+        "Verificar red privada"
+      ],
+      "terminal": "netsh advfirewall firewall set rule group=\"File and Printer Sharing\" new enable=Yes"
+    },
+    "category": "redes",
+    "difficulty": "Avanzado",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Servicio de perfil de usuario falla",
+    "slug": "servicio-perfil-usuario-falla",
+    "description": "Windows no inicia sesión con el usuario actual.",
+    "explain": {
+      "title": "Perfil temporal cargado debido a corrupción",
+      "description": "El archivo NTUSER.DAT del perfil de usuario está dañado o inaccesible.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "PROFILE_SVC_ERR",
+          "label": "Perfil no cargado",
+          "percentage": "25%"
+        }
+      ],
+      "prerequisites": [
+        "Cuenta de administrador extra"
+      ],
+      "steps": [
+        "Renombrar perfil en registro",
+        "Eliminar .bak",
+        "Reiniciar sesión"
+      ],
+      "terminal": "regedit"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Avanzado",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Driver de video TDR Failure",
+    "slug": "driver-video-tdr-failure",
+    "description": "Pantallazo azul por 'Video TDR Failure' (Timeout Detection and Recovery).",
+    "explain": {
+      "title": "Tiempo de respuesta de la GPU excedido",
+      "description": "El driver de la tarjeta de video no respondió en el tiempo esperado por el sistema.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "VIDEO_TDR_FAILURE",
+          "label": "Timeout de GPU",
+          "percentage": "50%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a Modo Seguro"
+      ],
+      "steps": [
+        "Desinstalar driver con DDU",
+        "Instalar driver limpio",
+        "Reducir frecuencia de GPU"
+      ],
+      "terminal": "devmgmt.msc"
+    },
+    "category": "hardware",
+    "difficulty": "Avanzado",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Administrador de tareas no abre",
+    "slug": "admin-tareas-no-abre",
+    "description": "La combinación de teclas o el clic derecho no ejecutan el gestor de procesos.",
+    "explain": {
+      "title": "Deshabilitado por política o corrupción",
+      "description": "Malware o una configuración errónea en el registro impide el acceso al gestor.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "TASKMGR_DISABLED",
+          "label": "Acceso restringido",
+          "percentage": "15%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a registro"
+      ],
+      "steps": [
+        "Habilitar gestor en registro",
+        "Ejecutar escaneo de virus",
+        "Reparar sistema"
+      ],
+      "terminal": "reg add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System /v DisableTaskMgr /t REG_DWORD /d 0 /f"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Intermedio",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Centro de notificaciones no abre",
+    "slug": "centro-notificaciones-no-abre",
+    "description": "El clic en el área de notificaciones no despliega el menú.",
+    "explain": {
+      "title": "Fallo en el proceso 'ActionCenter'",
+      "description": "El servicio de shell está bloqueado por otro componente del sistema.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "ACTION_CENTER_ERR",
+          "label": "UI no responde",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a comandos"
+      ],
+      "steps": [
+        "Reiniciar shell",
+        "Registrar componentes de UI",
+        "Actualizar sistema"
+      ],
+      "terminal": "taskkill /f /im explorer.exe && start explorer.exe"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Fácil",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Error de partición 0x80070005",
+    "slug": "error-particion-0x80070005",
+    "description": "Error al redimensionar particiones o formatear disco.",
+    "explain": {
+      "title": "Acceso denegado a nivel de volumen",
+      "description": "Procesos en segundo plano están utilizando la unidad o no se tiene permiso de administrador.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "DISK_PART_ACCESS",
+          "label": "Volumen ocupado",
+          "percentage": "40%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a Administrador"
+      ],
+      "steps": [
+        "Ejecutar diskpart",
+        "Limpiar atributos de solo lectura",
+        "Intentar operación de nuevo"
+      ],
+      "terminal": "diskpart"
+    },
+    "category": "hardware",
+    "difficulty": "Avanzado",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Fallo al detectar dispositivos USB",
+    "slug": "dispositivo-usb-no-detectado",
+    "description": "Los puertos USB no reconocen periféricos conectados.",
+    "explain": {
+      "title": "Suspensión selectiva de USB o Driver corrupto",
+      "description": "El controlador del hub USB ha fallado o la energía del puerto está suspendida.",
+      "photo": "",
+      "commonErrors": [
+        {
+          "code": "USB_DEV_ERR",
+          "label": "Puerto no responde",
+          "percentage": "35%"
+        }
+      ],
+      "prerequisites": [
+        "Administrador de dispositivos"
+      ],
+      "steps": [
+        "Desinstalar controladores de USB Root Hub",
+        "Reiniciar sistema",
+        "Verificar hardware"
+      ],
+      "terminal": "devmgmt.msc"
+    },
+    "category": "hardware",
+    "difficulty": "Fácil",
+    "image": "",
+    "so": "windows"
+  },
+  {
+    "title": "Resolver pantalla azul de Windows (BSOD)",
+    "slug": "resolver-pantalla-azul-de-windows-bsod",
+    "description": "Diagnóstico de excepciones no controladas en el núcleo (Kernel-Mode), análisis de volcados de memoria y resolución de conflictos de controladores.",
+    "explain": {
+      "title": "Análisis de fallos de protección en Ring 0",
+      "description": "Pedagógicamente, una BSOD es un mecanismo de autoprotección. Cuando el núcleo (Kernel en Ring 0) detecta una corrupción de memoria o una instrucción de hardware que compromete la integridad del sistema, detiene todas las operaciones y vuelca el contenido de la memoria RAM al disco (Minidump). El diagnóstico riguroso requiere identificar el módulo (.sys) exacto mediante herramientas de depuración antes de aplicar cambios a ciegas.",
+      "photo": "/categories/img/so.webp",
+      "commonErrors": [
+        {
+          "code": "IRQL_NOT_LESS_OR_EQUAL",
+          "label": "Interrupción de hardware (IRQ) solicitada a una dirección de memoria con privilegios insuficientes.",
+          "percentage": "38%"
+        },
+        {
+          "code": "MEMORY_MANAGEMENT",
+          "label": "Fallo severo en los algoritmos de paginación del núcleo o módulos de RAM físicamente defectuosos.",
+          "percentage": "25%"
+        },
+        {
+          "code": "PAGE_FAULT_IN_NONPAGED_AREA",
+          "label": "Puntero nulo o solicitud a una dirección de memoria protegida que no puede ser paginada en disco.",
+          "percentage": "18%"
+        }
+      ],
+      "prerequisites": [
+        "Derechos de administrador local.",
+        "Unidad USB con Entorno de Recuperación de Windows (WinRE).",
+        "Herramienta WinDbg instalada para análisis de volcados .dmp."
+      ],
+      "steps": [
+        "Extraiga el código de detención de la pantalla azul y localice el archivo de volcado en %SystemRoot%\\Minidump.",
+        "Analice el volcado con WinDbg (comando !analyze -v) para identificar el controlador o librería causante.",
+        "Arranque en Modo Seguro; si el causante es un controlador de terceros (ej. GPU, red), utilice el Administrador de dispositivos para revertirlo o desinstalarlo.",
+        "Si la falla es aleatoria, ejecute diagnósticos de estrés de memoria (mdsched.exe o MemTest86) para descartar fallos de hardware.",
+        "Ejecute herramientas de reparación de imágenes de implementación para corregir librerías del sistema base."
+      ],
+      "terminal": "sfc /scannow && DISM /Online /Cleanup-Image /RestoreHealth"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Avanzado",
+    "image": "/categories/os.svg",
+    "so": "windows"
+  },
+  {
+    "title": "El WiFi se desconecta intermitentemente",
+    "slug": "el-wifi-se-desconecta-intermitentemente",
+    "description": "Estabilización de la capa de enlace inalámbrica mitigando políticas de energía ACPI, colisiones de RF y corrupción de DNS.",
+    "explain": {
+      "title": "Diagnóstico de inestabilidad en la topología inalámbrica",
+      "description": "Las desconexiones cíclicas (Micro-drops) suelen deberse a que el estándar de energía ACPI fuerza al adaptador de red a un estado de suspensión (D3) del cual no despierta correctamente. Alternativamente, la alta densidad de redes vecinas causa colisiones de tramas (Carrier Sense Multiple Access) o la caché de resolución de nombres local (DNS) entra en conflicto, provocando falsos positivos de pérdida de internet.",
+      "photo": "/categories/img/network.webp",
+      "commonErrors": [
+        {
+          "code": "DNS_PROBE_FINISHED_NXDOMAIN",
+          "label": "Fallo en la resolución jerárquica de nombres; el servidor DNS no encuentra el dominio.",
+          "percentage": "45%"
+        },
+        {
+          "code": "ERR_NETWORK_CHANGED",
+          "label": "Interrupción de sockets TCP debido a la renegociación de IP por DHCP o salto de BSSID.",
+          "percentage": "35%"
+        },
+        {
+          "code": "WIFI_AUTH_FAILURE",
+          "label": "Caída del Handshake de seguridad (WPA2/3) obligando a la deautenticación.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso con privilegios administrativos al sistema operativo.",
+        "Credenciales de administrador del router o puerta de enlace local.",
+        "Aplicación de análisis de espectro RF (ej. Wi-Fi Analyzer)."
+      ],
+      "steps": [
+        "En el Administrador de dispositivos, acceda a la pestaña 'Administración de energía' del adaptador WiFi y deshabilite 'Permitir que el equipo apague este dispositivo'.",
+        "Ajuste la 'Agresividad de Itinerancia' (Roaming Aggressiveness) al mínimo si el equipo es estacionario para evitar que busque otras redes constantemente.",
+        "Escanee el espectro de radiofrecuencia de su entorno y asigne manualmente su router a los canales no superpuestos menos congestionados (1, 6 u 11 en 2.4 GHz).",
+        "Purgue la tabla de resolución DNS local y reasigne los descriptores del protocolo de red."
+      ],
+      "terminal": "ipconfig /flushdns && netsh winsock reset && netsh int ip reset"
+    },
+    "category": "redes",
+    "difficulty": "Fácil",
+    "image": "/categories/network.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Lentitud de sistema sin carga aparente",
+    "slug": "lentitud-de-sistema-sin-carga-aparente",
+    "description": "Metodología de detección de cuellos de botella por saturación de IOPS, paginación excesiva e hilos de procesamiento bloqueados.",
+    "explain": {
+      "title": "Análisis de saturación en la arquitectura de hardware",
+      "description": "La ralentización de un sistema operativo es un síntoma de saturación en uno de los tres pilares del hardware: CPU (hilos atascados o interrupciones), RAM (fugas que fuerzan la paginación a disco) o Almacenamiento (latencia alta y colas de lectura/escritura llenas). Educar al usuario en la lectura de telemetría evita la 'optimización' destructiva o el borrado indiscriminado de archivos.",
+      "photo": "/categories/img/performance.webp",
+      "commonErrors": [
+        {
+          "code": "DISK_QUEUE_LENGTH_HIGH",
+          "label": "Saturación continua de las operaciones IOPS, típico en unidades mecánicas (HDD).",
+          "percentage": "50%"
+        },
+        {
+          "code": "CPU_CONTEXT_SWITCHING",
+          "label": "Sobrecarga del procesador cambiando constantemente entre cientos de procesos ineficientes.",
+          "percentage": "30%"
+        },
+        {
+          "code": "HARD_PAGE_FAULTS",
+          "label": "Agotamiento de RAM física forzando al SO a utilizar el archivo Swap/Pagefile intensivamente.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Familiaridad técnica con el Monitor de Recursos (resmon.exe) y Administrador de Tareas.",
+        "Derechos administrativos para manipular servicios del sistema."
+      ],
+      "steps": [
+        "Inicie el Monitor de Recursos (resmon) e inspeccione la pestaña de Disco; observe si el 'Tiempo de actividad más alto' está anclado en 100%.",
+        "Identifique el ejecutable causante. Si es 'SysMain' o 'Windows Search', evalúe deshabilitar estos servicios de indexación si utiliza un disco HDD tradicional.",
+        "Audite la pestaña 'Inicio' en el Administrador de tareas y desactive todo software que no provea funciones críticas al arrancar.",
+        "Compruebe las temperaturas (Thermal Throttling) si el uso de CPU es bajo pero el reloj base (GHz) se mantiene estancado en frecuencias mínimas."
+      ],
+      "terminal": "Get-Process | Sort-Object WorkingSet -Descending | Select-Object -First 10"
+    },
+    "category": "rendimiento",
+    "difficulty": "Intermedio",
+    "image": "/categories/performance.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Ransomware: Contención y Recuperación",
+    "slug": "ransomware-contencion-y-recuperacion",
+    "description": "Protocolos de aislamiento de red (Air-Gapping), preservación de telemetría y reconstrucción basada en repositorios offline inmutables.",
+    "explain": {
+      "title": "Respuesta a incidentes por criptografía asimétrica maliciosa",
+      "description": "El ransomware secuestra las estructuras de datos utilizando cifrado de nivel militar (AES/RSA). Pedagógicamente, el concepto fundamental es la 'Contención Lateral': el objetivo primordial no es salvar el equipo infectado (que debe considerarse perdido), sino aislarlo instantáneamente para proteger los servidores, NAS y estaciones de trabajo conectadas a la misma subred.",
+      "photo": "/categories/img/virus.webp",
+      "commonErrors": [
+        {
+          "code": "AES_ENCRYPTED_PAYLOAD",
+          "label": "Sustitución masiva de cabeceras de archivos legítimos por bloques cifrados con extensiones anómalas.",
+          "percentage": "55%"
+        },
+        {
+          "code": "VSS_SHADOW_PURGE",
+          "label": "Ejecución oculta de comandos para destruir las copias instantáneas de volumen (Shadow Copies).",
+          "percentage": "30%"
+        },
+        {
+          "code": "SMB_LATERAL_MOVEMENT",
+          "label": "Propagación automática a través del protocolo Server Message Block (SMB) hacia recursos compartidos.",
+          "percentage": "15%"
+        }
+      ],
+      "prerequisites": [
+        "Autoridad de administrador de red para ejecutar políticas de aislamiento.",
+        "Repositorio de copias de seguridad completamente aislado de la red (Air-Gapped o Inmutable).",
+        "Medios de instalación del SO para reconstrucción de metal desnudo (Bare-Metal)."
+      ],
+      "steps": [
+        "Desconecte físicamente el cable Ethernet del equipo y apague el enrutador WiFi si hay riesgo de propagación inmediata.",
+        "Documente fotográficamente la nota de rescate y la extensión de los archivos cifrados para identificar la cepa (ej. con el portal ID Ransomware).",
+        "No apague el equipo si existe la posibilidad de extraer las claves de descifrado alojadas temporalmente en la memoria RAM mediante técnicas forenses avanzadas (solo expertos).",
+        "Destruya la partición lógicamente (formateo de bajo nivel). Bajo ninguna circunstancia confíe en la limpieza mediante software antivirus; las puertas traseras suelen persistir.",
+        "Reinstale el SO desde cero e importe los datos exclusivamente desde un backup frío previo al momento de la infección."
+      ],
+      "terminal": "Get-WmiObject Win32_Shadowcopy | ForEach-Object { $_.Delete() } # Comando que utiliza el malware, revisar si quedan instancias."
+    },
+    "category": "seguridad",
+    "difficulty": "Avanzado",
+    "image": "/categories/virus.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Unidad SSD no reconocida por el sistema",
+    "slug": "unidad-ssd-no-reconocida",
+    "description": "Auditoría escalonada desde los carriles PCIe/SATA físicos hasta la reconstrucción de cabeceras de partición MBR/GPT corruptas.",
+    "explain": {
+      "title": "Aislamiento de fallos en el bus de almacenamiento",
+      "description": "La desaparición lógica de una unidad de estado sólido requiere un enfoque sistémico. Si la BIOS/UEFI no detecta la unidad, el fallo radica en la capa física (controladora del disco quemada, carriles PCIe deshabilitados, o falta de suministro eléctrico). Si la UEFI detecta la unidad pero el sistema operativo no, el fallo reside en la capa lógica (ausencia de inicialización, sistema de archivos RAW o tabla de particiones corrupta).",
+      "photo": "/categories/img/hardware.webp",
+      "commonErrors": [
+        {
+          "code": "UEFI_NOT_DETECTED",
+          "label": "Fallo eléctrico, puerto M.2 deshabilitado o conflicto de carriles compartidos con puertos SATA.",
+          "percentage": "45%"
+        },
+        {
+          "code": "RAW_FILESYSTEM",
+          "label": "Corrupción de la tabla de asignación de archivos; Windows no reconoce el formato (ej. NTFS dañado).",
+          "percentage": "35%"
+        },
+        {
+          "code": "SMART_THRESHOLD_EXCEEDED",
+          "label": "Controlador interno bloqueando el disco en 'Solo Lectura' por agotamiento de celdas NAND.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Destornilladores de precisión y pulsera antiestática para manipulación de hardware.",
+        "Conocimiento para acceder y navegar en la interfaz del firmware de la placa base (BIOS/UEFI)."
+      ],
+      "steps": [
+        "Verifique la conexión física: retire y vuelva a insertar el SSD M.2 asegurando un ángulo de 30 grados, o cambie los cables SATA de datos y energía.",
+        "Acceda a la BIOS/UEFI. Si el disco no aparece en la lista de dispositivos NVMe/SATA, el hardware está defectuoso o el puerto está deshabilitado.",
+        "Si la BIOS lo detecta, inicie Windows, presione Win+X y abra la 'Administración de discos' (diskmgmt.msc).",
+        "Si el disco se muestra como 'No inicializado', proceda a inicializarlo seleccionando el estilo de partición GPT (recomendado para sistemas modernos).",
+        "Si aparece como espacio 'No asignado', haga clic derecho, cree un 'Nuevo volumen simple' y formatéelo en NTFS."
+      ],
+      "terminal": "diskpart"
+    },
+    "category": "hardware",
+    "difficulty": "Intermedio",
+    "image": "/categories/hardware.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Cierre repentino de aplicaciones (Crash to Desktop)",
+    "slug": "cierre-repentino-aplicaciones",
+    "description": "Resolución de violaciones de acceso a memoria, dependencias dinámicas (.DLL) ausentes y conflictos de arquitectura.",
+    "explain": {
+      "title": "Depuración de excepciones en el espacio de usuario (User-Mode)",
+      "description": "Cuando un software se cierra de forma instantánea al iniciarse (CTD), el SO está interceptando una excepción no manejada. Las causas más comunes son violaciones de acceso (intentar escribir en memoria protegida o nula), la falta de librerías de enlace dinámico (C++ Redistributables o DirectX) requeridas para compilar las instrucciones, o incompatibilidades entre binarios de 32 y 64 bits.",
+      "photo": "/categories/img/software.webp",
+      "commonErrors": [
+        {
+          "code": "EXCEPTION_ACCESS_VIOLATION (0xc0000005)",
+          "label": "El hilo de la aplicación intentó acceder a una dirección de memoria sin los permisos adecuados.",
+          "percentage": "40%"
+        },
+        {
+          "code": "MISSING_DLL_DEPENDENCY",
+          "label": "Ausencia de librerías críticas (ej. VCRUNTIME140.dll) necesarias para el entorno de ejecución.",
+          "percentage": "35%"
+        },
+        {
+          "code": "0xc000007b (INVALID_IMAGE_FORMAT)",
+          "label": "Conflicto arquitectónico: Una app de 64 bits intentando cargar una librería de 32 bits.",
+          "percentage": "25%"
+        }
+      ],
+      "prerequisites": [
+        "Familiaridad con el Visor de Eventos de Windows (Eventvwr).",
+        "Permisos administrativos para instalar paquetes base a nivel de sistema."
+      ],
+      "steps": [
+        "Abra el 'Visor de eventos' (eventvwr.msc), expanda 'Registros de Windows' y seleccione 'Aplicación'.",
+        "Busque el evento de error (cruz roja, ID 1000) generado en el segundo exacto del cierre para identificar el 'Módulo con errores' (ej. ntdll.dll o una librería específica).",
+        "Si el error apunta a librerías de Visual C++, descargue e instale el paquete oficial 'Visual C++ Redistributable Runtimes All-in-One'.",
+        "Ejecute el programa haciendo clic derecho y seleccionando 'Ejecutar como administrador' para descartar restricciones de Virtualización de UAC.",
+        "Realice una comprobación de integridad de los archivos del sistema base si el módulo causante pertenece a Windows."
+      ],
+      "terminal": "Get-EventLog -LogName Application -EntryType Error -Newest 10"
+    },
+    "category": "software",
+    "difficulty": "Intermedio",
+    "image": "/categories/software.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Fallo de conexión en VPN corporativa",
+    "slug": "fallo-conexion-vpn-corporativa",
+    "description": "Restauración de túneles TLS/IPsec mediante resincronización de certificados, limpieza de adaptadores virtuales y ajuste de MTU.",
+    "explain": {
+      "title": "Diagnóstico de túneles criptográficos y enrutamiento virtual",
+      "description": "Una VPN establece una interfaz de red virtual que encripta y encapsula el tráfico hacia una puerta de enlace corporativa. Cuando falla tras una actualización, suele deberse a que el adaptador TAP/TUN local se corrompió, el reloj del sistema se desfasó (invalidando el apretón de manos de certificados TLS), o el tamaño máximo de paquete (MTU) entra en conflicto con las nuevas políticas del proveedor de internet.",
+      "photo": "/categories/img/network.webp",
+      "commonErrors": [
+        {
+          "code": "TLS_HANDSHAKE_FAILED",
+          "label": "El certificado de seguridad fue rechazado por discrepancias de fecha/hora o caducidad.",
+          "percentage": "45%"
+        },
+        {
+          "code": "VIRTUAL_ADAPTER_ERROR",
+          "label": "Corrupción en los controladores del adaptador virtual (ej. TAP-Windows v9).",
+          "percentage": "35%"
+        },
+        {
+          "code": "MTU_FRAGMENTATION",
+          "label": "Paquetes descartados en la red por exceder el tamaño máximo de transmisión sin fragmentación.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Privilegios administrativos para modificar interfaces de red locales.",
+        "Credenciales válidas de la VPN y acceso al portal de autenticación de dos factores (MFA)."
+      ],
+      "steps": [
+        "Fuerce la sincronización del reloj del sistema operativo con un servidor horario (NTP) oficial para garantizar la validez de las cadenas de certificados.",
+        "Abra el Administrador de dispositivos, expanda 'Adaptadores de red', desinstale el adaptador virtual de la VPN y reinicie el equipo para forzar su reinstalación.",
+        "Verifique la tabla de enrutamiento local para asegurarse de que no haya conflictos de subred entre su red local (ej. 192.168.1.x) y la red de destino.",
+        "Inhabilite temporalmente el firewall local para confirmar si una regla estricta está bloqueando los puertos UDP/TCP utilizados por el protocolo (ej. puerto 1194 para OpenVPN)."
+      ],
+      "terminal": "route print && netsh winsock reset"
+    },
+    "category": "redes",
+    "difficulty": "Intermedio",
+    "image": "/categories/network.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Agotamiento acelerado de la batería en portátiles",
+    "slug": "agotamiento-acelerado-bateria-portatiles",
+    "description": "Evaluación de degradación química de celdas de litio e interrupción de estados inactivos por procesos en segundo plano (Wakelocks).",
+    "explain": {
+      "title": "Análisis de ciclos de energía y estados de reposo del procesador",
+      "description": "El drenaje rápido de energía exige distinguir entre desgaste de hardware e ineficiencia de software. Físicamente, las celdas de iones de litio pierden capacidad de retención (mWh) tras cientos de ciclos. Lógicamente, programas mal optimizados generan interrupciones constantes ('Wakelocks') que impiden que la CPU descienda a sus estados de ahorro energético profundo (C-States), forzando un consumo continuo.",
+      "photo": "/categories/img/performance.webp",
+      "commonErrors": [
+        {
+          "code": "HARDWARE_CAPACITY_DEGRADATION",
+          "label": "Divergencia superior al 30% entre la Capacidad de Diseño de fábrica y la Capacidad de Carga Completa actual.",
+          "percentage": "50%"
+        },
+        {
+          "code": "SOFTWARE_WAKELOCKS",
+          "label": "Procesos en segundo plano impidiendo la transición de la CPU a modos de bajo consumo (C3/C6).",
+          "percentage": "35%"
+        },
+        {
+          "code": "EXCESSIVE_THERMAL_DISSIPATION",
+          "label": "Los ventiladores funcionan al máximo continuamente, consumiendo vastas cantidades de energía.",
+          "percentage": "15%"
+        }
+      ],
+      "prerequisites": [
+        "Equipo cargado al 100% y conectado a su adaptador de corriente original.",
+        "Permisos para ejecutar diagnósticos de energía a nivel de sistema base."
+      ],
+      "steps": [
+        "Abra el Símbolo del sistema como administrador y genere el informe detallado de salud y ciclos de la batería (batteryreport).",
+        "Abra el archivo HTML generado y compare los valores 'Design Capacity' y 'Full Charge Capacity'. Si la diferencia es dramática, el reemplazo físico es ineludible.",
+        "Genere un reporte de eficiencia energética (energy) para localizar procesos o dispositivos USB que están bloqueando las políticas de suspensión.",
+        "Ajuste el Plan de Energía a 'Equilibrado', minimice el brillo de la pantalla y desactive aplicaciones de inicio innecesarias."
+      ],
+      "terminal": "powercfg /batteryreport /output 'C:\\battery_report.html' && powercfg /energy"
+    },
+    "category": "rendimiento",
+    "difficulty": "Fácil",
+    "image": "/categories/performance.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Actualización de macOS bloqueada en barra de progreso",
+    "slug": "actualizacion-macos-bloqueada",
+    "description": "Restauración de volúmenes APFS, purga de NVRAM/PRAM y bypass de extensiones de kernel incompatibles durante el proceso de instalación.",
+    "explain": {
+      "title": "Mitigación de bloqueos en el flujo de arranque de Apple",
+      "description": "Una barra de progreso congelada indefinidamente durante una actualización mayor de macOS indica una interrupción crítica. Las causas técnicas principales son: un fallo al crear las instantáneas (snapshots) del sistema de archivos APFS, extensiones de hardware (kexts) de terceros que causan pánico en el nuevo núcleo, o variables de entorno corruptas en la memoria no volátil (NVRAM).",
+      "photo": "/categories/img/so.webp",
+      "commonErrors": [
+        {
+          "code": "POST_INSTALL_SCRIPT_HANG",
+          "label": "Bloqueo infinito en la etapa de reestructuración de permisos o migración de datos de usuario.",
+          "percentage": "50%"
+        },
+        {
+          "code": "THIRD_PARTY_KEXT_PANIC",
+          "label": "Extensiones de kernel antiguas (ej. antivirus, drivers de audio) incompatibles con el nuevo núcleo.",
+          "percentage": "30%"
+        },
+        {
+          "code": "NVRAM_CORRUPTION",
+          "label": "Instrucciones de ruta de arranque (boot-args) alteradas en la memoria de la placa lógica.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Cable de alimentación conectado (evitar interrupciones de energía).",
+        "Conocer la arquitectura del Mac (Intel vs. Apple Silicon M1/M2/M3) ya que los atajos varían."
+      ],
+      "steps": [
+        "Asegúrese de que realmente esté bloqueado (las actualizaciones de firmware profundas pueden tomar más de 2 horas sin mostrar movimiento).",
+        "Si está totalmente congelado, fuerce el apagado manteniendo el botón de encendido por 10 segundos.",
+        "En procesadores Intel: Encienda y mantenga pulsado Option + Command + P + R durante 20 segundos para resetear la NVRAM.",
+        "Inicie en 'Modo Seguro' (manteniendo Shift en Intel, o manteniendo el botón de encendido en Apple Silicon) para evadir extensiones conflictivas e intentar finalizar el script.",
+        "Si todo falla, inicie en 'Modo de Recuperación' (Command + R) y vuelva a instalar macOS sobre el existente para reparar el sistema sin tocar la partición de usuario."
+      ],
+      "terminal": "diskutil verifyVolume /"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Intermedio",
+    "image": "/categories/os.svg",
+    "so": "macos"
+  },
+  {
+    "title": "Fallo de arranque en Linux (Kernel Panic y VFS)",
+    "slug": "fallo-arranque-linux-kernel-panic",
+    "description": "Análisis de volcados pre-arranque, regeneración del sistema de archivos RAM inicial (initramfs) y reparación de fstab mediante chroot.",
+    "explain": {
+      "title": "Depuración de fallos críticos en la secuencia de inicialización",
+      "description": "Un 'Kernel Panic' es la incapacidad del núcleo de Linux para continuar operando. En el contexto del arranque, el error 'VFS: Unable to mount root fs' es el más común: ocurre cuando el kernel, cargado en memoria, no posee los controladores integrados necesarios para leer la partición principal (raíz) debido a un 'initramfs' corrupto o mal generado tras una actualización. La reparación exige interactuar desde un entorno vivo (Live USB).",
+      "photo": "/categories/img/so.webp",
+      "commonErrors": [
+        {
+          "code": "VFS_UNABLE_TO_MOUNT_ROOT",
+          "label": "El núcleo no puede montar el sistema de archivos raíz; initramfs ausente o corrupto.",
+          "percentage": "45%"
+        },
+        {
+          "code": "FSTAB_MISCONFIGURATION",
+          "label": "UUIDs incorrectos en el archivo /etc/fstab que dirigen el montaje a particiones inexistentes.",
+          "percentage": "30%"
+        },
+        {
+          "code": "INIT_PROCESS_KILLED",
+          "label": "El proceso padre absoluto (systemd o SysVinit) falló al cargarse o fue destruido.",
+          "percentage": "25%"
+        }
+      ],
+      "prerequisites": [
+        "Un medio de instalación (Live USB) de la misma distribución Linux.",
+        "Comprensión de los comandos de montaje de sistemas de archivos y aislamiento chroot."
+      ],
+      "steps": [
+        "Arranque el sistema, acceda al menú de GRUB y seleccione opciones avanzadas para iniciar con un Kernel de una versión anterior (fallback).",
+        "Si el kernel anterior funciona, el problema es una actualización reciente. Regeneré el initramfs del kernel dañado desde la terminal.",
+        "Si ningún kernel arranca, inicie desde el Live USB, identifique sus particiones con 'lsblk' y monte la partición raíz local en el directorio /mnt.",
+        "Monte los pseudo-sistemas de archivos (/dev, /proc, /sys) y ejecute 'chroot /mnt' para aislar su terminal en el sistema dañado.",
+        "Dentro del entorno enjaulado, reinstale el paquete del kernel o ejecute 'update-initramfs' para solventar la carencia de controladores de disco."
+      ],
+      "terminal": "sudo mount /dev/sdX1 /mnt && sudo chroot /mnt && update-initramfs -u"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Avanzado",
+    "image": "/categories/os.svg",
+    "so": "linux"
+  },
+  {
+    "title": "Ausencia de BOOTMGR o datos de configuración (BCD)",
+    "slug": "ausencia-bootmgr-bcd",
+    "description": "Reconstrucción del sector maestro de arranque (MBR), particiones del sistema EFI y almacenes transaccionales de arranque en Windows.",
+    "explain": {
+      "title": "Recuperación de la arquitectura de arranque y particiones activas",
+      "description": "El mensaje 'BOOTMGR is missing' o códigos como 0xc00000f indican que el BIOS/UEFI logró ubicar el disco duro, pero la cadena de arranque se rompió. En sistemas modernos (UEFI), esto implica que la partición reservada FAT32 (EFI) perdió los archivos .efi que cargan Windows. En sistemas heredados (BIOS), el código del Sector Maestro o la marca de 'Partición Activa' fueron corrompidos, comúnmente por clonaciones de disco defectuosas.",
+      "photo": "/categories/img/so.webp",
+      "commonErrors": [
+        {
+          "code": "BCD_CORRUPTION",
+          "label": "Datos de configuración de arranque sobrescritos, vacíos o corrompidos.",
+          "percentage": "50%"
+        },
+        {
+          "code": "INCORRECT_ACTIVE_PARTITION",
+          "label": "Una partición de almacenamiento genérica fue marcada como activa en lugar de la partición del sistema.",
+          "percentage": "30%"
+        },
+        {
+          "code": "BOOT_ORDER_MODIFIED",
+          "label": "El firmware intenta iniciar desde un pendrive o disco secundario sin sector de arranque.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Unidad USB booteable con el instalador oficial de Windows 10/11.",
+        "Conocimiento sobre las utilidades diskpart y bootrec en línea de comandos."
+      ],
+      "steps": [
+        "Desconecte dispositivos USB innecesarios e ingrese a la BIOS/UEFI para confirmar que el disco duro principal encabeza la prioridad de arranque.",
+        "Arranque desde la unidad USB de instalación, seleccione su idioma, y haga clic en 'Reparar el equipo' > 'Solucionar problemas' > 'Símbolo del sistema'.",
+        "Ejecute la utilidad 'bootrec' para escanear las instalaciones de Windows y reparar el código de arranque maestro y el sector de inicio.",
+        "Si la reconstrucción automática falla, utilice 'diskpart' para asignar una letra a la partición EFI oculta y aplique 'bcdboot' para copiar archivos frescos desde la carpeta Windows.",
+        "Reescriba el almacén BCD manualmente si el sistema sigue sin identificar el volumen del sistema operativo."
+      ],
+      "terminal": "bootrec /fixmbr && bootrec /fixboot && bootrec /rebuildbcd"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Intermedio",
+    "image": "/categories/os.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Apagados térmicos por estrangulamiento (Thermal Throttling)",
+    "slug": "apagados-termicos-thermal-throttling",
+    "description": "Análisis de telemetría de sensores, diagnóstico de conductividad térmica y mantenimiento de sistemas de disipación activa.",
+    "explain": {
+      "title": "Mecanismos de protección de silicio y transferencia de calor",
+      "description": "El 'Thermal Throttling' es el proceso donde la CPU o GPU reduce agresivamente su frecuencia de reloj (y voltaje) para evitar daños físicos al alcanzar el umbral máximo de temperatura (TJMax, típicamente 95-105°C). Si la temperatura sigue escalando, la placa base cortará la energía abruptamente. Pedagógicamente, solucionar esto implica restaurar la eficiencia de la interfaz térmica (pasta) y la presión estática del flujo de aire.",
+      "photo": "/categories/img/hardware.webp",
+      "commonErrors": [
+        {
+          "code": "THERMAL_PASTE_DEGRADATION",
+          "label": "Cristalización de la pasta térmica (TIM), creando bolsas de aire aislantes entre la CPU y el disipador.",
+          "percentage": "45%"
+        },
+        {
+          "code": "HEATSINK_DUST_CLOG",
+          "label": "Aletas del radiador bloqueadas por polvo, impidiendo el intercambio de calor con el aire.",
+          "percentage": "35%"
+        },
+        {
+          "code": "PUMP_OR_FAN_FAILURE",
+          "label": "Fallo mecánico en rodamientos de ventiladores o bloqueo en la bomba de refrigeración líquida (AIO).",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Herramientas de monitoreo por hardware (ej. HWiNFO64 o Core Temp).",
+        "Alcohol isopropílico (99%) y pasta térmica de alta conductividad no eléctrica.",
+        "Conocimiento para el ensamblaje y desensamblaje seguro del zócalo del procesador."
+      ],
+      "steps": [
+        "Monitoree los sensores en reposo y bajo estrés (ej. Cinebench). Una subida instantánea de 40°C a 90°C indica falta de contacto físico o bomba AIO rota.",
+        "Apague el equipo, desconéctelo de la corriente y desmonte el chasis. Limpie radiadores y ventiladores usando aire comprimido (inmovilizando las aspas).",
+        "Retire el bloque disipador. Limpie meticulosamente los residuos cristalizados sobre el IHS del procesador con alcohol isopropílico.",
+        "Aplique una cantidad adecuada (tamaño de un guisante) de pasta térmica nueva y atornille el disipador aplicando presión cruzada y equitativa.",
+        "Verifique las curvas de control de ventiladores (PWM) en la BIOS para asegurar una aceleración correcta según la temperatura."
+      ],
+      "terminal": "wmic /namespace:\\\\root\\wmi PATH MSAcpi_ThermalZoneTemperature get CurrentTemperature"
+    },
+    "category": "hardware",
+    "difficulty": "Intermedio",
+    "image": "/categories/hardware.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Colisiones lógicas por conflicto de direcciones IP",
+    "slug": "conflictos-direcciones-ip-red-local",
+    "description": "Depuración de asignaciones DHCP, tablas ARP y resolución de duplicación de redes lógicas en infraestructuras locales.",
+    "explain": {
+      "title": "Enrutamiento IPv4 y mitigación de colisiones de difusión",
+      "description": "Un conflicto de IP ocurre cuando dos interfaces de red (con direcciones físicas MAC distintas) reclaman simultáneamente la misma dirección lógica IPv4. Los conmutadores y el enrutador anulan el tráfico de ambos para prevenir bucles. Técnicamente, esto se origina cuando un administrador asigna IPs estáticas a dispositivos (impresoras, servidores) dentro del mismo rango dinámico ('pool') que el servidor DHCP utiliza para asignar IPs aleatorias a los clientes.",
+      "photo": "/categories/img/network.webp",
+      "commonErrors": [
+        {
+          "code": "STATIC_IP_OVERLAP",
+          "label": "Dispositivo manual configurado dentro del rango de concesiones activas del DHCP.",
+          "percentage": "60%"
+        },
+        {
+          "code": "DHCP_LEASE_DESYNC",
+          "label": "Reinicio del router borrando su memoria de concesiones mientras los clientes mantienen las IPs previas.",
+          "percentage": "25%"
+        },
+        {
+          "code": "VIRTUAL_MAC_CLONE",
+          "label": "Máquinas virtuales o adaptadores VPN generando direcciones físicas (MAC) duplicadas.",
+          "percentage": "15%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso a la terminal del sistema operativo de los equipos afectados.",
+        "Credenciales del panel de administración del Router para verificar el mapa de red (ARP table)."
+      ],
+      "steps": [
+        "Revise la notificación del SO, la cual suele proporcionar la dirección MAC del equipo intruso que está causando la colisión.",
+        "En el equipo afectado, utilice la terminal para liberar forzosamente la dirección IP actual y descartar el conflicto inmediato.",
+        "Solicite una nueva concesión (Lease) enviando un broadcast de descubrimiento al servidor DHCP.",
+        "Si debe mantener un dispositivo con IP estática, ingrese al router y modifique el servidor DHCP para que empiece a asignar IPs desde un rango posterior (ej. 192.168.1.50 en adelante), dejando las primeras 49 libres para uso estático.",
+        "Haga un escaneo de ping continuo para confirmar la estabilidad bidireccional hacia la puerta de enlace."
+      ],
+      "terminal": "ipconfig /release && ipconfig /renew"
+    },
+    "category": "redes",
+    "difficulty": "Fácil",
+    "image": "/categories/network.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Análisis repetitivo de disco en el arranque (CHKDSK Loop)",
+    "slug": "analisis-repetitivo-de-disco-chkdsk-loop",
+    "description": "Revisión de bitácoras de NTFS, limpieza del bit de integridad sucio y detección de sectores físicos dañados subyacentes.",
+    "explain": {
+      "title": "Recuperación de coherencia en sistemas de archivos con Journaling",
+      "description": "El NTFS utiliza un archivo de registro (Journal) para pregrabar las transacciones. Si un apagón interrumpe una escritura, el sistema marca el volumen con un 'Dirty Bit' (bit de estado sucio) para forzar un análisis de consistencia (CHKDSK) en el siguiente arranque. Si la herramienta no logra conciliar el índice maestro de archivos (MFT) o tropieza repetidamente con un sector físicamente dañado en el disco, el sistema entra en un bucle infinito de análisis pre-arranque.",
+      "photo": "/categories/img/so.webp",
+      "commonErrors": [
+        {
+          "code": "PERSISTENT_DIRTY_BIT",
+          "label": "El sistema operativo falla en limpiar la bandera de inconsistencia lógica en los metadatos.",
+          "percentage": "50%"
+        },
+        {
+          "code": "HARDWARE_BAD_SECTORS",
+          "label": "Zonas de almacenamiento magnético o de estado sólido irrevocablemente dañadas.",
+          "percentage": "30%"
+        },
+        {
+          "code": "MFT_ORPHANED_RECORDS",
+          "label": "Desincronización severa entre el Índice Maestro de Archivos y los clústeres de datos reales.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Símbolo del sistema con elevación máxima de privilegios.",
+        "Respaldo preventivo de datos críticos, ya que un CHKDSK en un disco moribundo puede acelerar su colapso mecánico."
+      ],
+      "steps": [
+        "Inicie sesión en Windows; si el sistema obliga el escaneo, presione una tecla para omitirlo temporalmente.",
+        "Abra CMD como administrador y ejecute 'fsutil dirty query C:' para comprobar si el kernel sigue detectando el volumen como corrupto.",
+        "Ejecute un análisis de reparación y recuperación profunda manualmente (chkdsk /f /r). Confirme la ejecución para el reinicio y permita que finalice ininterrumpidamente.",
+        "Si el bucle persiste por un error de software, desactive la autocomprobación sobre esa letra de unidad utilizando el comando 'chkntfs /x'.",
+        "Ejecute herramientas como CrystalDiskInfo para leer los atributos S.M.A.R.T. físicos; si hay sectores reasignados, el disco está fallando físicamente."
+      ],
+      "terminal": "chkdsk C: /f /r && chkntfs /x C:"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Intermedio",
+    "image": "/categories/os.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Artefactos gráficos en pantalla (Corrupción de GPU)",
+    "slug": "artefactos-graficos-pantalla-gpu",
+    "description": "Aislamiento de fallas de memoria VRAM, conflictos de caché de sombreadores y degradación en el ancho de banda del monitor.",
+    "explain": {
+      "title": "Diagnóstico diferencial de inestabilidad en renderizado",
+      "description": "Los 'Artefactos' (bloques de píxeles intermitentes, franjas neón, estiramiento poligonal) son la evidencia visual de errores matemáticos en el procesamiento de la Tarjeta Gráfica. El análisis pedagógico dicta aislar el entorno: ¿Es una corrupción de software provocada por un controlador de pantalla defectuoso en el SO, o es daño físico por fatiga térmica en los módulos de Memoria Gráfica (VRAM) o soldaduras BGA (Hardware)?",
+      "photo": "/categories/img/hardware.webp",
+      "commonErrors": [
+        {
+          "code": "VRAM_PHYSICAL_DAMAGE",
+          "label": "Módulos de memoria de la tarjeta gráfica quemados por overclocking, minería o desgaste.",
+          "percentage": "45%"
+        },
+        {
+          "code": "CORRUPT_DISPLAY_DRIVER",
+          "label": "Archivos del controlador de video en conflicto con actualizaciones recientes del núcleo.",
+          "percentage": "35%"
+        },
+        {
+          "code": "CABLE_BANDWIDTH_LIMIT",
+          "label": "Cables HDMI/DisplayPort deteriorados introduciendo ruido digital en el flujo de datos.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Herramienta especializada Display Driver Uninstaller (DDU).",
+        "Paciencia para reiniciar en Modo Seguro múltiples veces.",
+        "Cables de pantalla secundarios para prueba de descarte perimetral."
+      ],
+      "steps": [
+        "Tome una captura de pantalla (Win+Shift+S). Si los artefactos se ven en la imagen guardada al verla en otro dispositivo, el fallo proviene del procesador gráfico o software. Si no, es el cable o monitor físico.",
+        "Descargue DDU y los controladores oficiales de la GPU (AMD/NVIDIA). Desconecte el internet para evitar que Windows Update interfiera.",
+        "Arranque en Modo Seguro, ejecute DDU y seleccione 'Limpiar y Reiniciar' para borrar todos los registros y servicios gráficos preexistentes.",
+        "Instale el controlador oficial desde cero en modo normal. Si persisten bajo carga (juegos), utilice software como MSI Afterburner para reducir las frecuencias (Underclock) de la memoria VRAM un 10%.",
+        "Si las fallas aparecen incluso dentro de la pantalla de la BIOS, la tarjeta de video requiere reparación electrónica profesional (Reballing o cambio de VRAM)."
+      ],
+      "terminal": "dxdiag"
+    },
+    "category": "hardware",
+    "difficulty": "Avanzado",
+    "image": "/categories/hardware.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Infección por Rootkit o Malware Residente",
+    "slug": "infeccion-por-rootkit-malware-residente",
+    "description": "Procedimiento de contención y extirpación offline de software malicioso que subyuga las defensas desde el espacio del kernel (Ring 0).",
+    "explain": {
+      "title": "Análisis y erradicación de amenazas de alto nivel de evasión",
+      "description": "Un Rootkit es malware diseñado específicamente para obtener privilegios máximos (Kernel-mode) y ocultar su propia existencia. Modifica las tablas de servicios del sistema, intercepta llamadas API e inyecta código en procesos legítimos (como svchost.exe o el sector de arranque). Pedagógicamente, es crucial entender que un antivirus ejecutado *dentro* del sistema infectado carece de fiabilidad, ya que el Rootkit controla los datos que el antivirus solicita al SO.",
+      "photo": "/categories/img/virus.webp",
+      "commonErrors": [
+        {
+          "code": "API_HOOKING_INJECTION",
+          "label": "Inyección en memoria de procesos clave para evadir administradores de tareas.",
+          "percentage": "40%"
+        },
+        {
+          "code": "BOOTKIT_MBR_INFECTION",
+          "label": "Infección de la secuencia de arranque, cargándose antes que los servicios de seguridad de Windows.",
+          "percentage": "35%"
+        },
+        {
+          "code": "SECURITY_SERVICES_DISABLED",
+          "label": "Subversión activa de firmas de Windows Defender y bloqueo de herramientas de diagnóstico.",
+          "percentage": "25%"
+        }
+      ],
+      "prerequisites": [
+        "Unidad USB limpia con un entorno de rescate preinstalado (ej. Kaspersky Rescue Disk o WinRE).",
+        "Suite avanzada de Microsoft Sysinternals (Autoruns y Process Explorer)."
+      ],
+      "steps": [
+        "Aísle inmediatamente el equipo de cualquier red (cableada e inalámbrica) para detener filtraciones de datos.",
+        "Arranque el ordenador desde el USB de rescate. Al analizar desde un sistema operativo distinto e independiente (Offline Scanning), el rootkit es solo un conjunto de archivos inertes sin poder para ocultarse.",
+        "Si logra limpiar y acceder de nuevo a Windows, ejecute 'Autoruns' como administrador y deshabilite cualquier controlador, DLL o tarea programada sospechosa (resaltados en rojo o rosa).",
+        "Revise el archivo 'hosts' en System32\\drivers\\etc\\ para garantizar que la conexión a servidores de actualización de antivirus no esté bloqueada maliciosamente.",
+        "Verifique la integridad del almacén de componentes del sistema para reparar binarios legítimos de Windows que el malware haya modificado."
+      ],
+      "terminal": "sfc /scannow && DISM /Online /Cleanup-Image /RestoreHealth"
+    },
+    "category": "seguridad",
+    "difficulty": "Avanzado",
+    "image": "/categories/virus.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Fallo en la resolución DNS local",
+    "slug": "fallo-resolucion-dns-local",
+    "description": "Depuración de la traducción de nombres de dominio jerárquicos, limpieza de caché de resolución y asignación de servidores DNS recursivos alternativos.",
+    "explain": {
+      "title": "Restauración de infraestructura de nombres y enrutamiento lógico",
+      "description": "El Sistema de Nombres de Dominio (DNS) traduce direcciones legibles por humanos (ej. google.com) en direcciones IP rutables. Cuando un usuario no puede navegar por internet pero aplicaciones directas (como juegos o P2P) siguen funcionando, evidencia un fallo en el servidor DNS recursivo provisto por el ISP. Enseñar la reconfiguración local permite eludir la dependencia de servidores defectuosos del proveedor de telecomunicaciones.",
+      "photo": "/categories/img/network.webp",
+      "commonErrors": [
+        {
+          "code": "ISP_DNS_OUTAGE",
+          "label": "Caída del servicio en los nodos de resolución primarios de la compañía proveedora de internet.",
+          "percentage": "50%"
+        },
+        {
+          "code": "LOCAL_CACHE_POISONED",
+          "label": "La tabla temporal local aloja direcciones obsoletas de sitios que han cambiado de IP recientemente.",
+          "percentage": "30%"
+        },
+        {
+          "code": "MALICIOUS_DNS_HIJACK",
+          "label": "Modificación subrepticia de la configuración de red para redirigir tráfico a sitios espejo de phishing.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Permisos administrativos para alterar los protocolos del adaptador de red (IPv4/IPv6).",
+        "Conocimiento básico de herramientas de diagnóstico de red en consola (ping, nslookup)."
+      ],
+      "steps": [
+        "Abra el Símbolo del sistema y ejecute 'ping 8.8.8.8'. Si hay respuesta estable, el acceso a internet existe físicamente; confirme el fallo DNS ejecutando 'nslookup google.com'.",
+        "Acceda al panel de 'Conexiones de red' (ncpa.cpl), seleccione su adaptador activo, vaya a Propiedades e ingrese a las opciones de 'Protocolo de Internet versión 4 (TCP/IPv4)'.",
+        "Cambie la configuración para 'Usar las siguientes direcciones de servidor DNS' e ingrese servidores públicos de alta fiabilidad (ej. Primario: 8.8.8.8, Secundario: 1.1.1.1).",
+        "Vacíe la caché de resolución almacenada en la memoria local para obligar al SO a consultar los nuevos servidores en la próxima solicitud.",
+        "Si hay múltiples equipos afectados, aplique este cambio de DNS globales directamente en la configuración DHCP de la interfaz del router."
+      ],
+      "terminal": "ipconfig /flushdns && nslookup solvepc.com"
+    },
+    "category": "redes",
+    "difficulty": "Fácil",
+    "image": "/categories/network.svg",
+    "so": "windows"
+  },
+  {
+    "title": "MacBook no enciende o no da vídeo",
+    "slug": "macbook-no-enciende-smc-nvram",
+    "description": "Procedimientos de emergencia para revivir hardware Apple mediante el restablecimiento del controlador SMC y la memoria PRAM/NVRAM.",
+    "explain": {
+      "title": "Gestión de microcontroladores de energía en arquitecturas Apple",
+      "description": "Cuando un Mac permanece en negro total a pesar de recibir energía, la falla técnica suele concentrarse en el Controlador de Gestión del Sistema (SMC). Este chip dedicado gestiona la entrega de voltaje a los componentes críticos (CPU, batería, botón de encendido). Restablecerlo obliga a la placa lógica a purgar los estados de bloqueo estáticos. Es vital diferenciar los procedimientos entre arquitecturas Intel antiguas y los modernos Apple Silicon (SoC M-series).",
+      "photo": "/categories/img/hardware.webp",
+      "commonErrors": [
+        {
+          "code": "SMC_FIRMWARE_LOCK",
+          "label": "El microcontrolador de energía colapsó, impidiendo el cierre del circuito eléctrico de encendido.",
+          "percentage": "60%"
+        },
+        {
+          "code": "BATTERY_DEEP_DISCHARGE",
+          "label": "El mecanismo de protección interno desvincula la batería para evitar daño químico tras meses de inactividad.",
+          "percentage": "25%"
+        },
+        {
+          "code": "LOGIC_BOARD_COMPONENT_SHORT",
+          "label": "Fallo físico (cortocircuito) en capacitores o chips de la placa madre impidiendo la distribución de voltaje.",
+          "percentage": "15%"
+        }
+      ],
+      "prerequisites": [
+        "Identificar el año y arquitectura del equipo (Intel con/sin chip T2 de seguridad, o Apple Silicon).",
+        "Adaptador de corriente MagSafe/USB-C oficial operando correctamente."
+      ],
+      "steps": [
+        "Asegúrese de conectar el equipo a la corriente y esperar al menos 10 minutos para descartar protección por sobre-descarga.",
+        "MacBooks Intel sin chip T2: Conecte el cargador, mantenga pulsado simultáneamente (Shift + Control + Option izquierdo) y el botón de encendido durante 10 segundos; suelte todo a la vez y pulse encendido.",
+        "MacBooks Intel con chip T2: Mantenga presionado únicamente el botón de encendido durante 10 segundos ininterrumpidos, suéltelo y vuelva a presionar.",
+        "Si el equipo hace sonidos pero no da imagen, restablezca la NVRAM manteniendo pulsado (Option + Command + P + R) por 20 segundos inmediatamente al encender.",
+        "MacBooks Apple Silicon (M1/M2/M3): El SMC no existe como chip separado. Simplemente conecte el cable y mantenga pulsado el botón de encendido durante 10 segundos continuos para forzar el reinicio diagnóstico."
+      ],
+      "terminal": "sudo pmset -g custom"
+    },
+    "category": "hardware",
+    "difficulty": "Intermedio",
+    "image": "/categories/hardware.svg",
+    "so": "macos"
+  },
+  {
+    "title": "Aplicación dañada en macOS (Error Gatekeeper)",
+    "slug": "aplicacion-danada-macos-gatekeeper",
+    "description": "Comprender los atributos extendidos de cuarentena (com.apple.quarantine) y revocar restricciones mediante comandos terminal en APFS.",
+    "explain": {
+      "title": "Aislamiento de código y validación criptográfica (Gatekeeper)",
+      "description": "El mensaje «La aplicación está dañada y debe trasladarse a la Papelera» rara vez indica corrupción real. Pedagógicamente, es una barrera protectora del sistema Gatekeeper actuando en sinergia con el atributo extendido de 'Cuarentena'. macOS estampa este metadato en todo archivo descargado de internet. Si el programa carece de firma de desarrollador notariada por Apple, el SO finge que está roto para proteger al usuario inexperto de posible malware.",
+      "photo": "/categories/img/software.webp",
+      "commonErrors": [
+        {
+          "code": "QUARANTINE_ATTRIBUTE_ACTIVE",
+          "label": "Atributo extendido adherido a la aplicación, alertando al SO de su origen web no confiable.",
+          "percentage": "50%"
+        },
+        {
+          "code": "UNSIGNED_CODE_EXECUTION",
+          "label": "El software fue empaquetado sin los certificados criptográficos requeridos por el ecosistema de Apple.",
+          "percentage": "30%"
+        },
+        {
+          "code": "DMG_SPARSEBUNDLE_CORRUPT",
+          "label": "Descarga interrumpida generando un daño real en la estructura del contenedor de montaje.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Confianza absoluta en que la aplicación descargada proviene de un desarrollador legítimo libre de malware.",
+        "Uso seguro de la consola de línea de comandos (Terminal.app) y privilegios de administrador."
+      ],
+      "steps": [
+        "Cierre el mensaje de error y abra 'Configuración del Sistema' > 'Privacidad y seguridad'. Desplácese hacia abajo; a menudo macOS ofrece ahí un botón provisional para 'Abrir de todos modos'.",
+        "Si no existe la opción, abra la Terminal. Utilizará la herramienta 'xattr' para manipular los atributos del sistema de archivos APFS.",
+        "Escriba 'sudo xattr -cr ' (asegúrese de dejar un espacio al final), luego arrastre el icono de la aplicación desde la carpeta Aplicaciones hacia la Terminal y presione Enter.",
+        "Esto elimina recursivamente (-r) y limpia (-c) todos los atributos extendidos, destruyendo la etiqueta de cuarentena de Apple.",
+        "Tras ejecutar el programa con éxito, evite deshabilitar la protección global (Master Gatekeeper) usando comandos spctl, manteniendo la seguridad del Mac intacta."
+      ],
+      "terminal": "sudo xattr -cr /Applications/NombreDeLaApp.app"
+    },
+    "category": "software",
+    "difficulty": "Intermedio",
+    "image": "/categories/software.svg",
+    "so": "macos"
+  },
+  {
+    "title": "Alto consumo de RAM en navegadores basados en Chromium",
+    "slug": "alto-consumo-ram-navegadores",
+    "description": "Explicación de la arquitectura multiproceso y mitigación de fugas de memoria (Memory Leaks) en el motor V8 y extensiones de terceros.",
+    "explain": {
+      "title": "Arquitectura Sandbox y gestión del Recolector de Basura (DOM)",
+      "description": "Navegadores como Chrome y Edge dividen cada pestaña y extensión en procesos completamente aislados a nivel del SO (Sandbox) para garantizar seguridad y estabilidad. Este enfoque multiproceso genera un alto 'sobrecosto' (overhead) estructural de RAM. El problema se agrava cuando aplicaciones web pesadas retienen nodos del Document Object Model (DOM) que el Recolector de Basura (Garbage Collector) del motor JavaScript V8 no puede purgar de la memoria física.",
+      "photo": "/categories/img/performance.webp",
+      "commonErrors": [
+        {
+          "code": "PROCESS_SANDBOX_OVERHEAD",
+          "label": "Suma de decenas de procesos subyacentes, duplicando las bibliotecas base compartidas en RAM.",
+          "percentage": "45%"
+        },
+        {
+          "code": "EXTENSION_MEMORY_LEAK",
+          "label": "Complementos mal programados (ej. bloqueadores de anuncios) reteniendo búferes de memoria indefinidamente.",
+          "percentage": "35%"
+        },
+        {
+          "code": "HARDWARE_ACCELERATION_GLITCH",
+          "label": "Fallo en la descarga de procesamiento visual a la GPU, forzando a la CPU/RAM a compensar la carga.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Familiaridad con los gestores de tareas nativos integrados en el propio navegador web."
+      ],
+      "steps": [
+        "Evite guiarse solo por el Administrador de tareas de Windows. Dentro del navegador, presione Shift+Esc para abrir el Gestor de tareas interno y discriminar el consumo exacto por pestaña y extensión.",
+        "Localice las extensiones que encabezan el consumo de memoria; elimine o sustituya las que superen los 200MB en estado inactivo.",
+        "Habilite las funciones nativas de optimización, como 'Ahorro de Memoria' (Memory Saver) o 'Sleeping Tabs', que descargan los datos de las pestañas sin uso hacia el disco duro.",
+        "Si experimenta tirones al reproducir vídeos, verifique en los ajustes que la 'Aceleración por hardware' esté correctamente habilitada para derivar carga hacia la GPU dedicada."
+      ],
+      "terminal": "Get-Process chrome | Measure-Object WorkingSet -Sum"
+    },
+    "category": "rendimiento",
+    "difficulty": "Fácil",
+    "image": "/categories/performance.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Error 502 Bad Gateway en servidores web locales",
+    "slug": "error-502-bad-gateway-servidor-local",
+    "description": "Depuración de infraestructura de proxy inverso, revisión de Sockets UNIX/TCP y reinicio de manejadores de procesos en entornos de desarrollo.",
+    "explain": {
+      "title": "Aislamiento de fallos en arquitecturas de Proxy Inverso",
+      "description": "Técnicamente, el HTTP 502 significa que el servidor frontal (Reverse Proxy, como Nginx o Apache) funciona perfectamente, pero el servicio 'upstream' de fondo (como PHP-FPM, Node.js o Gunicorn) que ejecuta la lógica real entregó una respuesta vacía o defectuosa. El diagnóstico requiere rastrear si el proceso de backend colapsó, si superó el límite de tiempo de ejecución (Timeout), o si hay un bloqueo en los permisos del socket de enlace.",
+      "photo": "/categories/img/software.webp",
+      "commonErrors": [
+        {
+          "code": "UPSTREAM_PROCESS_DEAD",
+          "label": "El administrador de procesos del lenguaje (ej. pm2 para Node o systemd para PHP) se estrelló.",
+          "percentage": "50%"
+        },
+        {
+          "code": "SOCKET_PERMISSION_DENIED",
+          "label": "El servidor Nginx no posee los permisos adecuados para leer el archivo .sock de comunicación.",
+          "percentage": "30%"
+        },
+        {
+          "code": "UPSTREAM_TIMEOUT",
+          "label": "La consulta a la base de datos tarda tanto que el proxy frontal decide abortar la conexión.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Acceso remoto al entorno servidor (vía SSH) con privilegios de superusuario (root o sudo).",
+        "Conocimiento básico de navegación de directorios de bitácoras (logs) en sistemas basados en Linux."
+      ],
+      "steps": [
+        "La regla de oro: Revise inmediatamente los logs de error del servidor frontal utilizando comandos como 'tail -f /var/log/nginx/error.log' para confirmar la causa de la denegación.",
+        "Utilice 'systemctl status [nombre-servicio]' para comprobar si el proceso de backend (ej. php8.1-fpm) está activo, detenido o en un bucle de fallos.",
+        "Si utiliza Sockets UNIX locales, verifique que el propietario del archivo .sock sea el mismo usuario que ejecuta el servidor web (habitualmente www-data).",
+        "Si el fallo ocurre ejecutando exportaciones pesadas, aumente directivas de tiempo como 'proxy_read_timeout' en la configuración de Nginx y 'max_execution_time' en su lenguaje de fondo.",
+        "Reinicie secuencialmente: Inicie el servicio backend, verifique su estado, y luego recargue la configuración del proxy frontal."
+      ],
+      "terminal": "sudo tail -n 50 /var/log/nginx/error.log && sudo systemctl restart php8.1-fpm"
+    },
+    "category": "software",
+    "difficulty": "Avanzado",
+    "image": "/categories/software.svg",
+    "so": "linux"
+  },
+  {
+    "title": "Bucle infinito de actualizaciones en Windows",
+    "slug": "bucle-infinito-actualizaciones-windows",
+    "description": "Interrupción de transacciones fallidas de Windows Installer (CBS), limpieza de la carpeta de distribución y restauración de repositorios WIM.",
+    "explain": {
+      "title": "Gestión de transacciones corruptas de Component-Based Servicing",
+      "description": "El evento 'Deshaciendo cambios, no apague el equipo' en cada reinicio es la evidencia de una falla en el motor transaccional (CBS). Cuando un parche falla la comprobación de integridad criptográfica o encuentra una librería bloqueada, el sistema ordena revertir el cambio; si esta reversión falla, se entra en bucle. Pedagógicamente, el procedimiento técnico requiere amputar la cola de tareas dañadas (pending.xml) y vaciar el caché de paquetes descargados.",
+      "photo": "/categories/img/so.webp",
+      "commonErrors": [
+        {
+          "code": "CORRUPTED_SOFTWARE_DISTRIBUTION",
+          "label": "Descarga de cabinas (.cab) de actualización fragmentadas y almacenadas erróneamente en el disco local.",
+          "percentage": "40%"
+        },
+        {
+          "code": "CBS_PENDING_XML_STUCK",
+          "label": "Lista de transacciones en cola bloqueada, obligando al sistema a reintentar instalaciones muertas eternamente.",
+          "percentage": "35%"
+        },
+        {
+          "code": "WINSXS_CORRUPTION",
+          "label": "El almacén central de componentes (WinSxS) carece de la versión saludable de los archivos base a reemplazar.",
+          "percentage": "25%"
+        }
+      ],
+      "prerequisites": [
+        "Unidad USB con Windows para acceder al Entorno de Recuperación (WinRE) si el bucle impide el acceso al escritorio.",
+        "Dominio de comandos en la consola (CMD) para la manipulación de directorios de sistema."
+      ],
+      "steps": [
+        "Fuerce el apagado físico del equipo tres veces durante la fase de carga del logo para obligar a Windows a abrir el menú de Reparación Automática, y acceda al Símbolo del Sistema.",
+        "Detenga los servicios vitales de actualización ejecutando 'net stop wuauserv' y 'net stop cryptSvc' si está operando desde dentro del sistema en Modo Seguro.",
+        "Renombre las carpetas 'SoftwareDistribution' y 'catroot2' (agregando .old al final) para forzar al sistema a crear repositorios limpios y re-descargar firmas.",
+        "Navegue a C:\\Windows\\WinSxS\\ y localice/elimine el archivo 'pending.xml' para destruir la orden de reinicio constante.",
+        "Reinicie, y una vez en el escritorio, corra la herramienta de Administración de imágenes de implementación (DISM) apuntando al servidor de Windows Update para reparar componentes faltantes."
+      ],
+      "terminal": "ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && DISM /Online /Cleanup-Image /RestoreHealth"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Intermedio",
+    "image": "/categories/os.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Periférico USB no reconocido por el sistema operativo",
+    "slug": "periferico-usb-no-reconocido",
+    "description": "Análisis del proceso de enumeración Universal Serial Bus, mitigación de suspensiones selectivas y limpieza de controladores xHCI raíz.",
+    "explain": {
+      "title": "Depuración del proceso de enumeración de dispositivos USB",
+      "description": "Cuando insertamos un dispositivo, el Hub Controlador Host (ej. xHCI) solicita una serie de descriptores estándar (VID/PID) para identificar el aparato. El mensaje 'No se reconoce el dispositivo USB' es una falla directa en este 'apretón de manos'. Esto ocurre por problemas de caída de tensión en concentradores frontales, estática acumulada en el bus o políticas agresivas del sistema operativo que cortan la energía interrumpiendo las señales D+ y D-.",
+      "photo": "/categories/img/hardware.webp",
+      "commonErrors": [
+        {
+          "code": "DESCRIPTOR_REQUEST_FAILED",
+          "label": "El sistema operativo no recibió información legible del microcontrolador alojado en el periférico.",
+          "percentage": "50%"
+        },
+        {
+          "code": "SELECTIVE_SUSPEND_DROPOUT",
+          "label": "Supresión eléctrica del puerto forzada por las políticas de bajo consumo del kernel de Windows.",
+          "percentage": "30%"
+        },
+        {
+          "code": "FRONT_PANEL_VOLTAGE_DROP",
+          "label": "Pérdida de señal o incapacidad para proveer 5V continuos en los puertos frontales del chasis o HUBs pasivos.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Comprobar el hardware en un segundo equipo independiente para descartar daños definitivos en el periférico.",
+        "Privilegios administrativos para el Administrador de dispositivos."
+      ],
+      "steps": [
+        "Conecte el dispositivo directamente en los puertos soldados a la placa base en la parte trasera de la torre, omitiendo extensores y paneles frontales.",
+        "Si utiliza una portátil, realice un drenaje de energía profundo: apague, desconecte todo, retire la batería (si es posible) y presione el botón de encendido durante 60 segundos.",
+        "Ingrese a 'Opciones de energía' > 'Configuración avanzada' y deshabilite la 'Configuración de suspensión selectiva de USB'.",
+        "Abra el Administrador de dispositivos (devmgmt.msc), expanda la sección 'Controladoras de bus serie universal' y desinstale sistemáticamente cada 'Concentrador raíz USB'. Reinicie el PC para obligar una enumeración fresca de los buses PnP."
+      ],
+      "terminal": "devmgmt.msc"
+    },
+    "category": "hardware",
+    "difficulty": "Fácil",
+    "image": "/categories/hardware.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Archivo bloqueado, no se puede eliminar ni mover",
+    "slug": "archivo-bloqueado-no-se-puede-eliminar",
+    "description": "Identidad y mitigación de bloqueos de objetos en RAM utilizando monitoreo avanzado y desvinculación de descriptores (File Handles) huérfanos.",
+    "explain": {
+      "title": "Gestión de exclusividad y descriptores (Handles) del Kernel",
+      "description": "El SO emplea un modelo de control de concurrencia donde asigna un 'Handle' (descriptor/candado) a un archivo cuando una aplicación lo necesita, evitando que otro programa lo altere y corrompa la escritura. Un archivo bloqueado indica que una aplicación activa tiene el candado, o que un proceso colapsó y falló en emitir la instrucción de liberación de memoria al núcleo. La resolución profesional implica descubrir quién posee el candado y obligar al núcleo a cerrarlo quirúrgicamente.",
+      "photo": "/categories/img/software.webp",
+      "commonErrors": [
+        {
+          "code": "SYSTEM_BACKGROUND_LOCK",
+          "label": "El proceso 'explorer.exe' o servicios de indexación están reteniendo el archivo para extraer miniaturas o metadatos.",
+          "percentage": "40%"
+        },
+        {
+          "code": "ORPHANED_FILE_HANDLE",
+          "label": "Un software se cerró de manera forzosa, dejando el puntero de exclusividad atrapado permanentemente en la tabla de memoria.",
+          "percentage": "35%"
+        },
+        {
+          "code": "MALWARE_SELF_PROTECTION",
+          "label": "Archivos maliciosos utilizando técnicas de retención en anillo superior para impedir su eliminación por el usuario.",
+          "percentage": "25%"
+        }
+      ],
+      "prerequisites": [
+        "Descarga del software Sysinternals Process Explorer (herramienta avanzada avalada por Microsoft).",
+        "Nombre exacto y ubicación de ruta del archivo ofensor."
+      ],
+      "steps": [
+        "Inicie el Monitor de Recursos de Windows nativo (resmon), vaya a la pestaña 'CPU' y escriba el nombre del archivo en el buscador de 'Identificadores asociados'.",
+        "Observe en la lista qué ejecutable retiene el identificador; si es un programa abierto (ej. Word, VLC), ciérrelo normalmente o desde el administrador de tareas.",
+        "Si la retención pertenece a componentes troncales y resiste, abra 'Process Explorer' con privilegios elevados.",
+        "Use la función 'Find Handle or DLL' (Ctrl+F) y busque el nombre. La herramienta revelará el enlace exacto en el panel inferior.",
+        "Haga clic derecho en el Handle dentro del software y seleccione 'Close Handle' para ordenar al kernel revocar violentamente la exclusividad, liberando el archivo."
+      ],
+      "terminal": "taskkill /f /im nombre_del_proceso_bloqueador.exe"
+    },
+    "category": "software",
+    "difficulty": "Intermedio",
+    "image": "/categories/software.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Error de permisos de ejecución en scripts de Linux",
+    "slug": "error-permisos-ejecucion-linux",
+    "description": "Fundamentos de la arquitectura POSIX y modificación de la matriz de Control de Acceso Discrecional mediante nomenclatura octal/simbólica.",
+    "explain": {
+      "title": "Arquitectura de atributos de archivos UNIX y mitigación de riesgos",
+      "description": "A diferencia de Windows (que confía en extensiones como .exe), la filosofía POSIX establece que ningún archivo descargado (script bash, python, AppImage) posee capacidad inherente de ejecutarse como programa; una defensa fundamental contra el malware. El infame error 'Permission denied' al correr un binario en terminal se soluciona otorgando explícitamente el bit de ejecución ('x') a la matriz de propiedad del archivo (Dueño, Grupo, Otros).",
+      "photo": "/categories/img/so.webp",
+      "commonErrors": [
+        {
+          "code": "MISSING_EXECUTE_BIT",
+          "label": "El archivo carece del atributo lógico (+x) necesario para que el kernel lo trate como instrucciones y no como texto plano.",
+          "percentage": "60%"
+        },
+        {
+          "code": "OWNERSHIP_RESTRICTION",
+          "label": "El archivo es propiedad del usuario root, negando la ejecución o modificación a usuarios de bajo nivel.",
+          "percentage": "25%"
+        },
+        {
+          "code": "NOEXEC_MOUNT_FLAG",
+          "label": "Intento de ejecutar scripts alojados en unidades FAT32/NTFS (USBs) montadas con atributos de seguridad restrictivos.",
+          "percentage": "15%"
+        }
+      ],
+      "prerequisites": [
+        "Habilidad para interactuar con la línea de comandos de sistemas basados en Linux/Unix.",
+        "Pertenecer al grupo 'sudoers' para elevar privilegios si se interactúa con ficheros de sistema global."
+      ],
+      "steps": [
+        "Navegue al directorio usando 'cd' y ejecute 'ls -la' para visualizar la matriz de permisos a la izquierda (ej. -rw-r--r--). Observe la falta de letras 'x'.",
+        "Si usted es el dueño legítimo del archivo, utilice la nomenclatura simbólica del comando chmod otorgando ejecución al usuario (u+x): 'chmod u+x archivo.sh'.",
+        "Si desea conceder ejecución universalmente, puede emplear el modelo octal 'chmod 755 archivo.sh' (lectura, escritura y ejecución para el dueño; solo lectura y ejecución para el resto).",
+        "Si los cambios no surten efecto debido a la propiedad, reasigne el archivo a su cuenta utilizando la utilidad chown antes de intentar cambiar modos.",
+        "Finalmente, ejecute el binario dictando la ruta explícita local (./archivo.sh) para confirmar el inicio de las operaciones."
+      ],
+      "terminal": "chmod +x script.sh && ./script.sh"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Fácil",
+    "image": "/categories/os.svg",
+    "so": "linux"
+  },
+  {
+    "title": "Diagnóstico de pérdida de paquetes (Packet Loss)",
+    "slug": "diagnostico-perdida-de-paquetes",
+    "description": "Identificación de nodos troncales defectuosos, saturación de la capa física y análisis de rutas ICMP extendidas.",
+    "explain": {
+      "title": "Análisis de degradación y enrutamiento en topologías globales",
+      "description": "La pérdida de paquetes ocurre cuando los datagramas IP no logran llegar a su servidor de destino. A diferencia de un corte de red total, genera experiencias erráticas (Teletransportación en juegos online, cortes robóticos en Voz sobre IP). La diagnosis técnica no busca un botón de 'reparar', sino utilizar protocolos de tiempo de vida (TTL) para elaborar un trazado salto por salto y demostrar empíricamente si la congestión yace en el cobre local, en el enrutador de casa o en un conmutador colapsado del proveedor de ISP.",
+      "photo": "/categories/img/network.webp",
+      "commonErrors": [
+        {
+          "code": "WIFI_INTERFERENCE_DROP",
+          "label": "Pérdida en el primer salto (la LAN) ocasionada por interferencias de radio o saturación del ancho de banda local.",
+          "percentage": "40%"
+        },
+        {
+          "code": "ISP_BACKBONE_CONGESTION",
+          "label": "Enrutadores sobrecargados en la infraestructura troncal del proveedor, descartando paquetes por desbordamiento de búfer.",
+          "percentage": "40%"
+        },
+        {
+          "code": "CABLE_ATTENUATION",
+          "label": "Atenuación eléctrica severa debida a empalmes oxidados o cables coaxiales expuestos a la intemperie.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Un cable Ethernet para ejecutar pruebas rigurosas, aislando el factor de inestabilidad inalámbrica.",
+        "Conocimiento sobre las utilidades de consola de diagnóstico de red (tracert, MTR o pathping)."
+      ],
+      "steps": [
+        "Conecte el ordenador directamente al módem/router principal mediante un cable Ethernet CAT5e o superior.",
+        "Ejecute un ping continuo en consola hacia una IP global robusta (ej. ping 1.1.1.1 -t) para documentar el porcentaje de pérdida constante en reposo.",
+        "Cancele el ping y lance un análisis prolongado de trazado de rutas utilizando 'pathping' (en Windows) o 'mtr' (en Linux). Deje la herramienta actuar al menos 5 minutos.",
+        "Interprete la tabla de resultados: Si el porcentaje de pérdida (Loss%) inicia en el Salto 1, el equipo o su router están fallando. Si inicia a partir del Salto 2 o 3, la degradación pertenece a la infraestructura de su ISP.",
+        "Utilice los datos numéricos extraídos en consola como evidencia técnica definitiva al solicitar servicio técnico a su proveedor de telecomunicaciones."
+      ],
+      "terminal": "pathping 8.8.8.8"
+    },
+    "category": "redes",
+    "difficulty": "Avanzado",
+    "image": "/categories/network.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Monitor externo no es detectado (Fallo de EDID)",
+    "slug": "monitor-externo-no-detectado",
+    "description": "Procedimientos para solventar fallas de sincronización digital de señales HDMI/DP y limpiar cachés del adaptador de pantalla.",
+    "explain": {
+      "title": "Negociación digital y ancho de banda de la interfaz de video",
+      "description": "Cuando el SO se niega a extender la visualización hacia una pantalla conectada, el fallo se origina en el 'Apretón de Manos' (Handshake) de la interfaz. Los monitores transmiten un pequeño bloque de metadatos (EDID - Extended Display Identification Data) que informa al GPU sobre sus resoluciones y frecuencias máximas nativas. Un cable de baja calidad degradando la señal, o un concentrador USB-C congelado, impiden la lectura del EDID; la GPU, por protección, asume que no hay nada conectado.",
+      "photo": "/categories/img/hardware.webp",
+      "commonErrors": [
+        {
+          "code": "CABLE_BANDWIDTH_STARVATION",
+          "label": "Adaptadores o cables HDMI/VGA antiguos incapaces de lidiar con el ancho de banda requerido para altas resoluciones (4K).",
+          "percentage": "45%"
+        },
+        {
+          "code": "DOCKING_STATION_FREEZE",
+          "label": "Microcontroladores internos de adaptadores multipuerto (Dongles USB-C) colgados lógicamente.",
+          "percentage": "35%"
+        },
+        {
+          "code": "GPU_CACHE_DESYNC",
+          "label": "El servicio de gráficos de Windows se encuentra atascado con datos temporales obsoletos de proyecciones anteriores.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Corroborar manualmente mediante los botones físicos del monitor que la fuente de entrada (Input Source) seleccionada es la correcta.",
+        "Priorizar la conexión por cable único sin convertidores en cascada."
+      ],
+      "steps": [
+        "Fuerce un reinicio profundo del subsistema de gráficos interno presionando la combinación Ctrl + Shift + Win + B; la pantalla parpadeará, forzando un redescubrimiento.",
+        "Si utiliza ordenadores portátiles conectados a estaciones de acoplamiento o concentradores USB-C, desenchufe el dispositivo y reinicie por completo el equipo.",
+        "Abra el panel de configuración de pantalla, y haga clic manualmente en 'Detectar' dentro del menú de visualizaciones múltiples.",
+        "A nivel electrónico: Desconecte por completo el cable de corriente del monitor de la toma de pared durante 60 segundos. Apagarlo por botón no purga los capacitores que alojan estados EDID corruptos."
+      ],
+      "terminal": "desk.cpl"
+    },
+    "category": "hardware",
+    "difficulty": "Fácil",
+    "image": "/categories/hardware.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Consultas lentas en Bases de Datos (Full Table Scans)",
+    "slug": "consultas-lentas-bases-de-datos",
+    "description": "Interpretación de planes de ejecución, mitigación de complejidad algorítmica y aplicación de índices B-Tree estructurados.",
+    "explain": {
+      "title": "Optimización algorítmica en motores relacionales",
+      "description": "Una consulta (Query) letárgica es sintomática de una desconexión crítica entre la lógica de aplicación y el modelo físico de almacenamiento. Si una tabla carece de índices sobre las columnas que son filtradas asiduamente (cláusulas WHERE), el motor se ve obligado a inspeccionar cada registro desde el inicio hasta el final de la tabla (Escaneo Secuencial o 'Full Table Scan'). Educar al respecto requiere entender que a medida que los datos escalan exponencialmente, la memoria se satura fatalmente.",
+      "photo": "/categories/img/performance.webp",
+      "commonErrors": [
+        {
+          "code": "MISSING_B_TREE_INDEXES",
+          "label": "Ausencia absoluta de punteros pre-ordenados, forzando la lectura agónica de millones de filas no relevantes.",
+          "percentage": "60%"
+        },
+        {
+          "code": "NON_SARGABLE_PREDICATES",
+          "label": "Funciones lógicas rodeando la columna (ej. LIKE '%texto%') que inhabilitan la utilidad de un índice existente.",
+          "percentage": "25%"
+        },
+        {
+          "code": "INSUFFICIENT_BUFFER_POOL",
+          "label": "Configuración conservadora de la memoria RAM asignada al motor, forzando constantes lecturas al disco lento.",
+          "percentage": "15%"
+        }
+      ],
+      "prerequisites": [
+        "Credenciales de alto privilegio (DBA) para ejecutar consultas analíticas sobre el motor.",
+        "Capacidad de comprensión de la estructura lógica de los Planes de Ejecución (Query Plans)."
+      ],
+      "steps": [
+        "Abra su entorno de gestión (CLI o DBeaver) y adjunte el comando 'EXPLAIN' (o 'EXPLAIN ANALYZE' para ejecutar y medir) justo antes de su consulta lenta problemática.",
+        "Inspeccione el árbol de salida. Su misión principal es detectar apariciones de nodos denominados 'Seq Scan' o 'Table Scan', identificando cuál tabla es la víctima.",
+        "Cree un ÍNDICE simple o compuesto focalizándose primordialmente en las columnas involucradas dentro de sentencias JOIN y filtros WHERE.",
+        "Re-ejecute la sentencia de análisis para validar que el plan de ejecución ha cambiado favorablemente a un método tipo 'Index Scan' o 'Index Seek'.",
+        "Active temporalmente el registro histórico de consultas letárgicas (Slow Query Log) en el archivo de configuración del servicio principal."
+      ],
+      "terminal": "EXPLAIN ANALYZE SELECT * FROM tabla WHERE campo_clave = 500;"
+    },
+    "category": "rendimiento",
+    "difficulty": "Avanzado",
+    "image": "/categories/performance.svg",
+    "so": "linux"
+  },
+  {
+    "title": "Ausencia de captura de audio del micrófono",
+    "slug": "ausencia-audio-microfono",
+    "description": "Revisión sistemática de buses locales de conmutación, permisos de privacidad del núcleo y multiplexación de canales virtuales.",
+    "explain": {
+      "title": "Flujo de capas de aislamiento en la captura de audio moderno",
+      "description": "Una falla total en la entrada de micrófono requiere auditoría rigurosa a través de cuatro niveles estrictos de integración: Integridad de contacto analógico/digital, controladores nativos de captura base (WASAPI/CoreAudio), políticas globales de privacidad introducidas en los SO modernos que cortan de raíz la encuesta del dispositivo, y finalmente el enrutamiento lógico de la aplicación final. Alterar uno ignora el resto del ecosistema.",
+      "photo": "/categories/img/hardware.webp",
+      "commonErrors": [
+        {
+          "code": "OS_PRIVACY_OVERRIDE",
+          "label": "El cortafuegos de privacidad del sistema operativo tiene el conmutador general de acceso al micrófono inhabilitado.",
+          "percentage": "40%"
+        },
+        {
+          "code": "APP_ROUTING_MISMATCH",
+          "label": "La aplicación de conferencias seleccionó un canal virtual ciego (ej. Mezcla estéreo) en lugar de la captura real.",
+          "percentage": "35%"
+        },
+        {
+          "code": "HARDWARE_MUTE_ASSERTION",
+          "label": "Activación física accidental de teclados Fn o diademas con botón silencioso en línea de cable.",
+          "percentage": "25%"
+        }
+      ],
+      "prerequisites": [
+        "Utilidad de validación local y directa (Panel de sonido nativo) que no dependa de conectividad a la red."
+      ],
+      "steps": [
+        "Revise métodicamente su hardware: busque botones físicos de silenciamiento (mute) a lo largo del cable y compruebe los atajos 'Fn' del teclado en portátiles.",
+        "En Windows, presione Win+I, acceda a 'Privacidad y seguridad' > 'Micrófono'. Garantice categóricamente que la opción principal esté activa para aplicaciones de escritorio.",
+        "Abra la consola antigua presionando Win+R y tecleando 'mmsys.cpl'. Navegue hasta la pestaña 'Grabar', localice el micrófono correcto y márquelo como 'Dispositivo predeterminado'.",
+        "Observe la barra de nivel visual al emitir ruido directamente sobre el dispositivo para confirmar operatividad del controlador central.",
+        "Abra el menú de ajustes internos de su aplicación cliente (Zoom, Teams, etc.) y revalide que esté configurada para emparejarse con el predeterminado del sistema."
+      ],
+      "terminal": "mmsys.cpl"
+    },
+    "category": "hardware",
+    "difficulty": "Fácil",
+    "image": "/categories/hardware.svg",
+    "so": "windows"
+  },
+  {
+    "title": "Recuperación de gestor de arranque GNU GRUB",
+    "slug": "recuperacion-gestor-arranque-gnu-grub",
+    "description": "Interacción con emuladores de entorno mínimo pre-arranque, localización de bloques ext4/btrfs e inserción de módulos lógicos de etapa avanzada.",
+    "explain": {
+      "title": "Dinámica transicional de cargadores (Stage 1 a Stage 2)",
+      "description": "El críptico terminal 'grub rescue>' se manifiesta inexorablemente cuando la Etapa 1 del código de arranque (incrustada de forma física al principio del disco) no localiza la partición Linux necesaria para ejecutar la Etapa 2 de gran tamaño. Pedagógicamente, este error de carga expone la dependencia del código MBR sobre estructuras lógicas separadas. Típicamente surge tras eliminar particiones desde Windows rompiendo las referencias UUID cruzadas.",
+      "photo": "/categories/img/so.webp",
+      "commonErrors": [
+        {
+          "code": "LINUX_PARTITION_DELETED",
+          "label": "Destrucción total o redimensionamiento de la partición Linux, aniquilando las subcarpetas /boot.",
+          "percentage": "50%"
+        },
+        {
+          "code": "UUID_REFERENCE_LOST",
+          "label": "Recreación de la tabla que cambia el identificador del disco, volviendo ciego al puntero GRUB.",
+          "percentage": "30%"
+        },
+        {
+          "code": "WINDOWS_OVERWRITE",
+          "label": "Una gran actualización o reinstalación de Windows monopolizó inescrupulosamente los primeros sectores del disco.",
+          "percentage": "20%"
+        }
+      ],
+      "prerequisites": [
+        "Capacidad de interactuar en una terminal austera con distribución de teclado QWERTY en inglés por defecto.",
+        "Conocimiento estructural del árbol jerárquico del sistema base de Linux (rutas absolutas)."
+      ],
+      "steps": [
+        "En la consola negra dictamine 'ls' para enumerar todos los volúmenes descubiertos, exhibidos usualmente como nomenclaturas (hd0,msdos1), (hd0,gpt2).",
+        "Efectúe búsquedas manuales adjuntando la ruta raíz 'ls (hd0,gptX)/' iterativamente sobre todos, hasta visualizar los directorios /boot y /grub vitales.",
+        "Una vez encontrado el alojamiento nativo, declare las variables de ubicación transcribiendo meticulosamente: 'set root=(hdX,gptY)' y seguidamente 'set prefix=(hdX,gptY)/boot/grub'.",
+        "Obligue al núcleo mínimo a cargar los módulos de interfaz completa digitando 'insmod normal' seguido exclusivamente por 'normal'.",
+        "Una vez el menú gráfico resucite e inicie Linux con normalidad, solidifique el arreglo reconstruyendo la base re-inscribiendo físicamente el grub."
+      ],
+      "terminal": "sudo update-grub && sudo grub-install /dev/sdX"
+    },
+    "category": "sistemas-operativos",
+    "difficulty": "Avanzado",
+    "image": "/categories/os.svg",
+    "so": "linux"
+  }
+]

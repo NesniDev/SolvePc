@@ -1,0 +1,100 @@
+[
+  {
+    "id": 1,
+    "name": "Hardware",
+    "slug": "hardware",
+    "description": "Problemas físicos y componentes del computador",
+    "icon": "/categories/hardware.svg"
+  },
+  {
+    "id": 2,
+    "name": "Sistemas Operativos",
+    "slug": "sistemas-operativos",
+    "description": "Errores, configuración e instalación del sistema operativo",
+    "icon": "/categories/sistemas-operativos.svg"
+  },
+  {
+    "id": 3,
+    "name": "Software",
+    "slug": "software",
+    "description": "Problemas relacionados con programas y aplicaciones",
+    "icon": "/categories/software.svg"
+  },
+  {
+    "id": 4,
+    "name": "Redes",
+    "slug": "redes",
+    "description": "Conectividad, internet y configuración de redes",
+    "icon": "/categories/redes.svg"
+  },
+  {
+    "id": 5,
+    "name": "Seguridad",
+    "slug": "seguridad",
+    "description": "Virus, malware, firewall y protección del sistema",
+    "icon": "/categories/seguridad.svg"
+  },
+  {
+    "id": 6,
+    "name": "Drivers",
+    "slug": "drivers",
+    "description": "Instalación y actualización de controladores",
+    "icon": "/categories/drivers.svg"
+  },
+  {
+    "id": 7,
+    "name": "Rendimiento",
+    "slug": "rendimiento",
+    "description": "Optimización y mejora del rendimiento del equipo",
+    "icon": "/categories/rendimiento.svg"
+  },
+  {
+    "id": 8,
+    "name": "Periféricos",
+    "slug": "perifericos",
+    "description": "Problemas con mouse, teclado, cámaras y otros dispositivos",
+    "icon": "/categories/perifericos.svg"
+  },
+  {
+    "id": 9,
+    "name": "Mantenimiento",
+    "slug": "mantenimiento",
+    "description": "Limpieza, mantenimiento preventivo y diagnóstico",
+    "icon": "/categories/mantenimiento.svg"
+  },
+  {
+    "id": 10,
+    "name": "BIOS / UEFI",
+    "slug": "bios-uefi",
+    "description": "Configuración y errores del firmware del sistema",
+    "icon": "/categories/bios-uefi.svg"
+  },
+  {
+    "id": 11,
+    "name": "Almacenamiento",
+    "slug": "almacenamiento",
+    "description": "Discos SSD, HDD, particiones y almacenamiento",
+    "icon": "/categories/almacenamiento.svg"
+  },
+  {
+    "id": 12,
+    "name": "Errores de Arranque",
+    "slug": "errores-arranque",
+    "description": "Problemas al iniciar el sistema operativo",
+    "icon": "/categories/errores-arranque.svg"
+  },
+  {
+    "id": 13,
+    "name": "Virtualización",
+    "slug": "virtualizacion",
+    "description": "Máquinas virtuales y entornos virtualizados",
+    "icon": "/categories/virtualizacion.svg"
+  },
+  {
+    "id": 14,
+    "name": "Impresoras",
+    "slug": "impresoras",
+    "description": "Configuración y solución de problemas de impresión",
+    "icon": "/categories/impresoras.svg"
+  }
+]
