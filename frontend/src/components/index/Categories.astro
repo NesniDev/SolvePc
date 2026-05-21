@@ -1,4 +1,5 @@
 ---
+export const prerender = false
 const solutionsRes = await fetch(
   `${import.meta.env.PUBLIC_API_URL}/api/solutions/all`
 )
@@ -11,12 +12,12 @@ const categories = await categoriesRes.json()
 
 const solutions = await solutionsRes.json()
 
-const countMap = solutions.reduce((acc, sol) => {
+const countMap = solutions.reduce((acc: Record<string, number>, sol: any) => {
   acc[sol.category] = (acc[sol.category] || 0) + 1
   return acc
 }, {})
 
-const categoriesWithCount = categories.map((cat) => ({
+const categoriesWithCount = categories.map((cat: any) => ({
   ...cat,
   articlesCount: countMap[cat.slug] || 0
 }))
