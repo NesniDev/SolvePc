@@ -1,5 +1,25 @@
 ---
-import { categories } from '@mockup/categories'
+const solutionsRes = await fetch(
+  `${import.meta.env.PUBLIC_API_URL}/api/solutions/all`
+)
+
+const categoriesRes = await fetch(
+  `${import.meta.env.PUBLIC_API_URL}/api/categories`
+)
+
+const categories = await categoriesRes.json()
+
+const solutions = await solutionsRes.json()
+
+const countMap = solutions.reduce((acc, sol) => {
+  acc[sol.category] = (acc[sol.category] || 0) + 1
+  return acc
+}, {})
+
+const categoriesWithCount = categories.map((cat) => ({
+  ...cat,
+  articlesCount: countMap[cat.slug] || 0
+}))
 ---
 
 <section>
@@ -10,21 +30,51 @@ import { categories } from '@mockup/categories'
 
   <div class="categories">
     {
-      categories.map(({ name, icon, articles }) => (
-        <div class="category">
-          <div>
-            <img src="/categories/arrow-link.svg" alt="Icono de Hardware" />
-          </div>
-          <img src={icon} alt="Icono de Hardware" />
-          <h3>{name}</h3>
-          <p>{articles} Articulos</p>
+      categoriesWithCount.map(
+        ({ name = '', icon = '', articlesCount = 0 }, index = 0) => (
+          <article class={`category ${index >= 8 ? 'hidden extra-card' : ''}`}>
+            <div>
+              <img src="/categories/arrow-link.svg" alt="Icono de Hardware" />
+            </div>
+            <img src={icon} alt={`Icono de ${name} `} />
+            <h3>{name}</h3>
+            <p>{articlesCount} Articulos</p>
+          </article>
+        )
+      )
+    }
+
+    {
+      categoriesWithCount.length > 8 && (
+        <div class="wrapper-mostrar">
+          <button id="show-more-btn">Mostrar más</button>
         </div>
-      ))
+      )
     }
   </div>
 </section>
 
 <style>
+  .wrapper-mostrar {
+    width: 100%;
+    display: block;
+    text-align: center;
+    button {
+      padding: 10px;
+      background-color: transparent;
+      color: var(--color-white);
+      font-family: 'Grandstander Variable', system-ui;
+      font-weight: 700;
+      border-radius: 5px;
+      border: 1px solid #949494;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        backdrop-filter: blur(2px);
+        background-color: #9494941c;
+      }
+    }
+  }
   .wrapper-title {
     display: flex;
     flex-direction: column;
@@ -53,7 +103,6 @@ import { categories } from '@mockup/categories'
     max-width: 1000px;
     margin: 0 auto;
     display: flex;
-    flex-wrap: nowrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -68,6 +117,7 @@ import { categories } from '@mockup/categories'
     gap: 10px;
     width: 100%;
     font-family: 'bangers', system-ui;
+    flex-wrap: wrap;
   }
 
   .category {
@@ -76,7 +126,7 @@ import { categories } from '@mockup/categories'
     justify-content: center;
     align-items: start;
     gap: 10px;
-    width: 115px;
+    width: 200px;
     background-color: #0e1c2e;
     border-radius: 15px;
     padding: 20px;
@@ -128,4 +178,20 @@ import { categories } from '@mockup/categories'
       margin: 0;
     }
   }
+  .hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+  }
 </style>
+
+<script>
+  const button = document.getElementById('show-more-btn')
+
+  button?.addEventListener('click', () => {
+    document.querySelectorAll('.extra-card').forEach((card) => {
+      card.classList.remove('hidden')
+    })
+    button.remove()
+  })
+</script>
