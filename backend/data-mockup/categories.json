@@ -4,97 +4,111 @@
     "name": "Hardware",
     "slug": "hardware",
     "description": "Problemas físicos y componentes del computador",
-    "icon": "/categories/hardware.svg"
+    "icon": "/categories/hardware.svg",
+    "image": "/categories/img/hardware.webp"
   },
   {
     "id": 2,
     "name": "Sistemas Operativos",
     "slug": "sistemas-operativos",
     "description": "Errores, configuración e instalación del sistema operativo",
-    "icon": "/categories/sistemas-operativos.svg"
+    "icon": "/categories/sistemas-operativos.svg",
+    "image": "/categories/img/so.webp"
   },
   {
     "id": 3,
     "name": "Software",
     "slug": "software",
     "description": "Problemas relacionados con programas y aplicaciones",
-    "icon": "/categories/software.svg"
+    "icon": "/categories/software.svg",
+    "image": "/categories/img/software.webp"
   },
   {
     "id": 4,
     "name": "Redes",
     "slug": "redes",
     "description": "Conectividad, internet y configuración de redes",
-    "icon": "/categories/redes.svg"
+    "icon": "/categories/redes.svg",
+    "image": "/categories/img/network.webp"
   },
   {
     "id": 5,
     "name": "Seguridad",
     "slug": "seguridad",
     "description": "Virus, malware, firewall y protección del sistema",
-    "icon": "/categories/seguridad.svg"
+    "icon": "/categories/seguridad.svg",
+    "image": "/categories/img/seguridad.webp"
   },
   {
     "id": 6,
     "name": "Drivers",
     "slug": "drivers",
     "description": "Instalación y actualización de controladores",
-    "icon": "/categories/drivers.svg"
+    "icon": "/categories/drivers.svg",
+    "image": "/categories/img/drivers.webp"
   },
   {
     "id": 7,
     "name": "Rendimiento",
     "slug": "rendimiento",
     "description": "Optimización y mejora del rendimiento del equipo",
-    "icon": "/categories/rendimiento.svg"
+    "icon": "/categories/rendimiento.svg",
+    "image": "/categories/img/rendimiento.webp"
   },
   {
     "id": 8,
     "name": "Periféricos",
     "slug": "perifericos",
     "description": "Problemas con mouse, teclado, cámaras y otros dispositivos",
-    "icon": "/categories/perifericos.svg"
+    "icon": "/categories/perifericos.svg",
+    "image": "/categories/img/perifericos.webp"
   },
   {
     "id": 9,
     "name": "Mantenimiento",
     "slug": "mantenimiento",
     "description": "Limpieza, mantenimiento preventivo y diagnóstico",
-    "icon": "/categories/mantenimiento.svg"
+    "icon": "/categories/mantenimiento.svg",
+    "image": "/categories/img/mantenimiento.webp"
   },
   {
     "id": 10,
     "name": "BIOS / UEFI",
     "slug": "bios-uefi",
     "description": "Configuración y errores del firmware del sistema",
-    "icon": "/categories/bios-uefi.svg"
+    "icon": "/categories/bios-uefi.svg",
+    "image": "/categories/img/bios-uefi.webp"
   },
   {
     "id": 11,
     "name": "Almacenamiento",
     "slug": "almacenamiento",
     "description": "Discos SSD, HDD, particiones y almacenamiento",
-    "icon": "/categories/almacenamiento.svg"
+    "icon": "/categories/almacenamiento.svg",
+    "image": "/categories/img/almacenamiento.webp"
   },
   {
     "id": 12,
     "name": "Errores de Arranque",
     "slug": "errores-arranque",
     "description": "Problemas al iniciar el sistema operativo",
-    "icon": "/categories/errores-arranque.svg"
+    "icon": "/categories/errores-arranque.svg",
+    "image": "/categories/img/errores-arranque.webp"
   },
   {
     "id": 13,
     "name": "Virtualización",
     "slug": "virtualizacion",
     "description": "Máquinas virtuales y entornos virtualizados",
-    "icon": "/categories/virtualizacion.svg"
+    "icon": "/categories/virtualizacion.svg",
+    "image": "/categories/img/virtualizacion.webp"
   },
   {
     "id": 14,
     "name": "Impresoras",
     "slug": "impresoras",
     "description": "Configuración y solución de problemas de impresión",
-    "icon": "/categories/impresoras.svg"
+    "icon": "/categories/impresoras.svg",
+    "image": "/categories/img/impresoras.webp"
   }
 ]

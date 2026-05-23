@@ -27,7 +27,7 @@
     },
     "category": "redes",
     "difficulty": "Fácil",
-    "image": "",
+    "image": "/categories/trd.svg",
     "so": "windows"
   },
   {
@@ -37,7 +37,7 @@
     "explain": {
       "title": "Corrupción en memoria RAM o drivers de dispositivo",
       "description": "El error ocurre cuando el subsistema de memoria reporta datos erróneos, a menudo debido a fallos físicos en módulos RAM o controladores que acceden a direcciones de memoria protegidas.",
-      "photo": "",
+      "photo": "/categories/img/so.webp",
       "commonErrors": [
         {
           "code": "MEMORY_MANAGEMENT",
@@ -67,7 +67,7 @@
     "explain": {
       "title": "Fallo en el proceso explorer.exe",
       "description": "Generalmente causado por un controlador de video conflictivo o una actualización de Windows que interrumpió la carga del escritorio.",
-      "photo": "",
+      "photo": "/categories/img/so.webp",
       "commonErrors": [
         {
           "code": "EXPLORER_CRASH",
@@ -97,7 +97,7 @@
     "explain": {
       "title": "Permisos insuficientes o dependencias rotas",
       "description": "Los permisos del servicio de audio en el registro o el fallo de los servicios dependientes impiden la salida de sonido.",
-      "photo": "",
+      "photo": "/categories/img/software.webp",
       "commonErrors": [
         {
           "code": "AUDIO_SERVICE_ERR",
@@ -117,7 +117,7 @@
     },
     "category": "software",
     "difficulty": "Intermedio",
-    "image": "",
+    "image": "/categories/software.svg",
     "so": "windows"
   },
   {
@@ -127,7 +127,7 @@
     "explain": {
       "title": "Estado energético del hardware o conflictos de driver",
       "description": "Frecuentemente causado por una descarga residual de energía en el controlador o una versión de driver no compatible con el stack de Windows 11.",
-      "photo": "",
+      "photo": "/categories/img/network.webp",
       "commonErrors": [
         {
           "code": "BT_ADAPTER_MISSING",
@@ -157,7 +157,7 @@
     "explain": {
       "title": "Configuración de directivas de grupo o malware",
       "description": "Causado por software de terceros que deshabilita Defender, o malware que modifica el registro para evadir la seguridad.",
-      "photo": "",
+      "photo": "/categories/img/seguridad.webp",
       "commonErrors": [
         {
           "code": "GPO_POLICY_RESTRICTION",
@@ -177,7 +177,7 @@
     },
     "category": "seguridad",
     "difficulty": "Avanzado",
-    "image": "",
+    "image": "/categories/seguridad.svg",
     "so": "windows"
   },
   {

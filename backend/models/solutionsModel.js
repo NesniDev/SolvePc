@@ -75,4 +75,8 @@ export class SolutionsModel {
     return solutions
 
   }
+
+  static postSolution(solution) {
+    data.push(solution)
+  }
 }
