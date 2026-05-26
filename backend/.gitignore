@@ -1,2 +1,11 @@
 .vercel
 .env*.local
+
+/generated/prisma
+
+src/generated
+/generated/prisma
+
+/generated/prisma
+
+/generated/prisma
